@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nobu Bank | BaaS Partner Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-content">
+            <div class="brand-group">
+                <div class="brand-logo">
+                    <div class="logo-mark">N</div>
+                    <div class="brand-text">
+                        <span class="brand-name">Nobu Bank</span>
+                        <span class="brand-sub">BaaS Partner Portal</span>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="#qr-section">QRIS</a>
+                <a href="#payout-section">Payout</a>
+                <a href="#madera-section">Madera</a>
+                <a href="#va-section">Virtual Account</a>
+                <a href="#integration-section">Integrasi</a>
+                <a href="#pricing-section">Pricing</a>
+            </div>
+            <div class="nav-actions">
+                <a href="#" class="nav-docs">Dokumentasi</a>
+                <button class="btn-contact">
+                    <span>Hubungi Kami</span>
+                    <i data-lucide="arrow-right" size="14"></i>
+                </button>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#qr-section" class="mobile-link">QRIS</a>
+            <a href="#payout-section" class="mobile-link">Payout</a>
+            <a href="#madera-section" class="mobile-link">Madera</a>
+            <a href="#va-section" class="mobile-link">Virtual Account</a>
+            <a href="#integration-section" class="mobile-link">Integrasi</a>
+            <a href="#pricing-section" class="mobile-link">Pricing</a>
+            <a href="#" class="mobile-link">Dokumentasi</a>
+            <button class="btn-contact mobile-cta">Hubungi Kami</button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero-main">
+        <div class="hero-bg-grid"></div>
+        <div class="hero-orb orb-1"></div>
+        <div class="hero-orb orb-2"></div>
+        <div class="container">
+            <div class="hero-inner">
+                <div class="status-badge">
+                    <span class="pulse-dot"></span>
+                    <span>99.9% Uptime</span>
+                    <div class="badge-divider"></div>
+                    <span>SNAP BI Ready</span>
+                    <div class="badge-divider"></div>
+                    <span>OJK Licensed</span>
+                </div>
+                <h1 class="hero-title">
+                    Infrastruktur <span class="highlight-word">Banking</span><br>
+                    untuk Ekosistem <span class="highlight-word">Digital</span>
+                </h1>
+                <p class="hero-desc">Solusi Banking-as-a-Service yang modular, aman, dan scalable untuk partner enterprise — ditenagai standarisasi API SNAP Bank Indonesia.</p>
+                <div class="hero-btns">
+                    <button class="btn-primary">
+                        <i data-lucide="zap" size="16"></i>
+                        Mulai Integrasi
+                    </button>
+                    <button class="btn-outline">
+                        <i data-lucide="book-open" size="16"></i>
+                        Lihat Dokumentasi
+                    </button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-num">16.000+</span>
+                        <span class="stat-label">Merchant</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-num">99.9%</span>
+                        <span class="stat-label">SLA Uptime</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-num">&lt; 2s </span>
+                        <span class="stat-label">Response Time</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-num">SNAP</span>
+                        <span class="stat-label">BI Certified</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll-hint">
+            <div class="scroll-line"></div>
+            <span>Scroll</span>
+        </div>
+    </header>
+
+    <!-- PRODUCT OVERVIEW STRIP -->
+    <section class="product-strip">
+        <div class="container">
+            <div class="strip-label">Produk & Layanan BaaS</div>
+            <div class="strip-grid">
+                <a href="#qr-section" class="strip-item">
+                    <div class="strip-icon"><i data-lucide="qr-code" size="20"></i></div>
+                    <span>QRIS Solutions</span>
+                    <i data-lucide="arrow-right" size="14" class="strip-arrow"></i>
+                </a>
+                <a href="#payout-section" class="strip-item">
+                    <div class="strip-icon"><i data-lucide="send" size="20"></i></div>
+                    <span>Payout Disbursement</span>
+                    <i data-lucide="arrow-right" size="14" class="strip-arrow"></i>
+                </a>
+                <a href="#madera-section" class="strip-item">
+                    <div class="strip-icon"><i data-lucide="credit-card" size="20"></i></div>
+                    <span>CoBrand Saving</span>
+                    <i data-lucide="arrow-right" size="14" class="strip-arrow"></i>
+                </a>
+                <a href="#va-section" class="strip-item">
+                    <div class="strip-icon"><i data-lucide="landmark" size="20"></i></div>
+                    <span>Virtual Account</span>
+                    <i data-lucide="arrow-right" size="14" class="strip-arrow"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- QRIS SECTION -->
+    <section id="qr-section" class="product-section reveal-section">
+        <div class="container">
+            <div class="product-grid">
+                <div class="product-content">
+                    <div class="category-label">
+                        <i data-lucide="qr-code" size="13"></i>
+                        Payment Acceptance
+                    </div>
+                    <h2 class="section-title">QRIS Solutions</h2>
+                    <p class="section-desc">Terima pembayaran dari seluruh e-wallet dan mobile banking di Indonesia dengan satu integrasi API yang terintegrasi penuh dengan jaringan SNAP BI.</p>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon"><i data-lucide="layout-grid" size="18"></i></div>
+                            <div>
+                                <h4>MPM Static & Dynamic</h4>
+                                <p>Mendukung nominal otomatis untuk akurasi rekonsiliasi yang tinggi dan bebas error.</p>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon"><i data-lucide="globe" size="18"></i></div>
+                            <div>
+                                <h4>Cross-Border QR</h4>
+                                <p>Terima pembayaran dari turis mancanegara (Thailand, Malaysia, Singapore, dan kawasan ASEAN).</p>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon"><i data-lucide="bar-chart-3" size="18"></i></div>
+                            <div>
+                                <h4>Real-time Dashboard</h4>
+                                <p>Monitoring transaksi, rekonsiliasi otomatis, dan laporan keuangan secara langsung.</p>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon"><i data-lucide="shield-check" size="18"></i></div>
+                            <div>
+                                <h4>Fraud Protection</h4>
+                                <p>Sistem deteksi anomali berbasis AI untuk mencegah transaksi mencurigakan.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-cta">
+                        <button class="btn-primary sm">Pelajari QRIS <i data-lucide="arrow-right" size="14"></i></button>
+                        <a href="#" class="link-plain">Lihat Demo <i data-lucide="external-link" size="13"></i></a>
+                    </div>
+                </div>
+                <div class="product-visual">
+                    <div class="visual-card qris-card">
+                        <div class="visual-card-header">
+                            <span class="vc-dot red"></span>
+                            <span class="vc-dot yellow"></span>
+                            <span class="vc-dot green"></span>
+                            <span class="vc-title">QRIS Payment Terminal</span>
+                        </div>
+                        <div class="qris-mockup">
+                            <div class="qr-frame">
+                                <div class="qr-pattern">
+                                    <div class="qr-corner tl"></div>
+                                    <div class="qr-corner tr"></div>
+                                    <div class="qr-corner bl"></div>
+                                    <div class="qr-dots"></div>
+                                    <div class="qr-logo-center">N</div>
+                                </div>
+                            </div>
+                            <div class="qris-label">
+                                <div class="qris-logo-bar">
+                                    <span class="qris-text-logo">QRIS</span>
+                                    <span class="qris-sub-label">Scan to Pay</span>
+                                </div>
+                            </div>
+                            <div class="payment-chips">
+                                <span class="chip">GoPay</span>
+                                <span class="chip">OVO</span>
+                                <span class="chip">DANA</span>
+                                <span class="chip">+40</span>
+                            </div>
+                            <div class="trx-live">
+                                <div class="trx-item">
+                                    <div class="trx-dot success"></div>
+                                    <div class="trx-info">
+                                        <span>QRIS CPM - Success</span>
+                                        <span class="trx-amt">Rp 250.000</span>
+                                    </div>
+                                    <span class="trx-time">2s ago</span>
+                                </div>
+                                <div class="trx-item">
+                                    <div class="trx-dot success"></div>
+                                    <div class="trx-info">
+                                        <span>QRIS Tap - Success</span>
+                                        <span class="trx-amt">Rp 1.200.000</span>
+                                    </div>
+                                    <span class="trx-time">15s ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAYOUT SECTION -->
+    <section id="payout-section" class="product-section dark-section reveal-section">
+        <div class="dark-bg-inner">
+            <div class="dark-orb orb-a"></div>
+            <div class="dark-orb orb-b"></div>
+        </div>
+        <div class="container">
+            <div class="product-grid reversed">
+                <div class="product-content light-content">
+                    <div class="category-label dark-label">
+                        <i data-lucide="send" size="13"></i>
+                        Fund Transfer
+                    </div>
+                    <h2 class="section-title">Payout Disbursement</h2>
+                    <p class="section-desc" style="color: rgba(255,255,255,0.65);">Distribusi dana massal secara real-time ke 150+ bank di Indonesia melalui jaringan BI-FAST dan RTOL dengan jaminan keamanan berlapis.</p>
+                    <div class="feature-grid">
+                        <div class="feature-card dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="zap" size="18"></i></div>
+                            <div>
+                                <h4>BI-FAST Ready</h4>
+                                <p>Transfer hingga Rp 250 Juta dengan biaya admin yang sangat efisien dan proses real-time 24/7.</p>
+                            </div>
+                        </div>
+                        <div class="feature-card dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="list-ordered" size="18"></i></div>
+                            <div>
+                                <h4>Bulk Payment API</h4>
+                                <p>Memproses ribuan instruksi transfer sekaligus dalam satu batch dengan validasi otomatis.</p>
+                            </div>
+                        </div>
+                        <div class="feature-card dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="clock" size="18"></i></div>
+                            <div>
+                                <h4>Scheduled Disbursement</h4>
+                                <p>Jadwalkan pembayaran gaji, komisi, atau refund secara otomatis sesuai waktu yang ditentukan.</p>
+                            </div>
+                        </div>
+                        <div class="feature-card dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="file-text" size="18"></i></div>
+                            <div>
+                                <h4>Auto Reconciliation</h4>
+                                <p>Laporan rekonsiliasi otomatis dengan format yang dapat diintegrasikan ke sistem akuntansi.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-cta">
+                        <button class="btn-primary sm">Pelajari Payout <i data-lucide="arrow-right" size="14"></i></button>
+                        <a href="#" class="link-plain light-link">Lihat Dokumentasi <i data-lucide="external-link" size="13"></i></a>
+                    </div>
+                </div>
+                <div class="product-visual">
+                    <div class="visual-card dark-card-vis">
+                        <div class="visual-card-header dark-header">
+                            <span class="vc-dot red"></span>
+                            <span class="vc-dot yellow"></span>
+                            <span class="vc-dot green"></span>
+                            <span class="vc-title light-title">Bank Statement</span>
+                        </div>
+                        <div class="payout-mockup">
+                            <div class="payout-summary">
+                                <div class="summary-card">
+                                    <span class="sum-label">Total Disbursed Today</span>
+                                    <span class="sum-value">Rp 4.2M</span>
+                                    <span class="sum-badge up">↑ 12.4%</span>
+                                </div>
+                                <div class="summary-card">
+                                    <span class="sum-label">Success Rate</span>
+                                    <span class="sum-value">99.8%</span>
+                                    <span class="sum-badge up">↑ 0.2%</span>
+                                </div>
+                            </div>
+                            <div class="payout-list-label">Recent Transfers</div>
+                            <div class="payout-list">
+                                <div class="payout-row">
+                                    <div class="payout-avatar">BCA</div>
+                                    <div class="payout-detail">
+                                        <span class="payout-name">PT Mitra Sejahtera</span>
+                                        <span class="payout-meta">BI-FAST • 0001234567</span>
+                                    </div>
+                                    <div class="payout-right">
+                                        <span class="payout-amount">Rp 15.500.000</span>
+                                        <span class="payout-status sent">Sent</span>
+                                    </div>
+                                </div>
+                                <div class="payout-row">
+                                    <div class="payout-avatar">BNI</div>
+                                    <div class="payout-detail">
+                                        <span class="payout-name">CV Teknologi Nusa</span>
+                                        <span class="payout-meta">RTOL • 0009876543</span>
+                                    </div>
+                                    <div class="payout-right">
+                                        <span class="payout-amount">Rp 7.200.000</span>
+                                        <span class="payout-status sent">Sent</span>
+                                    </div>
+                                </div>
+                                <div class="payout-row">
+                                    <div class="payout-avatar">MDR</div>
+                                    <div class="payout-detail">
+                                        <span class="payout-name">Gaji Karyawan — Batch</span>
+                                        <span class="payout-meta">Bulk • 500 penerima</span>
+                                    </div>
+                                    <div class="payout-right">
+                                        <span class="payout-amount">Rp 250.000.000</span>
+                                        <span class="payout-status processing">Processing</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MADERA SECTION -->
+    <section id="madera-section" class="product-section reveal-section">
+        <div class="container">
+            <div class="product-grid">
+                <div class="product-content">
+                    <div class="category-label">
+                        <i data-lucide="credit-card" size="13"></i>
+                        CoBrand Saving
+                    </div>
+                    <h2 class="section-title">Madera <span class="title-accent"></span></h2>
+                    <p class="section-desc">Solusi embedded banking untuk partner digital ecosystem yang memungkinkan layanan perbankan hadir langsung di aplikasi partner melalui integrasi API. Mendukung e-KYC, rekening digital, card cash withdrawal, transfer BI-FAST & RTOL, transfer sesama Nobu, QRIS CPM, top up, Direct Debit, serta pengelolaan account profile seperti reset PIN, change PIN, dan card detail management secara real-time.</p>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon"><i data-lucide="smartphone" size="18"></i></div>
+                            <div>
+                                <h4>Virtual & Physical Card</h4>
+                                <p>Terbitkan kartu virtual instan atau kartu fisik dengan personalisasi branding partner.</p>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon"><i data-lucide="settings-2" size="18"></i></div>
+                            <div>
+                                <h4>Spending Control API</h4>
+                                <p>Atur limit transaksi, kategori merchant, dan geography restriction melalui API real-time.</p>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon"><i data-lucide="repeat" size="18"></i></div>
+                            <div>
+                                <h4>Auto Top-Up</h4>
+                                <p>Mekanisme pengisian saldo otomatis berdasarkan trigger balance atau jadwal tertentu.</p>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon"><i data-lucide="users" size="18"></i></div>
+                            <div>
+                                <h4>Multi-User Management</h4>
+                                <p>Kelola ratusan kartu karyawan dari satu dashboard terpusat dengan role-based access.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-cta">
+                        <button class="btn-primary sm">Pelajari Madera <i data-lucide="arrow-right" size="14"></i></button>
+                        <a href="#" class="link-plain">Lihat Demo <i data-lucide="external-link" size="13"></i></a>
+                    </div>
+                </div>
+                <div class="product-visual">
+                    <div class="card-3d-wrapper">
+                        <div class="credit-card-mockup">
+                            <div class="card-chip"></div>
+                            <div class="card-logo-area">
+                                <span class="card-bank-name">Nobu Bank</span>
+                                <div class="card-mastercard">
+                                    <div class="mc-circle mc-left"></div>
+                                    <div class="mc-circle mc-right"></div>
+                                </div>
+                            </div>
+                            <div class="card-number">•••• &nbsp;•••• &nbsp;•••• &nbsp;8821</div>
+                            <div class="card-footer">
+                                <div>
+                                    <div class="card-label">Pemegang Kartu</div>
+                                    <div class="card-value">John Doe</div>
+                                </div>
+                                <div>
+                                    <div class="card-label">Berlaku s/d</div>
+                                    <div class="card-value">12/28</div>
+                                </div>
+                                <div>
+                                    <div class="card-label">Tipe</div>
+                                    <div class="card-value">DEBIT</div>
+                                </div>
+                            </div>
+                            <div class="card-shine"></div>
+                            <div class="card-watermark">MADERA</div>
+                        </div>
+                        <div class="card-stats-badge">
+                            <i data-lucide="trending-up" size="14"></i>
+                            <span>2.4M Kartu Aktif</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIRTUAL ACCOUNT SECTION -->
+    <section id="va-section" class="product-section dark-section reveal-section">
+        <div class="dark-bg-inner">
+            <div class="dark-orb orb-c"></div>
+        </div>
+        <div class="container">
+            <div class="product-grid reversed">
+                <div class="product-content light-content">
+                    <div class="category-label dark-label">
+                        <i data-lucide="landmark" size="13"></i>
+                        Payment Collection
+                    </div>
+                    <h2 class="section-title">Virtual Account</h2>
+                    <p class="section-desc" style="color: rgba(255,255,255,0.65);">Sediakan nomor rekening virtual unik untuk setiap pelanggan Anda, memungkinkan identifikasi pembayaran otomatis tanpa rekonsiliasi manual.</p>
+                    <div class="va-features">
+                        <div class="va-feat-item">
+                            <i data-lucide="check-circle" size="16"></i>
+                            <span>Nomor VA Unik per Transaksi / per Pelanggan</span>
+                        </div>
+                        <div class="va-feat-item">
+                            <i data-lucide="check-circle" size="16"></i>
+                            <span>Notifikasi Webhook Real-time saat Pembayaran Masuk</span>
+                        </div>
+                        <div class="va-feat-item">
+                            <i data-lucide="check-circle" size="16"></i>
+                            <span>Mendukung 15+ Bank di Indonesia</span>
+                        </div>
+                        <div class="va-feat-item">
+                            <i data-lucide="check-circle" size="16"></i>
+                            <span>Fixed dan Open Amount VA tersedia</span>
+                        </div>
+                        <div class="va-feat-item">
+                            <i data-lucide="check-circle" size="16"></i>
+                            <span>Expired Time dan Multi-Use VA control</span>
+                        </div>
+                        <div class="va-feat-item">
+                            <i data-lucide="check-circle" size="16"></i>
+                            <span>Auto-reconciliation ke sistem ERP/accounting</span>
+                        </div>
+                    </div>
+                    <div class="product-cta">
+                        <button class="btn-primary sm">Pelajari VA <i data-lucide="arrow-right" size="14"></i></button>
+                        <a href="#" class="link-plain light-link">Dokumentasi API <i data-lucide="external-link" size="13"></i></a>
+                    </div>
+                </div>
+                <div class="product-visual">
+                    <div class="va-mockup-card">
+                        <div class="va-header">
+                            <div class="va-bank-logo">Nobu Bank</div>
+                            <div class="va-badge">Virtual Account</div>
+                        </div>
+                        <div class="va-number-area">
+                            <div class="va-label-sm">Nomor Virtual Account</div>
+                            <div class="va-number">8013 &nbsp;4567 &nbsp;8901 &nbsp;2345</div>
+                            <button class="va-copy-btn"><i data-lucide="copy" size="13"></i> Salin Nomor</button>
+                        </div>
+                        <div class="va-info-grid">
+                            <div class="va-info-item">
+                                <span class="va-info-label">Nama Penerima</span>
+                                <span class="va-info-value">PT Mitra Digital</span>
+                            </div>
+                            <div class="va-info-item">
+                                <span class="va-info-label">Jumlah Tagihan</span>
+                                <span class="va-info-value green-val">Rp 5.000.000</span>
+                            </div>
+                            <div class="va-info-item">
+                                <span class="va-info-label">Berlaku Hingga</span>
+                                <span class="va-info-value">31 Des 2026 • 23:59</span>
+                            </div>
+                            <div class="va-info-item">
+                                <span class="va-info-label">Status</span>
+                                <span class="va-info-value"><span class="payout-status sent" style="font-size:0.7rem;">Active</span></span>
+                            </div>
+                        </div>
+                        <div class="va-webhook-bar">
+                            <i data-lucide="activity" size="13"></i>
+                            <span>Webhook aktif • Notifikasi Real-time</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTEGRATION SECTION -->
+    <section id="integration-section" class="integration-section reveal-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-eyebrow">Proses Onboarding</div>
+                <h2 class="section-title center-title">Dari Tanda Tangan ke Go-Live<br><span class="title-accent">dalam 5 Langkah</span></h2>
+                <p class="section-subtitle">Proses onboarding yang transparan, terstruktur, dan didampingi tim teknis Nobu Bank dari awal hingga produksi.</p>
+            </div>
+            <div class="steps-timeline">
+                <div class="timeline-line"></div>
+                <div class="steps-row">
+                    <div class="step-item reveal-step">
+                        <div class="step-icon-wrap">
+                            <div class="step-num">01</div>
+                            <div class="step-icon-bg"><i data-lucide="file-signature" size="22"></i></div>
+                        </div>
+                        <div class="step-body">
+                            <h4>Documentation</h4>
+                            <p>Penandatanganan NDA, PKS, dokumen legal, dan kelengkapan due diligence partner.</p>
+                            <div class="step-duration"><i data-lucide="clock" size="11"></i> ~3–5 hari kerja</div>
+                        </div>
+                    </div>
+                    <div class="step-item reveal-step">
+                        <div class="step-icon-wrap">
+                            <div class="step-num">02</div>
+                            <div class="step-icon-bg"><i data-lucide="code-2" size="22"></i></div>
+                        </div>
+                        <div class="step-body">
+                            <h4>Development</h4>
+                            <p>Akses Sandbox Credential & Technical Documentation diberikan. Tim dev partner mulai integrasi.</p>
+                            <div class="step-duration"><i data-lucide="clock" size="11"></i> ~2–4 minggu</div>
+                        </div>
+                    </div>
+                    <div class="step-item reveal-step">
+                        <div class="step-icon-wrap">
+                            <div class="step-num">03</div>
+                            <div class="step-icon-bg"><i data-lucide="flask-conical" size="22"></i></div>
+                        </div>
+                        <div class="step-body">
+                            <h4>UAT Testing</h4>
+                            <p>Testing fungsional pada ASPI Portal, pemenuhan UAT Documentation, dan sign-off kasus uji.</p>
+                            <div class="step-duration"><i data-lucide="clock" size="11"></i> ~1–2 minggu</div>
+                        </div>
+                    </div>
+                    <div class="step-item reveal-step">
+                        <div class="step-icon-wrap">
+                            <div class="step-num">04</div>
+                            <div class="step-icon-bg"><i data-lucide="building-2" size="22"></i></div>
+                        </div>
+                        <div class="step-body">
+                            <h4>BI Verification</h4>
+                            <p>Submission dan verifikasi formal ke Bank Indonesia / ASPI untuk approval regulasi.</p>
+                            <div class="step-duration"><i data-lucide="clock" size="11"></i> ~2–3 minggu</div>
+                        </div>
+                    </div>
+                    <div class="step-item reveal-step">
+                        <div class="step-icon-wrap active-step-wrap">
+                            <div class="step-num active-num">05</div>
+                            <div class="step-icon-bg active-icon-bg"><i data-lucide="rocket" size="22"></i></div>
+                        </div>
+                        <div class="step-body">
+                            <h4>Go-Live 🚀</h4>
+                            <p>Deployment ke environment produksi, monitoring awal bersama tim Nobu, dan dukungan teknis ongoing.</p>
+                            <div class="step-duration active-duration"><i data-lucide="check-circle" size="11"></i> Production Ready</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING SECTION -->
+    <section id="pricing-section" class="pricing-section reveal-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-eyebrow">Skema Biaya</div>
+                <h2 class="section-title center-title">Pricing yang <span class="title-accent">Transparan</span></h2>
+                <p class="section-subtitle">Biaya yang jelas dan kompetitif untuk mendukung pertumbuhan bisnis partner di setiap skala.</p>
+            </div>
+            <div class="pricing-table-wrap">
+                <div class="pricing-table-card">
+                    <div class="table-scroll">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="th-product">Produk & Layanan</th>
+                                    <th>MDR / Biaya Per Trx</th>
+                                    <th>Partner Revenue Sharing</th>
+                                    <th>Settlement</th>
+                                    <th>Availability</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="featured-row">
+                                    <td>
+                                        <div class="product-cell">
+                                            <div class="product-cell-icon qris-icon"><i data-lucide="qr-code" size="15"></i></div>
+                                            <div>
+                                                <strong>QRIS Reguler</strong>
+                                                <span class="popular-tag">Popular</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="fee-value">0.7% <span class="fee-note">Nett</span></span></td>
+                                    <td><span class="sharing-badge vol">Based on Volume</span></td>
+                                    <td><span class="settlement-badge t1">T+1</span></td>
+                                    <td><span class="avail-dot"></span> 24/7</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="product-cell">
+                                            <div class="product-cell-icon bifast-icon"><i data-lucide="zap" size="15"></i></div>
+                                            <div><strong>BI-FAST Payout</strong></div>
+                                        </div>
+                                    </td>
+                                    <td><span class="fee-value">Rp 2.500</span></td>
+                                    <td><span class="sharing-badge flat">Flat Incentive</span></td>
+                                    <td><span class="settlement-badge rt">Real-time</span></td>
+                                    <td><span class="avail-dot"></span> 24/7</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="product-cell">
+                                            <div class="product-cell-icon rtol-icon"><i data-lucide="arrow-left-right" size="15"></i></div>
+                                            <div><strong>RTOL Transfer</strong></div>
+                                        </div>
+                                    </td>
+                                    <td><span class="fee-value">Rp 6.500</span></td>
+                                    <td><span class="sharing-badge share">Up to 25%</span></td>
+                                    <td><span class="settlement-badge rt">Real-time</span></td>
+                                    <td><span class="avail-dot"></span> 24/7</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="product-cell">
+                                            <div class="product-cell-icon va-icon"><i data-lucide="landmark" size="15"></i></div>
+                                            <div><strong>Virtual Account</strong></div>
+                                        </div>
+                                    </td>
+                                    <td><span class="fee-value">Rp 3.000</span></td>
+                                    <td><span class="sharing-badge fixed">Fixed Fee Sharing</span></td>
+                                    <td><span class="settlement-badge rt">Real-time</span></td>
+                                    <td><span class="avail-dot"></span> 24/7</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="product-cell">
+                                            <div class="product-cell-icon madera-icon"><i data-lucide="credit-card" size="15"></i></div>
+                                            <div><strong>CoBrand Saving</strong></div>
+                                        </div>
+                                    </td>
+                                    <td><span class="fee-value">Custom</span></td>
+                                    <td><span class="sharing-badge vol">Negotiated</span></td>
+                                    <td><span class="settlement-badge rt">Real-time</span></td>
+                                    <td><span class="avail-dot"></span> 24/7</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-footer-note">
+                        <i data-lucide="info" size="14"></i>
+                        <span>Pricing di atas adalah estimasi dan dapat berubah berdasarkan volume transaksi, perjanjian kemitraan, dan ketentuan khusus. Hubungi tim kami untuk penawaran customized.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="cta-section reveal-section">
+        <div class="container">
+            <div class="cta-card">
+                <div class="cta-orb"></div>
+                <div class="cta-content">
+                    <div class="cta-badge"><i data-lucide="handshake" size="14"></i> Jadilah Partner Nobu Bank</div>
+                    <h2>Siap Membangun Infrastruktur<br>Perbankan Digital Anda?</h2>
+                    <p>Tim teknis dan business development kami siap mendampingi Anda dari diskusi awal hingga Go-Live produksi.</p>
+                    <div class="cta-btns">
+                        <button class="btn-primary lg">
+                            <i data-lucide="message-square" size="16"></i>
+                            Diskusi dengan Tim Kami
+                        </button>
+                        <button class="btn-outline-light">
+                            <i data-lucide="book-open" size="16"></i>
+                            Baca Dokumentasi API
+                        </button>
+                    </div>
+                    <div class="cta-trust">
+                        <span><i data-lucide="shield-check" size="13"></i> OJK Licensed</span>
+                        <span><i data-lucide="award" size="13"></i> SNAP BI Certified</span>
+                        <span><i data-lucide="lock" size="13"></i> ISO 27001</span>
+                        <span><i data-lucide="check-circle" size="13"></i> PCI DSS Compliant</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand-col">
+                    <div class="footer-logo">
+                        <div class="logo-mark sm">N</div>
+                        <div>
+                            <span class="footer-brand-name">Nobu Bank</span>
+                            <span class="footer-brand-tag">#NoOneButU</span>
+                        </div>
+                    </div>
+                    <p class="footer-tagline">Infrastruktur perbankan digital terdepan untuk ekosistem modern Indonesia.</p>
+                    <div class="footer-socials">
+                        <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" size="16"></i></a>
+                        <a href="#" aria-label="Twitter"><i data-lucide="twitter" size="16"></i></a>
+                        <a href="#" aria-label="Instagram"><i data-lucide="instagram" size="16"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links-group">
+                    <h5>Produk BaaS</h5>
+                    <a href="#qr-section">QRIS Solutions</a>
+                    <a href="#payout-section">Payout Disbursement</a>
+                    <a href="#madera-section">CoBrand Saving by Madera</a>
+                    <a href="#va-section">Virtual Account</a>
+                </div>
+                <div class="footer-links-group">
+                    <h5>Developer</h5>
+                    <a href="#">API Documentation</a>
+                    <a href="#">Sandbox Environment</a>
+                    <a href="#">SDK & Libraries</a>
+                    <a href="#">Changelog</a>
+                    <a href="#">Status Page</a>
+                </div>
+                <div class="footer-links-group">
+                    <h5>Perusahaan</h5>
+                    <a href="#">Tentang Nobu Bank</a>
+                    <a href="#">Partner Program</a>
+                    <a href="#">Karir</a>
+                    <a href="#">Blog & Insights</a>
+                    <a href="#">Kebijakan Privasi</a>
+                </div>
+                <div class="footer-contact-col">
+                    <h5>Hubungi Kami</h5>
+                    <div class="contact-item">
+                        <i data-lucide="map-pin" size="14"></i>
+                        <span>Graha Nobu, Tangerang, Indonesia</span>
+                    </div>
+                    <div class="contact-item">
+                        <i data-lucide="mail" size="14"></i>
+                        <a href="mailto:baas.support@nobubank.com">openbanking@nobubank.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <i data-lucide="phone" size="14"></i>
+                        <a href="tel:+6221500123">+62 21 500 123</a>
+                    </div>
+                    <div class="footer-badges">
+                        <div class="ojk-badge">
+                            <i data-lucide="shield" size="12"></i>
+                            OJK
+                        </div>
+                        <div class="ojk-badge">
+                            <i data-lucide="award" size="12"></i>
+                            SNAP BI
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 PT Bank Nationalnobu Tbk. Terdaftar & Diawasi oleh Otoritas Jasa Keuangan (OJK).</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Syarat & Ketentuan</a>
+                    <a href="#">Kebijakan Privasi</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
