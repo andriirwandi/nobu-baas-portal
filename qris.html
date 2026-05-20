@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QRIS Solutions | Nobu Bank BaaS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="qris.css">
+</head>
+<body>
+
+    <!-- NAVBAR (sama persis dari index) -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-content">
+            <div class="brand-group">
+                <div class="brand-logo">
+                    <div class="logo-mark">N</div>
+                    <div class="brand-text">
+                        <span class="brand-name">Nobu Bank</span>
+                        <span class="brand-sub">BaaS Partner Portal</span>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="index.html#qr-section" class="active">QRIS</a>
+                <a href="index.html#payout-section">Payout</a>
+                <a href="index.html#madera-section">Madera</a>
+                <a href="index.html#va-section">Virtual Account</a>
+                <a href="index.html#integration-section">Integrasi</a>
+                <a href="index.html#pricing-section">Pricing</a>
+            </div>
+            <div class="nav-actions">
+                <a href="index.html" class="nav-docs">
+                    <i data-lucide="arrow-left" size="14"></i>
+                    Kembali
+                </a>
+                <button class="btn-contact">
+                    <span>Hubungi Kami</span>
+                    <i data-lucide="arrow-right" size="14"></i>
+                </button>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html" class="mobile-link">← Kembali ke Beranda</a>
+            <a href="#overview" class="mobile-link">Overview</a>
+            <a href="#fitur" class="mobile-link">Fitur</a>
+            <a href="#tipe-qris" class="mobile-link">Tipe QRIS</a>
+            <a href="#use-cases" class="mobile-link">Use Cases</a>
+            <a href="#pricing-qris" class="mobile-link">Pricing</a>
+            <a href="#faq" class="mobile-link">FAQ</a>
+        </div>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <header class="qp-hero">
+        <div class="qp-hero-grid"></div>
+        <div class="qp-hero-orb"></div>
+        <div class="container">
+            <!-- Breadcrumb -->
+            <div class="qp-breadcrumb">
+                <a href="index.html">Beranda</a>
+                <i data-lucide="chevron-right" size="13"></i>
+                <a href="index.html#qr-section">Produk</a>
+                <i data-lucide="chevron-right" size="13"></i>
+                <span>QRIS Solutions</span>
+            </div>
+
+            <div class="qp-hero-inner">
+                <div class="qp-hero-content">
+                    <div class="category-label">
+                        <i data-lucide="building-2" size="13"></i>
+                        Nobu Bank — QRIS Acquirer
+                    </div>
+                    <h1 class="qp-hero-title">
+                        QRIS Acquiring<br><span class="highlight-word">Infrastruktur Terpadu</span>
+                    </h1>
+                    <p class="qp-hero-desc">Nobu Bank hadir sebagai <strong>QRIS Acquirer</strong> yang menghubungkan merchant partner dengan seluruh ekosistem pembayaran Indonesia. Satu integrasi API SNAP BI — enam varian produk QRIS untuk semua kebutuhan bisnis.</p>
+                    <div class="qp-hero-badges">
+                        <span class="qp-badge"><i data-lucide="shield-check" size="13"></i> Nobu sebagai Acquirer</span>
+                        <span class="qp-badge"><i data-lucide="check-circle" size="13"></i> SNAP BI Certified</span>
+                        <span class="qp-badge"><i data-lucide="check-circle" size="13"></i> ASPI Compliant</span>
+                        <span class="qp-badge"><i data-lucide="globe" size="13"></i> Cross-Border Ready</span>
+                    </div>
+                    <div class="qp-hero-actions">
+                        <button class="btn-primary lg">
+                            <i data-lucide="zap" size="16"></i>
+                            Mulai Integrasi QRIS
+                        </button>
+                        <button class="btn-outline">
+                            <i data-lucide="book-open" size="16"></i>
+                            Lihat API Docs
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Hero Visual: QRIS mockup + stats -->
+                <div class="qp-hero-visual">
+                    <div class="qp-stats-card">
+                        <div class="qp-stat">
+                            <span class="qp-stat-num">6</span>
+                            <span class="qp-stat-lbl">Varian Produk QRIS</span>
+                        </div>
+                        <div class="qp-stat-div"></div>
+                        <div class="qp-stat">
+                            <span class="qp-stat-num">0.7%</span>
+                            <span class="qp-stat-lbl">MDR Nett Acquirer</span>
+                        </div>
+                        <div class="qp-stat-div"></div>
+                        <div class="qp-stat">
+                            <span class="qp-stat-num">T+1</span>
+                            <span class="qp-stat-lbl">Settlement</span>
+                        </div>
+                    </div>
+
+                    <!-- QR Card Mockup -->
+                    <div class="qp-qr-card">
+                        <div class="qp-qr-card-top">
+                            <div class="logo-mark sm">N</div>
+                            <span class="qp-qr-merchant">Merchant Partner Anda</span>
+                            <span class="qp-qr-status"><span class="pulse-dot"></span> Live</span>
+                        </div>
+                        <div class="qp-qr-body">
+                            <!-- QR visual -->
+                            <div class="qr-frame">
+                                <div class="qr-pattern">
+                                    <div class="qr-corner tl"></div>
+                                    <div class="qr-corner tr"></div>
+                                    <div class="qr-corner bl"></div>
+                                    <div class="qr-dots"></div>
+                                    <div class="qr-logo-center">N</div>
+                                </div>
+                            </div>
+                            <div class="qris-text-logo">QRIS</div>
+                            <div class="qp-scan-hint">Scan untuk membayar</div>
+                        </div>
+                        <div class="qp-wallet-row">
+                            <span class="chip">Issuer Bank</span>
+                            <span class="chip">Issuer E-Wallet</span>
+                            <span class="chip">Issuer Fintech</span>
+                            <span class="chip">50+ Issuer</span>
+                        </div>
+                        <!-- Live feed -->
+                        <div class="qp-trx-live">
+                            <div class="qp-trx-head">
+                                <i data-lucide="activity" size="12"></i>
+                                <span>Live Transaksi</span>
+                                <span class="qp-trx-ping"></span>
+                            </div>
+                            <div class="trx-live" id="qpTrxLive">
+                                <div class="trx-item">
+                                    <div class="trx-dot success"></div>
+                                    <div class="trx-info">
+                                        <span>Issuer E-Wallet — Toko ABC</span>
+                                        <span class="trx-amt">Rp 125.000</span>
+                                    </div>
+                                    <span class="trx-time">2s ago</span>
+                                </div>
+                                <div class="trx-item">
+                                    <div class="trx-dot success"></div>
+                                    <div class="trx-info">
+                                        <span>Issuer Bank — Cross-border</span>
+                                        <span class="trx-amt">Rp 890.000</span>
+                                    </div>
+                                    <span class="trx-time">8s ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sticky in-page nav -->
+        <div class="qp-page-nav" id="qpPageNav">
+            <div class="container">
+                <div class="qp-page-nav-inner">
+                    <a href="#overview" class="qp-nav-link active-pn">Overview</a>
+                    <a href="#fitur" class="qp-nav-link">Fitur Lengkap</a>
+                    <a href="#tipe-qris" class="qp-nav-link">Tipe QRIS</a>
+                    <a href="#soundbox" class="qp-nav-link">🔊 Soundbox</a>
+                    <a href="#use-cases" class="qp-nav-link">Use Cases</a>
+                    <a href="#alur-integrasi" class="qp-nav-link">Alur Integrasi</a>
+                    <a href="#pricing-qris" class="qp-nav-link">Pricing</a>
+                    <a href="#faq" class="qp-nav-link">FAQ</a>
+                    <button class="btn-primary sm qp-nav-cta">Mulai Integrasi</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ── OVERVIEW ── -->
+    <section id="overview" class="qp-section">
+        <div class="container">
+            <div class="qp-section-head">
+                <div class="section-eyebrow">Nobu Bank sebagai QRIS Acquirer</div>
+                <h2 class="section-title center-title">Mengapa Partner Memilih<br><span class="title-accent">Nobu sebagai Acquirer?</span></h2>
+                <p class="section-subtitle">Nobu Bank berperan sebagai <strong>Acquirer</strong> — memproses, memvalidasi, dan meneruskan settlement ke merchant. Partner cukup satu integrasi untuk menjangkau seluruh ekosistem Issuer di Indonesia.</p>
+            </div>
+
+            <!-- Acquirer role banner -->
+            <div class="qp-acquirer-banner reveal-section">
+                <div class="qp-acq-side merchant">
+                    <div class="qp-acq-icon"><i data-lucide="store" size="20"></i></div>
+                    <div class="qp-acq-label">Merchant / Partner</div>
+                    <div class="qp-acq-sub">Integrasi 1x ke Nobu</div>
+                </div>
+                <div class="qp-acq-arrow">
+                    <div class="qp-acq-arrow-line"></div>
+                    <div class="qp-acq-center">
+                        <div class="qp-acq-nobu">
+                            <div class="logo-mark">N</div>
+                            <div>
+                                <span class="qp-acq-nobu-name">Nobu Bank</span>
+                                <span class="qp-acq-nobu-role">QRIS Acquirer</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="qp-acq-arrow-line"></div>
+                </div>
+                <div class="qp-acq-side issuer">
+                    <div class="qp-acq-icon"><i data-lucide="landmark" size="20"></i></div>
+                    <div class="qp-acq-label">Issuer (Bank / E-Wallet)</div>
+                    <div class="qp-acq-sub">50+ Issuer Terhubung</div>
+                </div>
+            </div>
+            <div class="qp-overview-grid">
+                <div class="qp-ov-card reveal-section">
+                    <div class="qp-ov-icon" style="background:rgba(0,212,143,0.1);color:var(--green)">
+                        <i data-lucide="plug-zap" size="24"></i>
+                    </div>
+                    <h3>Satu Integrasi, Semua Issuer</h3>
+                    <p>Partner cukup integrasi sekali ke Nobu sebagai Acquirer. Sistem kami yang menghubungkan ke 50+ Issuer — bank, e-wallet, dan fintech — tanpa tambahan integrasi dari pihak partner.</p>
+                </div>
+                <div class="qp-ov-card reveal-section">
+                    <div class="qp-ov-icon" style="background:rgba(99,102,241,0.1);color:#6366F1">
+                        <i data-lucide="globe-2" size="24"></i>
+                    </div>
+                    <h3>Cross-Border Acquiring</h3>
+                    <p>Nobu sebagai Acquirer menerima pembayaran dari Issuer mancanegara (Thailand, Malaysia, Singapura, dan kawasan ASEAN) melalui jaringan QRIS Internasional Bank Indonesia.</p>
+                </div>
+                <div class="qp-ov-card reveal-section">
+                    <div class="qp-ov-icon" style="background:rgba(245,158,11,0.1);color:#F59E0B">
+                        <i data-lucide="bar-chart-4" size="24"></i>
+                    </div>
+                    <h3>Dashboard Acquirer Real-time</h3>
+                    <p>Monitoring volume acquiring, success rate per Issuer, dan revenue sharing partner secara real-time melalui portal merchant terintegrasi.</p>
+                </div>
+                <div class="qp-ov-card reveal-section">
+                    <div class="qp-ov-icon" style="background:rgba(239,68,68,0.1);color:#EF4444">
+                        <i data-lucide="shield-check" size="24"></i>
+                    </div>
+                    <h3>Keamanan Berlapis</h3>
+                    <p>Setiap transaksi divalidasi dengan enkripsi end-to-end, token dinamis, dan sistem deteksi anomali berbasis AI real-time sesuai standar SNAP BI.</p>
+                </div>
+                <div class="qp-ov-card reveal-section">
+                    <div class="qp-ov-icon" style="background:rgba(16,185,129,0.1);color:#10B981">
+                        <i data-lucide="file-check-2" size="24"></i>
+                    </div>
+                    <h3>Auto Rekonsiliasi</h3>
+                    <p>Rekonsiliasi acquiring otomatis harian berformat CSV/Excel siap diimport langsung ke sistem ERP atau accounting partner tanpa kerja manual.</p>
+                </div>
+                <div class="qp-ov-card reveal-section">
+                    <div class="qp-ov-icon" style="background:rgba(0,212,143,0.1);color:var(--green)">
+                        <i data-lucide="headphones" size="24"></i>
+                    </div>
+                    <h3>Dedicated Support</h3>
+                    <p>Tim teknis Nobu mendampingi integrasi dari sandbox hingga go-live produksi, dengan SLA respons &lt;2 jam untuk critical issues.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FITUR LENGKAP ── -->
+    <section id="fitur" class="qp-section qp-dark-section">
+        <div class="dark-bg-inner">
+            <div class="dark-orb" style="width:500px;height:500px;background:radial-gradient(circle,rgba(0,212,143,0.1) 0%,transparent 70%);top:-150px;right:-100px;"></div>
+            <div class="dark-orb" style="width:300px;height:300px;background:radial-gradient(circle,rgba(0,212,143,0.07) 0%,transparent 70%);bottom:-50px;left:100px;"></div>
+        </div>
+        <div class="container">
+            <div class="qp-section-head">
+                <div class="section-eyebrow" style="color:var(--green)">Fitur Lengkap</div>
+                <h2 class="section-title center-title" style="color:#fff">Semua yang Dibutuhkan<br><span class="title-accent">untuk Skala Enterprise</span></h2>
+                <p class="section-subtitle" style="color:rgba(255,255,255,0.55)">Dari QR statis untuk UMKM hingga dynamic QR untuk e-commerce berskala besar — semua tersedia dalam satu platform.</p>
+            </div>
+
+            <div class="qp-feat-tabs">
+                <button class="qp-tab active-tab" data-tab="acceptance">Payment Acceptance</button>
+                <button class="qp-tab" data-tab="management">Manajemen & Monitoring</button>
+                <button class="qp-tab" data-tab="settlement">Settlement & Rekonsiliasi</button>
+                <button class="qp-tab" data-tab="security">Keamanan</button>
+            </div>
+
+            <div class="qp-tab-content" id="tabContent">
+
+                <!-- TAB: ACCEPTANCE -->
+                <div class="qp-tab-panel active-panel" data-panel="acceptance">
+                    <div class="qp-feat-grid">
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="qr-code" size="18"></i></div>
+                            <div>
+                                <h4>MPM Static</h4>
+                                <p>QR statis untuk merchant fisik. Satu kode QR digunakan berulang, pembeli memasukkan nominal sendiri.</p>
+                            </div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="refresh-cw" size="18"></i></div>
+                            <div>
+                                <h4>MPM Dynamic</h4>
+                                <p>QR dibuat per transaksi dengan nominal tetap. Ideal untuk e-commerce, ticketing, dan tagihan yang presisi.</p>
+                            </div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="smartphone" size="18"></i></div>
+                            <div>
+                                <h4>CPM (Customer Presented Mode)</h4>
+                                <p>Pelanggan menampilkan QR dari aplikasi partner, merchant melakukan scan. Mendukung kartu debit Nobu.</p>
+                            </div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="globe" size="18"></i></div>
+                            <div>
+                                <h4>Cross-Border QR</h4>
+                                <p>Terima pembayaran dari Thailand (PromptPay), Malaysia (DuitNow), Singapore (PayNow), dan kawasan ASEAN.</p>
+                            </div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="layers" size="18"></i></div>
+                            <div>
+                                <h4>Multi-Outlet Support</h4>
+                                <p>Satu merchant ID dengan ratusan outlet dan kasir — masing-masing dengan QR dan laporan terpisah.</p>
+                            </div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="webhook" size="18"></i></div>
+                            <div>
+                                <h4>Webhook Notifikasi</h4>
+                                <p>Notifikasi instan ke endpoint partner setiap transaksi berhasil, gagal, atau timeout — dalam <500ms.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB: MANAGEMENT -->
+                <div class="qp-tab-panel" data-panel="management">
+                    <div class="qp-feat-grid">
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="layout-dashboard" size="18"></i></div>
+                            <div>
+                                <h4>Merchant Dashboard</h4>
+                                <p>Portal web terintegrasi untuk melihat volume harian, weekly trend, top produk, dan performa per outlet.</p>
+                            </div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="users-2" size="18"></i></div>
+                            <div>
+                                <h4>Multi-Role Access</h4>
+                                <p>Atur hak akses berbeda untuk Admin, Finance, dan Kasir — masing-masing dengan tampilan dan aksi terbatas.</p>
+                            </div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="bell-ring" size="18"></i></div>
+                            <div>
+                                <h4>Alert & Threshold</h4>
+                                <p>Konfigurasi alert otomatis ketika volume transaksi, refund rate, atau kegagalan melampaui ambang batas.</p>
+                            </div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="download" size="18"></i></div>
+                            <div>
+                                <h4>Laporan & Export</h4>
+                                <p>Unduh laporan transaksi harian, bulanan dalam format CSV, Excel, atau PDF langsung dari dashboard.</p>
+                            </div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="search" size="18"></i></div>
+                            <div>
+                                <h4>Transaction Lookup</h4>
+                                <p>Cari transaksi berdasarkan ID, nominal, tanggal, atau nomor referensi untuk kebutuhan sengketa dan audit.</p>
+                            </div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="git-branch" size="18"></i></div>
+                            <div>
+                                <h4>API Log</h4>
+                                <p>Riwayat lengkap setiap API call dengan request/response payload untuk debugging dan audit trail.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB: SETTLEMENT -->
+                <div class="qp-tab-panel" data-panel="settlement">
+                    <div class="qp-feat-grid">
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="calendar-check" size="18"></i></div>
+                            <div>
+                                <h4>Settlement T+1</h4>
+                                <p>Dana merchant masuk ke rekening Nobu Bank pada hari kerja berikutnya secara otomatis tanpa intervensi manual.</p>
+                            </div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="file-spreadsheet" size="18"></i></div>
+                            <div>
+                                <h4>Auto Rekonsiliasi</h4>
+                                <p>File rekonsiliasi otomatis dikirim ke email atau SFTP partner setiap hari sebelum pukul 07.00 WIB.</p>
+                            </div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="split" size="18"></i></div>
+                            <div>
+                                <h4>Revenue Sharing Otomatis</h4>
+                                <p>Kalkulasi dan distribusi fee sharing ke rekening partner dilakukan otomatis sesuai skema yang disepakati.</p>
+                            </div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="rotate-ccw" size="18"></i></div>
+                            <div>
+                                <h4>Refund API</h4>
+                                <p>Proses refund penuh atau sebagian langsung melalui API — dana kembali ke sumber pembayaran pelanggan.</p>
+                            </div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="building-2" size="18"></i></div>
+                            <div>
+                                <h4>Multi-Bank Settlement</h4>
+                                <p>Dana dapat diselesaikan ke rekening bank mana pun di Indonesia — BCA, BNI, BRI, Mandiri, dan 140+ lainnya.</p>
+                            </div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="receipt" size="18"></i></div>
+                            <div>
+                                <h4>E-Receipt API</h4>
+                                <p>Generate bukti transaksi digital berformat JSON atau PDF yang dapat langsung ditampilkan di aplikasi partner.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB: SECURITY -->
+                <div class="qp-tab-panel" data-panel="security">
+                    <div class="qp-feat-grid">
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="lock-keyhole" size="18"></i></div>
+                            <div>
+                                <h4>Token Dinamis</h4>
+                                <p>Setiap QR dynamic dilindungi token one-time-use yang expired dalam waktu tertentu untuk mencegah replay attack.</p>
+                            </div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="scan-face" size="18"></i></div>
+                            <div>
+                                <h4>Fraud Detection AI</h4>
+                                <p>Sistem ML real-time menganalisis pola transaksi dan memblokir aktivitas mencurigakan sebelum settlement.</p>
+                            </div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="key-round" size="18"></i></div>
+                            <div>
+                                <h4>Enkripsi End-to-End</h4>
+                                <p>Data transaksi dienkripsi dengan TLS 1.3 dan algoritma AES-256 dari device pelanggan hingga core banking Nobu.</p>
+                            </div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="clipboard-check" size="18"></i></div>
+                            <div>
+                                <h4>PCI DSS Compliant</h4>
+                                <p>Infrastruktur QRIS Nobu memenuhi standar PCI DSS Level 1 — standar keamanan data pembayaran tertinggi.</p>
+                            </div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="eye-off" size="18"></i></div>
+                            <div>
+                                <h4>Data Masking</h4>
+                                <p>Informasi sensitif pelanggan otomatis disamarkan pada log, laporan, dan dashboard — sesuai regulasi PDP.</p>
+                            </div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="activity" size="18"></i></div>
+                            <div>
+                                <h4>24/7 Security Monitoring</h4>
+                                <p>Tim SOC Nobu memantau infrastruktur QRIS sepanjang waktu dengan SLA incident response <15 menit.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ── TIPE QRIS ── -->
+    <section id="tipe-qris" class="qp-section">
+        <div class="container">
+            <div class="qp-section-head">
+                <div class="section-eyebrow">Portofolio Produk</div>
+                <h2 class="section-title center-title">6 Varian QRIS<br><span class="title-accent">oleh Nobu Bank Acquirer</span></h2>
+                <p class="section-subtitle">Dari QR statis untuk warung hingga QRIS lintas negara — Nobu sebagai Acquirer menyediakan seluruh varian produk QRIS Bank Indonesia.</p>
+            </div>
+
+            <div class="qp-type-grid-6">
+
+                <!-- 1. MPM Static -->
+                <div class="qp-type-card reveal-section">
+                    <div class="qp-type-header">
+                        <div class="qp-type-icon"><i data-lucide="qr-code" size="20"></i></div>
+                        <div class="qp-type-badge">MPM</div>
+                    </div>
+                    <h3>QR MPM Static</h3>
+                    <p class="qp-type-desc">QR permanen yang dicetak atau ditampilkan di kasir. Issuer men-debit pelanggan, Nobu sebagai Acquirer menerima dan meneruskan dana ke merchant.</p>
+                    <div class="qp-type-specs">
+                        <div class="qp-spec-row">
+                            <span class="qp-spec-lbl">Nominal</span>
+                            <span class="qp-spec-val">Input oleh pembeli</span>
+                        </div>
+                        <div class="qp-spec-row">
+                            <span class="qp-spec-lbl">QR Berlaku</span>
+                            <span class="qp-spec-val">Permanen</span>
+                        </div>
+                        <div class="qp-spec-row">
+                            <span class="qp-spec-lbl">Arah Scan</span>
+                            <span class="qp-spec-val">Issuer scan Merchant QR</span>
+                        </div>
+                        <div class="qp-spec-row">
+                            <span class="qp-spec-lbl">Settlement</span>
+                            <span class="qp-spec-val">T+1</span>
+                        </div>
+                    </div>
+                    <div class="qp-type-tags">
+                        <span>Retail</span><span>F&B</span><span>UMKM</span>
+                    </div>
+                </div>
+
+                <!-- 2. MPM Dynamic -->
+                <div class="qp-type-card featured-type reveal-section">
+                    <div class="qp-type-header">
+                        <div class="qp-type-icon green-icon"><i data-lucide="refresh-cw" size="20"></i></div>
+                        <div class="qp-type-badge green-badge">Paling Populer</div>
+                    </div>
+                    <h3>QR MPM Dynamic</h3>
+                    <p class="qp-type-desc">QR dibuat per transaksi via API Nobu dengan nominal sudah ditetapkan. Ideal untuk e-commerce, tagihan, dan pembayaran presisi tinggi.</p>
+                    <div class="qp-type-specs">
+                        <div class="qp-spec-row">
+                            <span class="qp-spec-lbl">Nominal</span>
+                            <span class="qp-spec-val">Ditetapkan sistem</span>
+                        </div>
+                        <div class="qp-spec-row">
+                            <span class="qp-spec-lbl">QR Berlaku</span>
+                            <span class="qp-spec-val">Configurable (expired)</span>
+                        </div>
+                        <div class="qp-spec-row">
+                            <span class="qp-spec-lbl">Arah Scan</span>
+                            <span class="qp-spec-val">Issuer scan Merchant QR</span>
+                        </div>
+                        <div class="qp-spec-row">
+                            <span class="qp-spec-lbl">Settlement</span>
+                            <span class="qp-spec-val">T+1</span>
+                        </div>
+                    </div>
+                    <div class="qp-type-tags green-tags">
+                        <span>E-Commerce</span><span>Tagihan</span><span>Ticketing</span>
+                    </div>
+                </div>
+
+                <!-- 3. CPM Dynamic -->
+                <div class="qp-type-card reveal-section">
+                    <div class="qp-type-header">
+                        <div class="qp-type-icon"><i data-lucide="smartphone" size="20"></i></div>
+                        <div class="qp-type-badge">CPM</div>
+                    </div>
+                    <h3>QR CPM Dynamic</h3>
+                    <p class="qp-type-desc">Pelanggan menampilkan QR dari aplikasi Issuer, kasir merchant melakukan scan. Nobu Acquirer memproses transaksi dari sisi merchant.</p>
+                    <div class="qp-type-specs">
+                        <div class="qp-spec-row">
+                            <span class="qp-spec-lbl">Nominal</span>
+                            <span class="qp-spec-val">Input di mesin kasir</span>
+                        </div>
+                        <div class="qp-spec-row">
+                            <span class="qp-spec-lbl">QR Berlaku</span>
+                            <span class="qp-spec-val">Satu kali pakai</span>
+                        </div>
+                        <div class="qp-spec-row">
+                            <span class="qp-spec-lbl">Arah Scan</span>
+                            <span class="qp-spec-val">Merchant scan Issuer QR</span>
+                        </div>
+                        <div class="qp-spec-row">
+                            <span class="qp-spec-lbl">Settlement</span>
+                            <span class="qp-spec-val">T+1</span>
+                        </div>
+                    </div>
+                    <div class="qp-type-tags">
+                        <span>Supermarket</span><span>Transit</span><span>Vending</span>
+                    </div>
+                </div>
+
+                <!-- 4. QR TAP -->
+                <div class="qp-type-card reveal-section">
+                    <div class="qp-type-header">
+                        <div class="qp-type-icon" style="background:rgba(99,102,241,0.1);color:#6366F1;border-color:rgba(99,102,241,0.2)"><i data-lucide="nfc" size="20"></i></div>
+                        <div class="qp-type-badge" style="background:rgba(99,102,241,0.1);color:#6366F1;border-color:rgba(99,102,241,0.2)">TAP</div>
+                    </div>
+                    <h3>QR TAP</h3>
+                    <p class="qp-type-desc">Pembayaran nirsentuh berbasis NFC — pelanggan cukup mengetuk perangkat ke terminal Nobu. Menggabungkan kecepatan tap dengan ekosistem QRIS.</p>
+                    <div class="qp-type-specs">
+                        <div class="qp-spec-row">
+                            <span class="qp-spec-lbl">Teknologi</span>
+                            <span class="qp-spec-val">NFC + QRIS</span>
+                        </div>
+                        <div class="qp-spec-row">
+                            <span class="qp-spec-lbl">Kecepatan</span>
+                            <span class="qp-spec-val">&lt;1 detik</span>
+                        </div>
+                        <div class="qp-spec-row">
+                            <span class="qp-spec-lbl">Sumber Dana</span>
+                            <span class="qp-spec-val">Issuer NFC-enabled</span>
+                        </div>
+                        <div class="qp-spec-row">
+                            <span class="qp-spec-lbl">Settlement</span>
+                            <span class="qp-spec-val">T+1</span>
+                        </div>
+                    </div>
+                    <div class="qp-type-tags">
+                        <span>Transit</span><span>Parkir</span><span>Toll</span>
+                    </div>
+                </div>
+
+                <!-- 5. QR Soundbox -->
+                <div class="qp-type-card reveal-section">
+                    <div class="qp-type-header">
+                        <div class="qp-type-icon" style="background:rgba(245,158,11,0.1);color:#F59E0B;border-color:rgba(245,158,11,0.2)"><i data-lucide="volume-2" size="20"></i></div>
+                        <div class="qp-type-badge" style="background:rgba(245,158,11,0.1);color:#F59E0B;border-color:rgba(245,158,11,0.2)">Soundbox</div>
+                    </div>
+                    <h3>QR Soundbox</h3>
+                    <p class="qp-type-desc">Perangkat pintar yang menampilkan QR dan mengumumkan konfirmasi pembayaran via speaker secara otomatis — tanpa merchant perlu cek layar atau HP.</p>
+                    <div class="qp-type-specs">
+                        <div class="qp-spec-row">
+                            <span class="qp-spec-lbl">Konfirmasi</span>
+                            <span class="qp-spec-val">Audio otomatis</span>
+                        </div>
+                        <div class="qp-spec-row">
+                            <span class="qp-spec-lbl">Koneksi</span>
+                            <span class="qp-spec-val">4G / WiFi</span>
+                        </div>
+                        <div class="qp-spec-row">
+                            <span class="qp-spec-lbl">Layar</span>
+                            <span class="qp-spec-val">2.4" LCD Display</span>
+                        </div>
+                        <div class="qp-spec-row">
+                            <span class="qp-spec-lbl">Settlement</span>
+                            <span class="qp-spec-val">T+1</span>
+                        </div>
+                    </div>
+                    <div class="qp-type-tags">
+                        <span>Warung</span><span>Pasar</span><span>UMKM</span>
+                    </div>
+                </div>
+
+                <!-- 6. Cross Border -->
+                <div class="qp-type-card reveal-section">
+                    <div class="qp-type-header">
+                        <div class="qp-type-icon" style="background:rgba(16,185,129,0.1);color:#10B981;border-color:rgba(16,185,129,0.2)"><i data-lucide="globe" size="20"></i></div>
+                        <div class="qp-type-badge" style="background:rgba(16,185,129,0.1);color:#10B981;border-color:rgba(16,185,129,0.2)">Cross-Border</div>
+                    </div>
+                    <h3>QR Cross Border</h3>
+                    <p class="qp-type-desc">Nobu sebagai Acquirer menerima pembayaran dari Issuer mancanegara (Thailand PromptPay, Malaysia DuitNow, Singapore PayNow) dalam satu sistem.</p>
+                    <div class="qp-type-specs">
+                        <div class="qp-spec-row">
+                            <span class="qp-spec-lbl">Negara</span>
+                            <span class="qp-spec-val">TH, MY, SG, PH, +</span>
+                        </div>
+                        <div class="qp-spec-row">
+                            <span class="qp-spec-lbl">Konversi FX</span>
+                            <span class="qp-spec-val">Otomatis real-time</span>
+                        </div>
+                        <div class="qp-spec-row">
+                            <span class="qp-spec-lbl">Settlement</span>
+                            <span class="qp-spec-val">T+2 (IDR)</span>
+                        </div>
+                        <div class="qp-spec-row">
+                            <span class="qp-spec-lbl">Regulasi</span>
+                            <span class="qp-spec-val">BI QRIS Internasional</span>
+                        </div>
+                    </div>
+                    <div class="qp-type-tags">
+                        <span>Pariwisata</span><span>Hospitality</span><span>Retail</span>
+                    </div>
+                </div>
+
+                <!-- 7. CPTS -->
+                <div class="qp-type-card reveal-section" style="grid-column: 2 / 4;">
+                    <div class="qp-type-header">
+                        <div class="qp-type-icon" style="background:rgba(239,68,68,0.1);color:#EF4444;border-color:rgba(239,68,68,0.2)"><i data-lucide="layers" size="20"></i></div>
+                        <div class="qp-type-badge" style="background:rgba(239,68,68,0.1);color:#EF4444;border-color:rgba(239,68,68,0.2)">CPTS</div>
+                    </div>
+                    <h3>QR CPTS <span style="font-size:0.75rem;font-weight:500;color:var(--text-muted)">— Centralized Payment Transaction System</span></h3>
+                    <p class="qp-type-desc">QRIS untuk ekosistem terpusat — cocok untuk platform marketplace, aggregator pembayaran, dan institusi yang mengelola ribuan merchant sekaligus. Nobu Acquirer menjadi backbone infrastruktur pembayaran platform.</p>
+                    <div class="qp-type-specs" style="grid-template-columns:1fr 1fr 1fr 1fr;display:grid;gap:8px;">
+                        <div class="qp-spec-row" style="flex-direction:column;align-items:flex-start;gap:2px;">
+                            <span class="qp-spec-lbl">Model</span>
+                            <span class="qp-spec-val">Centralized Acquiring</span>
+                        </div>
+                        <div class="qp-spec-row" style="flex-direction:column;align-items:flex-start;gap:2px;">
+                            <span class="qp-spec-lbl">Sub-Merchant</span>
+                            <span class="qp-spec-val">Unlimited</span>
+                        </div>
+                        <div class="qp-spec-row" style="flex-direction:column;align-items:flex-start;gap:2px;">
+                            <span class="qp-spec-lbl">Settlement</span>
+                            <span class="qp-spec-val">Split otomatis</span>
+                        </div>
+                        <div class="qp-spec-row" style="flex-direction:column;align-items:flex-start;gap:2px;">
+                            <span class="qp-spec-lbl">Regulasi</span>
+                            <span class="qp-spec-val">SNAP BI + BI CPTS</span>
+                        </div>
+                    </div>
+                    <div class="qp-type-tags">
+                        <span>Marketplace</span><span>Aggregator</span><span>Platform</span><span>Institusi</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ── QRIS SOUNDBOX SIMULATOR ── -->
+    <section id="soundbox" class="qp-section soundbox-section">
+        <div class="sb-bg-grid"></div>
+        <div class="sb-orb sb-orb-1"></div>
+        <div class="sb-orb sb-orb-2"></div>
+        <div class="container">
+            <div class="qp-section-head">
+                <div class="section-eyebrow" style="color:var(--green)">🔊 Simulasi Interaktif</div>
+                <h2 class="section-title center-title" style="color:#fff">QRIS <span class="title-accent">Soundbox</span></h2>
+                <p class="section-subtitle" style="color:rgba(255,255,255,0.55)">Perangkat pintar yang mengumumkan konfirmasi pembayaran secara otomatis — tanpa perlu cek HP. Coba simulasinya di bawah.</p>
+            </div>
+
+            <div class="sb-layout">
+
+                <!-- LEFT: Device Mockup -->
+                <div class="sb-device-wrap">
+                    <div class="sb-device" id="sbDevice">
+
+                        <!-- NOBU SOUNDBOX BODY -->
+                        <div class="sb-device-body">
+
+                            <!-- Camera bar at top -->
+                            <div class="sb-camera-bar">
+                                <div class="sb-camera-lens">
+                                    <div class="sb-camera-inner"></div>
+                                </div>
+                            </div>
+
+                            <!-- Screen (layar tampilan QR / status) -->
+                            <div class="sb-screen" id="sbScreen">
+
+                                <!-- IDLE STATE -->
+                                <div class="sb-state" id="sbStateIdle">
+                                    <!-- Pink/yellow accent bar (brand Nobu Soundbox) -->
+                                    <div class="sb-screen-accent">
+                                        <div class="sb-accent-pink"></div>
+                                        <div class="sb-accent-yellow"></div>
+                                    </div>
+                                    <div class="sb-logo-row">
+                                        <div class="sb-nobu-logo">nobu</div>
+                                    </div>
+                                    <div class="sb-idle-qr">
+                                        <div class="qr-frame sm-qr">
+                                            <div class="qr-pattern">
+                                                <div class="qr-corner tl"></div>
+                                                <div class="qr-corner tr"></div>
+                                                <div class="qr-corner bl"></div>
+                                                <div class="qr-dots"></div>
+                                                <div class="qr-logo-center sm-logo">N</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="sb-qris-tap-label">BAYAR PRAKTIS PAKE</div>
+                                    <div class="sb-qristap-logo">QRIS<span>Tap</span></div>
+                                    <div class="sb-idle-sub">Scan QR untuk membayar</div>
+                                </div>
+
+                                <!-- SCANNING STATE -->
+                                <div class="sb-state hidden" id="sbStateScanning">
+                                    <div class="sb-screen-accent">
+                                        <div class="sb-accent-pink"></div>
+                                        <div class="sb-accent-yellow"></div>
+                                    </div>
+                                    <div class="sb-logo-row">
+                                        <div class="sb-nobu-logo">nobu</div>
+                                    </div>
+                                    <div class="sb-scan-anim">
+                                        <div class="sb-scan-ring"></div>
+                                        <div class="sb-scan-ring delay1"></div>
+                                        <i data-lucide="scan-line" size="28" style="color:var(--green)"></i>
+                                    </div>
+                                    <div class="sb-scanning-text">Mohon Menunggu...</div>
+                                    <div class="sb-scanning-sub">Memproses pembayaran</div>
+                                    <div class="sb-progress-bar">
+                                        <div class="sb-progress-fill" id="sbProgressFill"></div>
+                                    </div>
+                                </div>
+
+                                <!-- SUCCESS STATE -->
+                                <div class="sb-state hidden" id="sbStateSuccess">
+                                    <div class="sb-screen-accent">
+                                        <div class="sb-accent-pink"></div>
+                                        <div class="sb-accent-yellow"></div>
+                                    </div>
+                                    <div class="sb-logo-row">
+                                        <div class="sb-nobu-logo">nobu</div>
+                                    </div>
+                                    <div class="sb-success-icon">
+                                        <div class="sb-checkmark">
+                                            <svg viewBox="0 0 52 52" class="sb-check-svg">
+                                                <circle class="sb-check-circle" cx="26" cy="26" r="25" fill="none"/>
+                                                <path class="sb-check-path" fill="none" d="M14 27l8 8 16-16"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="sb-success-label">BERHASIL!</div>
+                                    <div class="sb-success-amount" id="sbSuccessAmount">Rp 75.000</div>
+                                    <div class="sb-success-via" id="sbSuccessVia">via Nobu QRIS</div>
+                                    <div class="sb-success-trxid">TRX#NBK-<span id="sbTrxId">8821</span></div>
+                                </div>
+
+                            </div>
+
+                            <!-- Bottom branding bar -->
+                            <div class="sb-bottom-brand">
+                                <div class="sb-brand-left">BAYAR PRAKTIS PAKE</div>
+                                <div class="sb-brand-logo-sm">QRIS<span>Tap</span></div>
+                            </div>
+
+                            <!-- Keypad -->
+                            <div class="sb-keypad">
+                                <!-- Row 1: nav buttons -->
+                                <div class="sb-keypad-nav">
+                                    <button class="sb-nav-btn sb-btn-power">⏻</button>
+                                    <button class="sb-nav-btn sb-btn-back">↺</button>
+                                    <button class="sb-nav-btn sb-btn-fwd">↻</button>
+                                    <button class="sb-nav-btn sb-btn-up">↑</button>
+                                    <button class="sb-nav-btn sb-btn-down">↓</button>
+                                </div>
+                                <!-- Row 2: 1 2 3 M(setting) -->
+                                <div class="sb-keypad-row">
+                                    <button class="sb-key sb-key-num">1<sub>QZ</sub></button>
+                                    <button class="sb-key sb-key-num">2<sub>ABC</sub></button>
+                                    <button class="sb-key sb-key-num">3<sub>DEF</sub></button>
+                                    <button class="sb-key sb-key-special sb-key-menu">M</button>
+                                </div>
+                                <!-- Row 3: 4 5 6 X(back) -->
+                                <div class="sb-keypad-row">
+                                    <button class="sb-key sb-key-num">4<sub>GHI</sub></button>
+                                    <button class="sb-key sb-key-num">5<sub>JKL</sub></button>
+                                    <button class="sb-key sb-key-num">6<sub>MNO</sub></button>
+                                    <button class="sb-key sb-key-special sb-key-cancel">✕</button>
+                                </div>
+                                <!-- Row 4: 7 8 9 +(menu) -->
+                                <div class="sb-keypad-row">
+                                    <button class="sb-key sb-key-num">7<sub>PRS</sub></button>
+                                    <button class="sb-key sb-key-num">8<sub>TUV</sub></button>
+                                    <button class="sb-key sb-key-num">9<sub>WXY</sub></button>
+                                    <button class="sb-key sb-key-special sb-key-plus">+</button>
+                                </div>
+                                <!-- Row 5: < 0 . O(enter) -->
+                                <div class="sb-keypad-row">
+                                    <button class="sb-key sb-key-special sb-key-del">⌫</button>
+                                    <button class="sb-key sb-key-num">0</button>
+                                    <button class="sb-key sb-key-num">•</button>
+                                    <button class="sb-key sb-key-special sb-key-enter">OK</button>
+                                </div>
+                            </div>
+
+                            <!-- Sound waves -->
+                            <div class="sb-sound-waves" id="sbSoundWaves">
+                                <div class="sb-wave"></div>
+                                <div class="sb-wave"></div>
+                                <div class="sb-wave"></div>
+                                <div class="sb-wave"></div>
+                                <div class="sb-wave"></div>
+                            </div>
+
+                            <!-- Status LED -->
+                            <div class="sb-led" id="sbLed"></div>
+                        </div>
+
+                        <!-- Stand -->
+                        <div class="sb-stand">
+                            <div class="sb-stand-neck"></div>
+                            <div class="sb-stand-base"></div>
+                        </div>
+
+                        <!-- Sound badge -->
+                        <div class="sb-sound-badge" id="sbSoundBadge">
+                            <i data-lucide="volume-2" size="12"></i>
+                            <span>Suara Diputar</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT: Simulator Panel -->
+                <div class="sb-panel">
+
+                    <!-- Step indicator -->
+                    <div class="sb-steps">
+                        <div class="sb-step active-step" id="sbStep1">
+                            <div class="sb-step-num">1</div>
+                            <div class="sb-step-body">
+                                <div class="sb-step-title">Pelanggan Scan QR</div>
+                                <div class="sb-step-desc">Pelanggan membuka aplikasi Issuer (bank/e-wallet) dan scan QRIS pada device Nobu Soundbox</div>
+                            </div>
+                        </div>
+                        <div class="sb-step-connector"></div>
+                        <div class="sb-step" id="sbStep2">
+                            <div class="sb-step-num">2</div>
+                            <div class="sb-step-body">
+                                <div class="sb-step-title">Device Tampilkan QR & Nominal</div>
+                                <div class="sb-step-desc">Layar Soundbox menampilkan QRIS Nobu Acquirer dan nominal transaksi yang harus dibayar</div>
+                            </div>
+                        </div>
+                        <div class="sb-step-connector"></div>
+                        <div class="sb-step" id="sbStep3">
+                            <div class="sb-step-num">3</div>
+                            <div class="sb-step-body">
+                                <div class="sb-step-title">Issuer Proses & Konfirmasi</div>
+                                <div class="sb-step-desc">Issuer mendebit rekening pelanggan dan mengirim konfirmasi ke Nobu Acquirer via jaringan SNAP BI</div>
+                            </div>
+                        </div>
+                        <div class="sb-step-connector"></div>
+                        <div class="sb-step" id="sbStep4">
+                            <div class="sb-step-num">4</div>
+                            <div class="sb-step-body">
+                                <div class="sb-step-title">Soundbox Konfirmasi Suara 🔊</div>
+                                <div class="sb-step-desc">"Pembayaran diterima Rp [nominal] melalui Nobu QRIS. Terima kasih." — Nobu Acquirer notifikasi merchant</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Config Panel -->
+                    <div class="sb-config">
+                        <div class="sb-config-title">
+                            <i data-lucide="sliders-horizontal" size="14"></i>
+                            Konfigurasi Simulasi
+                        </div>
+                        <div class="sb-config-grid">
+                            <div class="sb-config-item">
+                                <label class="sb-label">Nominal Pembayaran</label>
+                                <div class="sb-amount-select">
+                                    <button class="sb-amt-btn active-amt" data-amount="75000">Rp 75.000</button>
+                                    <button class="sb-amt-btn" data-amount="150000">Rp 150.000</button>
+                                    <button class="sb-amt-btn" data-amount="500000">Rp 500.000</button>
+                                    <button class="sb-amt-btn" data-amount="1200000">Rp 1.200.000</button>
+                                </div>
+                            </div>
+                            <div class="sb-config-item">
+                                <label class="sb-label">Acquirer</label>
+                                <div class="sb-method-select">
+                                    <button class="sb-method-btn active-method" data-method="Issuer E-Wallet">Nobu QRIS</button>
+                                    <!-- <button class="sb-method-btn" data-method="Issuer Bank">Issuer Bank</button>
+                                    <button class="sb-method-btn" data-method="Issuer Fintech">Issuer Fintech</button>
+                                    <button class="sb-method-btn" data-method="Issuer BNPL">Issuer BNPL</button> -->
+                                </div>
+                            </div>
+                            <div class="sb-config-item">
+                                <label class="sb-label">Volume Suara</label>
+                                <div class="sb-volume-row">
+                                    <i data-lucide="volume-1" size="14" style="color:rgba(255,255,255,0.4)"></i>
+                                    <input type="range" class="sb-volume-slider" id="sbVolume" min="0" max="1" step="0.05" value="0.8">
+                                    <i data-lucide="volume-2" size="14" style="color:var(--green)"></i>
+                                    <span class="sb-vol-pct" id="sbVolPct">80%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CTA Button -->
+                        <button class="sb-trigger-btn" id="sbTriggerBtn">
+                            <div class="sb-btn-inner">
+                                <div class="sb-btn-icon">
+                                    <i data-lucide="play-circle" size="20"></i>
+                                </div>
+                                <div class="sb-btn-text">
+                                    <span class="sb-btn-label">Simulasikan Pembayaran</span>
+                                    <span class="sb-btn-sub">Klik untuk memulai demo</span>
+                                </div>
+                            </div>
+                        </button>
+
+                        <!-- Log -->
+                        <div class="sb-log" id="sbLog">
+                            <div class="sb-log-header">
+                                <i data-lucide="terminal" size="12"></i>
+                                <span>System Log</span>
+                                <button class="sb-log-clear" id="sbLogClear">Clear</button>
+                            </div>
+                            <div class="sb-log-body" id="sbLogBody">
+                                <div class="sb-log-entry info">
+                                    <span class="sb-log-time">--:--:--</span>
+                                    <span class="sb-log-msg">Nobu Soundbox v2.1 ready</span>
+                                </div>
+                                <div class="sb-log-entry info">
+                                    <span class="sb-log-time">--:--:--</span>
+                                    <span class="sb-log-msg">QRIS MPM Static active · Awaiting scan...</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature pills -->
+            <div class="sb-feature-row">
+                <div class="sb-feat-pill">
+                    <i data-lucide="wifi" size="14"></i>
+                    <span>Koneksi 4G / WiFi</span>
+                </div>
+                <div class="sb-feat-pill">
+                    <i data-lucide="battery-charging" size="14"></i>
+                    <span>Baterai 8 Jam</span>
+                </div>
+                <div class="sb-feat-pill">
+                    <i data-lucide="volume-2" size="14"></i>
+                    <span>Speaker 3W Stereo</span>
+                </div>
+                <div class="sb-feat-pill">
+                    <i data-lucide="monitor-smartphone" size="14"></i>
+                    <span>Layar 2.4" LCD</span>
+                </div>
+                <div class="sb-feat-pill">
+                    <i data-lucide="shield-check" size="14"></i>
+                    <span>Enkripsi End-to-End</span>
+                </div>
+                <div class="sb-feat-pill">
+                    <i data-lucide="refresh-cw" size="14"></i>
+                    <span>OTA Firmware Update</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── USE CASES ── -->
+    <section id="use-cases" class="qp-section" style="background:var(--surface)">
+        <div class="container">
+            <div class="qp-section-head">
+                <div class="section-eyebrow">Use Cases</div>
+                <h2 class="section-title center-title">Cocok untuk<br><span class="title-accent">Berbagai Industri</span></h2>
+            </div>
+            <div class="qp-usecase-grid">
+                <div class="qp-uc-card reveal-section">
+                    <div class="qp-uc-icon"><i data-lucide="shopping-cart" size="20"></i></div>
+                    <h4>E-Commerce & Marketplace</h4>
+                    <p>Generate QR dinamis per order via API Nobu Acquirer. Pelanggan membayar dari Issuer manapun, rekonsiliasi otomatis ke sistem OMS.</p>
+                    <div class="qp-uc-tags"><span>MPM Dynamic</span><span>Webhook</span></div>
+                </div>
+                <div class="qp-uc-card reveal-section">
+                    <div class="qp-uc-icon"><i data-lucide="utensils" size="20"></i></div>
+                    <h4>F&B & Retail Fisik</h4>
+                    <p>QR statis Nobu Acquirer di meja atau kasir. Menerima dari Issuer manapun — bank maupun e-wallet — tanpa perangkat tambahan.</p>
+                    <div class="qp-uc-tags"><span>MPM Static</span><span>Soundbox</span></div>
+                </div>
+                <div class="qp-uc-card reveal-section">
+                    <div class="qp-uc-icon"><i data-lucide="ticket" size="20"></i></div>
+                    <h4>Ticketing & Event</h4>
+                    <p>QR per tiket dengan nominal tetap dan waktu expired. Nobu Acquirer memvalidasi pembayaran dari Issuer secara real-time saat scan di pintu masuk.</p>
+                    <div class="qp-uc-tags"><span>MPM Dynamic</span><span>Expired QR</span></div>
+                </div>
+                <div class="qp-uc-card reveal-section">
+                    <div class="qp-uc-icon"><i data-lucide="school" size="20"></i></div>
+                    <h4>Pendidikan</h4>
+                    <p>Pembayaran SPP, pendaftaran, dan biaya ekskul melalui QR link Nobu Acquirer yang dikirim ke orang tua. Diterima dari Issuer bank maupun e-wallet.</p>
+                    <div class="qp-uc-tags"><span>Payment Link</span><span>Rekonsiliasi</span></div>
+                </div>
+                <div class="qp-uc-card reveal-section">
+                    <div class="qp-uc-icon"><i data-lucide="heart-pulse" size="20"></i></div>
+                    <h4>Healthcare</h4>
+                    <p>Pembayaran biaya konsultasi dan rawat inap via QRIS Nobu Acquirer langsung dari meja pendaftaran. Mendukung CPM untuk antrean lebih cepat.</p>
+                    <div class="qp-uc-tags"><span>MPM Static</span><span>CPM Dynamic</span></div>
+                </div>
+                <div class="qp-uc-card reveal-section">
+                    <div class="qp-uc-icon"><i data-lucide="plane" size="20"></i></div>
+                    <h4>Travel & Pariwisata</h4>
+                    <p>Nobu Acquirer menerima pembayaran dari Issuer mancanegara (PromptPay, DuitNow, PayNow) via QRIS Cross-Border tanpa EDC tambahan.</p>
+                    <div class="qp-uc-tags"><span>Cross-Border</span><span>Multi-Issuer</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── ALUR INTEGRASI ── -->
+    <section id="alur-integrasi" class="qp-section">
+        <div class="container">
+            <div class="qp-section-head">
+                <div class="section-eyebrow">Dokumentasi Teknis</div>
+                <h2 class="section-title center-title">Alur Integrasi QRIS<br><span class="title-accent">MPM Dynamic</span></h2>
+                <p class="section-subtitle">Contoh alur API untuk pembayaran QRIS Dynamic — dari generate QR hingga notifikasi sukses.</p>
+            </div>
+
+            <div class="qp-flow-grid">
+                <div class="qp-flow-step reveal-section">
+                    <div class="qp-flow-num">1</div>
+                    <div class="qp-flow-body">
+                        <div class="qp-flow-label">Partner → Nobu API</div>
+                        <h4>Generate QR</h4>
+                        <div class="qp-code-block">
+                            <div class="qp-code-header">
+                                <span>POST /v1/qris/generate</span>
+                                <button class="qp-copy-code"><i data-lucide="copy" size="12"></i></button>
+                            </div>
+<pre>{
+  "amount": 150000,
+  "merchant_id": "MRC-001",
+  "reference_no": "TRX-20260519",
+  "expired_time": 300
+}</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="qp-flow-step reveal-section">
+                    <div class="qp-flow-num">2</div>
+                    <div class="qp-flow-body">
+                        <div class="qp-flow-label">Nobu API → Partner</div>
+                        <h4>Response QR String</h4>
+                        <div class="qp-code-block">
+                            <div class="qp-code-header">
+                                <span>200 OK</span>
+                                <span class="qp-code-badge success">Success</span>
+                            </div>
+<pre>{
+  "qr_string": "00020101...",
+  "qr_image_url": "https://...",
+  "expired_at": "2026-05-19T10:05:00Z",
+  "trx_id": "NBK-TRX-8821"
+}</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="qp-flow-step reveal-section">
+                    <div class="qp-flow-num">3</div>
+                    <div class="qp-flow-body">
+                        <div class="qp-flow-label">Pelanggan → App</div>
+                        <h4>Scan & Bayar</h4>
+                        <p style="color:rgba(255,255,255,0.6);font-size:0.85rem;line-height:1.7;">Pelanggan membuka aplikasi Issuer (bank / e-wallet / fintech), scan QR yang ditampilkan di layar atau cetak. Pelanggan konfirmasi pembayaran di aplikasi Issuer masing-masing, Issuer mengirim otorisasi ke Nobu Acquirer via SNAP BI.</p>
+                    </div>
+                </div>
+
+                <div class="qp-flow-step reveal-section">
+                    <div class="qp-flow-num">4</div>
+                    <div class="qp-flow-body">
+                        <div class="qp-flow-label">Nobu → Partner Webhook</div>
+                        <h4>Notifikasi Pembayaran</h4>
+                        <div class="qp-code-block">
+                            <div class="qp-code-header">
+                                <span>POST /your-webhook</span>
+                                <span class="qp-code-badge success">Paid</span>
+                            </div>
+<pre>{
+  "trx_id": "NBK-TRX-8821",
+  "status": "SUCCESS",
+  "amount": 150000,
+  "payment_method": "ISSUER_EWALLET",
+  "paid_at": "2026-05-19T10:02:34Z"
+}</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="qp-api-cta">
+                <a href="#" class="btn-primary">
+                    <i data-lucide="book-open" size="15"></i>
+                    Lihat Full API Documentation
+                </a>
+                <a href="#" class="link-plain" style="color:var(--green)">
+                    Download Postman Collection
+                    <i data-lucide="download" size="14"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── PRICING ── -->
+    <section id="pricing-qris" class="qp-section" style="background:var(--surface)">
+        <div class="container">
+            <div class="qp-section-head">
+                <div class="section-eyebrow">Pricing</div>
+                <h2 class="section-title center-title">Skema Biaya <span class="title-accent">QRIS</span></h2>
+                <p class="section-subtitle">Transparan, kompetitif, dan dapat disesuaikan dengan volume transaksi partner.</p>
+            </div>
+
+            <div class="qp-pricing-grid">
+                <div class="qp-price-card reveal-section">
+                    <div class="qp-price-label">MDR Standard</div>
+                    <div class="qp-price-main">0.7%<span class="qp-price-unit"> / transaksi</span></div>
+                    <div class="qp-price-note">Nett — sudah termasuk biaya jaringan QRIS</div>
+                    <ul class="qp-price-list">
+                        <li><i data-lucide="check" size="14"></i> Berlaku untuk semua sumber dana</li>
+                        <li><i data-lucide="check" size="14"></i> Tidak ada biaya setup</li>
+                        <li><i data-lucide="check" size="14"></i> Tidak ada biaya bulanan</li>
+                        <li><i data-lucide="check" size="14"></i> Settlement T+1</li>
+                    </ul>
+                </div>
+                <div class="qp-price-card featured-price reveal-section">
+                    <div class="qp-price-featured-badge">Rekomendasi Partner</div>
+                    <div class="qp-price-label">Revenue Sharing</div>
+                    <div class="qp-price-main">Custom<span class="qp-price-unit"> based on vol</span></div>
+                    <div class="qp-price-note">Sharing MDR ke partner berdasarkan volume bulanan</div>
+                    <ul class="qp-price-list">
+                        <li><i data-lucide="check" size="14"></i> Tiering berbasis volume transaksi</li>
+                        <li><i data-lucide="check" size="14"></i> Distribusi otomatis bulanan</li>
+                        <li><i data-lucide="check" size="14"></i> Laporan sharing detail</li>
+                        <li><i data-lucide="check" size="14"></i> Dedicated account manager</li>
+                    </ul>
+                    <button class="btn-primary" style="width:100%;margin-top:auto;justify-content:center">
+                        Diskusi Skema Sharing
+                    </button>
+                </div>
+                <div class="qp-price-card reveal-section">
+                    <div class="qp-price-label">Enterprise</div>
+                    <div class="qp-price-main">Nego<span class="qp-price-unit"> — custom deal</span></div>
+                    <div class="qp-price-note">Untuk partner dengan volume > 1 juta transaksi/bulan</div>
+                    <ul class="qp-price-list">
+                        <li><i data-lucide="check" size="14"></i> MDR negotiated</li>
+                        <li><i data-lucide="check" size="14"></i> SLA premium & dedicated infra</li>
+                        <li><i data-lucide="check" size="14"></i> Priority support 24/7</li>
+                        <li><i data-lucide="check" size="14"></i> Custom settlement schedule</li>
+                    </ul>
+                </div>
+            </div>
+
+            <p class="qp-pricing-disclaimer">
+                <i data-lucide="info" size="13"></i>
+                Pricing bersifat indikatif dan dapat berubah. Skema final mengacu pada perjanjian kemitraan yang ditandatangani. Hubungi tim kami untuk penawaran customized.
+            </p>
+        </div>
+    </section>
+
+    <!-- ── FAQ ── -->
+    <section id="faq" class="qp-section">
+        <div class="container">
+            <div class="qp-section-head">
+                <div class="section-eyebrow">FAQ</div>
+                <h2 class="section-title center-title">Pertanyaan yang<br><span class="title-accent">Sering Ditanyakan</span></h2>
+                <p class="section-subtitle">Tidak menemukan jawaban yang Anda cari? <a href="#" style="color:var(--green);font-weight:600">Hubungi tim kami</a>.</p>
+            </div>
+
+            <div class="qp-faq-grid">
+
+                <!-- Kolom Kiri -->
+                <div class="qp-faq-col">
+                    <div class="qp-faq-group">
+                        <div class="qp-faq-group-label">Umum & Onboarding</div>
+
+                        <div class="faq-item reveal-section">
+                            <button class="faq-trigger">
+                                <span>Apa itu QRIS dan mengapa harus menggunakan QRIS Nobu Bank?</span>
+                                <div class="faq-icon"><i data-lucide="plus" size="16"></i></div>
+                            </button>
+                            <div class="faq-body">
+                                <p>QRIS (Quick Response Code Indonesian Standard) adalah standar kode QR nasional yang ditetapkan oleh Bank Indonesia. Dengan QRIS Nobu Bank, Anda cukup satu integrasi sebagai <strong>Acquirer</strong> untuk menerima pembayaran dari 50+ Issuer — bank, e-wallet, dan fintech di seluruh Indonesia.</p>
+                                <p style="margin-top:10px;">Keunggulan kami: Nobu Bank sebagai Acquirer yang tersertifikasi SNAP BI, uptime 99.9%, dashboard real-time, dan tim teknis yang mendampingi selama integrasi.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item reveal-section">
+                            <button class="faq-trigger">
+                                <span>Berapa lama proses onboarding untuk menggunakan QRIS?</span>
+                                <div class="faq-icon"><i data-lucide="plus" size="16"></i></div>
+                            </button>
+                            <div class="faq-body">
+                                <p>Proses onboarding QRIS terdiri dari 5 tahap: dokumentasi legal (3–5 hari kerja), development & sandbox (2–4 minggu), UAT testing (1–2 minggu), verifikasi BI/ASPI (2–3 minggu), dan go-live produksi.</p>
+                                <p style="margin-top:10px;">Total estimasi waktu: <strong>6–10 minggu</strong> tergantung kesiapan dokumen dan tim teknis partner.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item reveal-section">
+                            <button class="faq-trigger">
+                                <span>Dokumen apa saja yang diperlukan untuk menjadi partner QRIS?</span>
+                                <div class="faq-icon"><i data-lucide="plus" size="16"></i></div>
+                            </button>
+                            <div class="faq-body">
+                                <p>Dokumen yang diperlukan antara lain:</p>
+                                <ul style="margin-top:8px;padding-left:16px;color:var(--text-secondary);font-size:0.88rem;line-height:2;">
+                                    <li>Akta pendirian perusahaan & SK Kemenkumham</li>
+                                    <li>NPWP perusahaan</li>
+                                    <li>NIB (Nomor Induk Berusaha)</li>
+                                    <li>KTP Direksi & Pemegang Saham</li>
+                                    <li>Laporan keuangan 2 tahun terakhir (untuk enterprise)</li>
+                                    <li>NDA & PKS yang ditandatangani kedua pihak</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="faq-item reveal-section">
+                            <button class="faq-trigger">
+                                <span>Apakah tersedia environment sandbox untuk testing?</span>
+                                <div class="faq-icon"><i data-lucide="plus" size="16"></i></div>
+                            </button>
+                            <div class="faq-body">
+                                <p>Ya. Setelah dokumen legal selesai, tim Nobu akan memberikan akses ke environment sandbox lengkap dengan credential API, API documentation, dan test case yang sudah disiapkan.</p>
+                                <p style="margin-top:10px;">Sandbox kami mensimulasikan seluruh alur transaksi termasuk skenario sukses, gagal, timeout, dan expired QR.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qp-faq-group" style="margin-top:32px">
+                        <div class="qp-faq-group-label">Teknis & Integrasi</div>
+
+                        <div class="faq-item reveal-section">
+                            <button class="faq-trigger">
+                                <span>Bahasa pemrograman apa yang didukung untuk integrasi?</span>
+                                <div class="faq-icon"><i data-lucide="plus" size="16"></i></div>
+                            </button>
+                            <div class="faq-body">
+                                <p>QRIS Nobu Bank menggunakan REST API berbasis JSON yang dapat diintegrasikan dengan bahasa pemrograman apa pun — PHP, Python, Node.js, Java, .NET, Go, dan lainnya.</p>
+                                <p style="margin-top:10px;">Kami menyediakan Postman Collection dan contoh kode (code snippet) untuk mempercepat proses integrasi.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item reveal-section">
+                            <button class="faq-trigger">
+                                <span>Bagaimana cara kerja notifikasi pembayaran (webhook)?</span>
+                                <div class="faq-icon"><i data-lucide="plus" size="16"></i></div>
+                            </button>
+                            <div class="faq-body">
+                                <p>Saat transaksi berhasil, sistem Nobu akan mengirim HTTP POST ke URL webhook yang Anda daftarkan. Payload berisi status transaksi, nominal, metode pembayaran, dan timestamp.</p>
+                                <p style="margin-top:10px;">Partner wajib merespons webhook dengan HTTP 200 dalam 5 detik. Jika tidak, sistem akan melakukan retry hingga 5 kali dengan interval eksponensial.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item reveal-section">
+                            <button class="faq-trigger">
+                                <span>Berapa maksimal nominal transaksi QRIS?</span>
+                                <div class="faq-icon"><i data-lucide="plus" size="16"></i></div>
+                            </button>
+                            <div class="faq-body">
+                                <p>Sesuai regulasi Bank Indonesia, batas transaksi QRIS adalah:</p>
+                                <ul style="margin-top:8px;padding-left:16px;color:var(--text-secondary);font-size:0.88rem;line-height:2;">
+                                    <li>Maksimal per transaksi: <strong>Rp 20.000.000</strong></li>
+                                    <li>Maksimal per hari: ditentukan per akun pelanggan oleh issuer</li>
+                                    <li>QRIS Cross-border: sesuai ketentuan masing-masing negara</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kolom Kanan -->
+                <div class="qp-faq-col">
+                    <div class="qp-faq-group">
+                        <div class="qp-faq-group-label">Settlement & Keuangan</div>
+
+                        <div class="faq-item reveal-section">
+                            <button class="faq-trigger">
+                                <span>Kapan dana dari transaksi QRIS masuk ke rekening saya?</span>
+                                <div class="faq-icon"><i data-lucide="plus" size="16"></i></div>
+                            </button>
+                            <div class="faq-body">
+                                <p>Settlement QRIS menggunakan skema T+1, artinya dana transaksi hari ini akan masuk ke rekening Nobu Bank Anda pada hari kerja berikutnya.</p>
+                                <p style="margin-top:10px;">Contoh: transaksi yang terjadi Senin (termasuk weekend jika ada) akan settle pada Selasa sebelum pukul 10.00 WIB.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item reveal-section">
+                            <button class="faq-trigger">
+                                <span>Bagaimana mekanisme revenue sharing dengan partner?</span>
+                                <div class="faq-icon"><i data-lucide="plus" size="16"></i></div>
+                            </button>
+                            <div class="faq-body">
+                                <p>Nobu Bank membagi sebagian MDR kepada partner berdasarkan skema yang disepakati di PKS. Skema umumnya berbasis volume bulanan — semakin tinggi volume, semakin besar persentase sharing.</p>
+                                <p style="margin-top:10px;">Distribusi dilakukan otomatis setiap bulan ke rekening yang didaftarkan, disertai laporan rincian sharing.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item reveal-section">
+                            <button class="faq-trigger">
+                                <span>Bagaimana proses refund transaksi QRIS?</span>
+                                <div class="faq-icon"><i data-lucide="plus" size="16"></i></div>
+                            </button>
+                            <div class="faq-body">
+                                <p>Refund dapat dilakukan melalui API Refund kami atau melalui dashboard merchant. Refund penuh maupun sebagian didukung. Dana akan kembali ke rekening Issuer pelanggan dalam 1–3 hari kerja tergantung kebijakan masing-masing Issuer.</p>
+                                <p style="margin-top:10px;">MDR yang sudah dikenakan akan dikembalikan secara proporsional pada laporan rekonsiliasi berikutnya.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item reveal-section">
+                            <button class="faq-trigger">
+                                <span>Apakah ada biaya untuk transaksi yang gagal?</span>
+                                <div class="faq-icon"><i data-lucide="plus" size="16"></i></div>
+                            </button>
+                            <div class="faq-body">
+                                <p>Tidak. MDR hanya dikenakan pada transaksi yang berhasil (status SUCCESS). Transaksi yang gagal, timeout, atau dibatalkan tidak dikenakan biaya apapun.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qp-faq-group" style="margin-top:32px">
+                        <div class="qp-faq-group-label">Keamanan & Kepatuhan</div>
+
+                        <div class="faq-item reveal-section">
+                            <button class="faq-trigger">
+                                <span>Apakah QRIS Nobu Bank sudah terdaftar di Bank Indonesia?</span>
+                                <div class="faq-icon"><i data-lucide="plus" size="16"></i></div>
+                            </button>
+                            <div class="faq-body">
+                                <p>Ya. PT Bank Nationalnobu Tbk. terdaftar sebagai Penyelenggara Jasa Pembayaran (PJP) Kategori Izin 1 di Bank Indonesia dan telah tersertifikasi SNAP BI untuk layanan QRIS. Nomor registrasi tersedia dalam perjanjian kemitraan.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item reveal-section">
+                            <button class="faq-trigger">
+                                <span>Apa yang terjadi jika infrastruktur Nobu mengalami gangguan?</span>
+                                <div class="faq-icon"><i data-lucide="plus" size="16"></i></div>
+                            </button>
+                            <div class="faq-body">
+                                <p>Kami berkomitmen dengan SLA uptime 99.9% yang tercantum dalam PKS. Infrastruktur kami menggunakan arsitektur aktif-aktif multi-datacenter dengan failover otomatis.</p>
+                                <p style="margin-top:10px;">Jika terjadi insiden, tim kami akan mengirimkan notifikasi melalui status page dan email dalam waktu <15 menit sejak insiden terdeteksi.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item reveal-section">
+                            <button class="faq-trigger">
+                                <span>Bagaimana keamanan data transaksi pelanggan saya?</span>
+                                <div class="faq-icon"><i data-lucide="plus" size="16"></i></div>
+                            </button>
+                            <div class="faq-body">
+                                <p>Semua data dienkripsi dengan TLS 1.3 saat transit dan AES-256 saat disimpan. Kami mematuhi UU Perlindungan Data Pribadi (UU PDP) dan standar PCI DSS Level 1.</p>
+                                <p style="margin-top:10px;">Data transaksi tidak pernah dibagikan ke pihak ketiga tanpa persetujuan dan hanya digunakan untuk keperluan settlement, rekonsiliasi, dan kepatuhan regulasi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA BOTTOM -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-card">
+                <div class="cta-orb"></div>
+                <div class="cta-content">
+                    <div class="cta-badge"><i data-lucide="qr-code" size="14"></i> Mulai dengan QRIS Nobu Bank</div>
+                    <h2>Siap Terima Pembayaran<br>dari Semua Issuer ?</h2>
+                    <p>Satu integrasi, semua kanal pembayaran. Tim teknis kami siap memandu Anda dari sandbox hingga go-live.</p>
+                    <div class="cta-btns">
+                        <button class="btn-primary lg">
+                            <i data-lucide="message-square" size="16"></i>
+                            Hubungi Tim Kami
+                        </button>
+                        <button class="btn-outline-light">
+                            <i data-lucide="book-open" size="16"></i>
+                            Lihat API Documentation
+                        </button>
+                    </div>
+                    <div class="cta-trust">
+                        <span><i data-lucide="shield-check" size="13"></i> OJK Licensed</span>
+                        <span><i data-lucide="award" size="13"></i> SNAP BI Certified</span>
+                        <span><i data-lucide="lock" size="13"></i> PCI DSS L1</span>
+                        <span><i data-lucide="check-circle" size="13"></i> ASPI Compliant</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand-col">
+                    <div class="footer-logo">
+                        <div class="logo-mark sm">N</div>
+                        <div>
+                            <span class="footer-brand-name">Nobu Bank</span>
+                            <span class="footer-brand-tag">#NoOneButU</span>
+                        </div>
+                    </div>
+                    <p class="footer-tagline">Infrastruktur perbankan digital terdepan untuk ekosistem modern Indonesia.</p>
+                    <div class="footer-socials">
+                        <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" size="16"></i></a>
+                        <a href="#" aria-label="Twitter"><i data-lucide="twitter" size="16"></i></a>
+                        <a href="#" aria-label="Instagram"><i data-lucide="instagram" size="16"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links-group">
+                    <h5>Produk BaaS</h5>
+                    <a href="index.html#qr-section">QRIS Solutions</a>
+                    <a href="index.html#payout-section">Payout Disbursement</a>
+                    <a href="index.html#madera-section">CoBrand Saving by Madera</a>
+                    <a href="index.html#va-section">Virtual Account</a>
+                </div>
+                <div class="footer-links-group">
+                    <h5>Developer</h5>
+                    <a href="#">API Documentation</a>
+                    <a href="#">Sandbox Environment</a>
+                    <a href="#">SDK & Libraries</a>
+                    <a href="#">Changelog</a>
+                    <a href="#">Status Page</a>
+                </div>
+                <div class="footer-links-group">
+                    <h5>Perusahaan</h5>
+                    <a href="#">Tentang Nobu Bank</a>
+                    <a href="#">Partner Program</a>
+                    <a href="#">Karir</a>
+                    <a href="#">Blog & Insights</a>
+                    <a href="#">Kebijakan Privasi</a>
+                </div>
+                <div class="footer-contact-col">
+                    <h5>Hubungi Kami</h5>
+                    <div class="contact-item">
+                        <i data-lucide="map-pin" size="14"></i>
+                        <span>Graha Nobu, Tangerang, Indonesia</span>
+                    </div>
+                    <div class="contact-item">
+                        <i data-lucide="mail" size="14"></i>
+                        <a href="mailto:openbanking@nobubank.com">openbanking@nobubank.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <i data-lucide="phone" size="14"></i>
+                        <a href="tel:+6221500123">+62 21 500 123</a>
+                    </div>
+                    <div class="footer-badges">
+                        <div class="ojk-badge"><i data-lucide="shield" size="12"></i> OJK</div>
+                        <div class="ojk-badge"><i data-lucide="award" size="12"></i> SNAP BI</div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 PT Bank Nationalnobu Tbk. Terdaftar & Diawasi oleh Otoritas Jasa Keuangan (OJK).</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Syarat & Ketentuan</a>
+                    <a href="#">Kebijakan Privasi</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="qris.js"></script>
+</body>
+</html>
