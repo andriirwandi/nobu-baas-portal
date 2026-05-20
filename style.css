@@ -29,8 +29,8 @@
     --shadow-md: 0 8px 30px rgba(0,0,0,0.08);
     --shadow-lg: 0 20px 60px rgba(0,0,0,0.1);
     --shadow-green: 0 8px 30px rgba(0, 212, 143, 0.3);
-    --font-display: 'sans-serif', sans-serif;
-    --font-body: 'sans-serif', sans-serif;
+    --font-display: sans-serif, sans-serif;
+    --font-body: sans-serif, sans-serif;
     --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -85,9 +85,9 @@ i[data-lucide] { display: inline-block; flex-shrink: 0; }
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 32px;
+    gap: 24px;
     padding: 0 24px;
-    max-width: 1280px;
+    max-width: 1180px;
     margin: 0 auto;
     height: 68px;
 }
@@ -95,6 +95,12 @@ i[data-lucide] { display: inline-block; flex-shrink: 0; }
 /* Brand */
 .brand-group { display: flex; align-items: center; flex-shrink: 0; }
 .brand-logo { display: flex; align-items: center; gap: 10px; }
+.navbar-logo-img { height: 36px; width: auto; display: block; }
+.brand-baas-label { display: flex; align-items: center; gap: 10px; }
+.baas-divider { display: block; width: 1px; height: 28px; background: rgba(0,212,143,0.35); }
+.baas-text-group { display: flex; flex-direction: column; line-height: 1.2; }
+.baas-title { font-family: var(--font-display); font-size: 0.8rem; font-weight: 700; color: #009966; letter-spacing: 0.2px; }
+.baas-sub { font-size: 0.6rem; font-weight: 500; color: var(--text-muted); letter-spacing: 0.4px; text-transform: uppercase; }
 
 .logo-mark {
     width: 38px;
@@ -115,7 +121,7 @@ i[data-lucide] { display: inline-block; flex-shrink: 0; }
 .logo-mark.sm { width: 30px; height: 30px; font-size: 1rem; border-radius: 8px; }
 
 .brand-text { display: flex; flex-direction: column; line-height: 1.1; }
-.brand-name { font-family: var(--font-display); font-weight: 800; font-size: 1.05rem; color: var(--text-main); letter-spacing: -0.3px; }
+.brand-name { font-family: var(--font-display); font-weight: 800; font-size: 1.05rem; color: #009966; letter-spacing: -0.3px; }
 .brand-sub { font-size: 0.65rem; color: var(--text-muted); font-weight: 500; letter-spacing: 0.3px; }
 
 /* Nav Links */
@@ -146,13 +152,24 @@ i[data-lucide] { display: inline-block; flex-shrink: 0; }
 
 /* Nav Actions */
 .nav-actions { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+
 .nav-docs {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
     font-size: 0.825rem;
     font-weight: 600;
     color: var(--text-secondary);
     transition: var(--transition);
+    white-space: nowrap;
+    padding: 7px 10px;
+    border-radius: 8px;
 }
-.nav-docs:hover { color: var(--green); }
+
+.nav-docs:hover {
+    color: var(--green);
+    background: var(--green-dim);
+}
 
 /* Buttons */
 .btn-contact,
@@ -613,7 +630,6 @@ i[data-lucide] { display: inline-block; flex-shrink: 0; }
     line-height: 1.8;
     margin-bottom: 36px;
     font-weight: 300;
-    text-align: justify;
 }
 
 /* Feature Grid */
