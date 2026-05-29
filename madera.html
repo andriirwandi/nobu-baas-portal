@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoBrand Saving Madera | Nobu Bank BaaS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="madera.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-content">
+            <div class="brand-group">
+                <a href="index.html" class="brand-logo" aria-label="Nobu Bank">
+                    <img src="nobu-logo.png" alt="Nobu Bank" class="navbar-logo-img">
+                    <div class="brand-baas-label">
+                        <span class="baas-divider"></span>
+                        <div class="baas-text-group">
+                            <span class="baas-title">Bank as a Service</span>
+                            <span class="baas-sub">Partner Portal</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html#qr-section">QRIS</a>
+                <a href="index.html#payout-section">Payout</a>
+                <a href="index.html#madera-section" class="active">Madera</a>
+                <a href="index.html#va-section">Virtual Account</a>
+                <a href="index.html#integration-section">Integrasi</a>
+                <a href="index.html#pricing-section">Pricing</a>
+            </div>
+            <div class="nav-actions">
+                <a href="index.html" class="btn-kembali">
+                    <i data-lucide="arrow-left" size="14"></i>
+                    <span>Kembali</span>
+                </a>
+                <button class="btn-contact">
+                    <span>Hubungi Kami</span>
+                    <i data-lucide="arrow-right" size="14"></i>
+                </button>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html" class="mobile-link">← Kembali ke Beranda</a>
+            <a href="#hero" class="mobile-link">Overview</a>
+            <a href="#value" class="mobile-link">Nilai Bisnis</a>
+            <a href="#fitur" class="mobile-link">Fitur</a>
+            <a href="#usecase" class="mobile-link">Use Cases</a>
+            <a href="#journey" class="mobile-link">User Journey</a>
+            <a href="#revenue" class="mobile-link">Revenue Model</a>
+        </div>
+    </nav>
+
+    <!-- ══════════════════════════════════════
+         HERO
+    ══════════════════════════════════════ -->
+    <section id="hero" class="md-hero">
+        <div class="md-hero-bg">
+            <div class="md-hero-orb md-orb-1"></div>
+            <div class="md-hero-orb md-orb-2"></div>
+            <div class="md-hero-grid-lines"></div>
+        </div>
+
+        <div class="container md-hero-container">
+            <!-- LEFT -->
+            <div class="md-hero-left">
+                <div class="md-hero-eyebrow">
+                    <div class="md-eyebrow-dot"></div>
+                    <span>CoBrand Saving · Powered by Nobu Bank</span>
+                </div>
+
+                <h1 class="md-hero-title">
+                    Hadirkan
+                    <span class="md-title-highlight">Banking Lengkap</span>
+                    di Aplikasi Anda
+                </h1>
+
+                <p class="md-hero-sub">
+                    Partner yang sudah punya pengguna aktif kini bisa menawarkan <strong>rekening tabungan resmi, kartu debit, dan transfer antarbank</strong> — langsung di dalam aplikasi mereka. Tanpa lisensi bank. Tanpa infrastruktur baru.
+                </p>
+
+                <!-- 3 key pills -->
+                <div class="md-hero-pills">
+                    <div class="md-pill">
+                        <i data-lucide="shield-off" size="14"></i>
+                        Tanpa Lisensi Bank
+                    </div>
+                    <div class="md-pill">
+                        <i data-lucide="plug-zap" size="14"></i>
+                        1 Integrasi API
+                    </div>
+                    <div class="md-pill">
+                        <i data-lucide="trending-up" size="14"></i>
+                        Revenue Sharing
+                    </div>
+                    <div class="md-pill">
+                        <i data-lucide="shield-check" size="14"></i>
+                        OJK + LPS
+                    </div>
+                </div>
+
+                <div class="md-hero-cta">
+                    <button class="btn-primary lg">
+                        <i data-lucide="message-square" size="16"></i>
+                        Jadwalkan Demo
+                    </button>
+                    <a href="#value" class="md-hero-link">
+                        Pelajari lebih lanjut
+                        <i data-lucide="arrow-down" size="14"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- RIGHT — Phone mockup -->
+            <div class="md-hero-right">
+                <div class="md-phone-scene">
+                    <!-- Glow rings -->
+                    <div class="md-phone-glow"></div>
+
+                    <div class="md-phone">
+                        <div class="md-phone-notch"></div>
+                        <div class="md-phone-screen">
+
+                            <!-- App topbar -->
+                            <div class="md-app-bar">
+                                <div class="md-app-bar-left">
+                                    <div class="md-app-avatar">P</div>
+                                    <div>
+                                        <div class="md-app-greeting">Halo, Budi 👋</div>
+                                        <div class="md-app-name">PartnerApp</div>
+                                    </div>
+                                </div>
+                                <div class="md-app-notif">
+                                    <i data-lucide="bell" size="13"></i>
+                                    <span class="md-notif-dot"></span>
+                                </div>
+                            </div>
+
+                            <!-- Madera balance card -->
+                            <div class="md-balance-card">
+                                <div class="md-bc-top">
+                                    <span class="md-bc-label">Madera Saving</span>
+                                    <span class="md-bc-badge">by Nobu</span>
+                                </div>
+                                <div class="md-bc-amount" id="mdPhoneBalance">Rp 4.250.000</div>
+                                <div class="md-bc-meta">
+                                    <span class="md-bc-rek">8013 ···· ···· 8821</span>
+                                    <span class="md-bc-rate">
+                                        <i data-lucide="trending-up" size="10"></i>
+                                        2.5% p.a.
+                                    </span>
+                                </div>
+                                <div class="md-bc-actions">
+                                    <div class="md-bc-btn"><i data-lucide="send" size="11"></i><span>Transfer</span></div>
+                                    <div class="md-bc-btn"><i data-lucide="arrow-down" size="11"></i><span>Tarik</span></div>
+                                    <div class="md-bc-btn"><i data-lucide="arrow-up" size="11"></i><span>Setor</span></div>
+                                    <div class="md-bc-btn"><i data-lucide="qr-code" size="11"></i><span>QRIS</span></div>
+                                </div>
+                            </div>
+
+                            <!-- Wallet row -->
+                            <div class="md-wallet-strip">
+                                <span class="md-ws-label">Wallet</span>
+                                <span class="md-ws-bal">Rp 85.000</span>
+                            </div>
+
+                            <!-- Menu grid -->
+                            <div class="md-app-menu">
+                                <div class="md-menu-item"><div class="md-mi-icon"><i data-lucide="zap" size="13"></i></div><span>Top-Up</span></div>
+                                <div class="md-menu-item"><div class="md-mi-icon"><i data-lucide="receipt" size="13"></i></div><span>PPOB</span></div>
+                                <div class="md-menu-item active-menu"><div class="md-mi-icon green-mi"><i data-lucide="landmark" size="13"></i></div><span>Madera</span></div>
+                                <div class="md-menu-item"><div class="md-mi-icon"><i data-lucide="more-horizontal" size="13"></i></div><span>Lainnya</span></div>
+                            </div>
+
+                            <!-- Trx list -->
+                            <div class="md-trx-panel">
+                                <div class="md-trx-head">Transaksi Terbaru</div>
+                                <div class="md-trx-item" id="mdTrx1">
+                                    <div class="md-trx-ic in"><i data-lucide="trending-up" size="10"></i></div>
+                                    <div class="md-trx-info"><span>Bunga Tabungan</span><span class="md-trx-date">Hari ini</span></div>
+                                    <span class="md-trx-val in">+Rp 8.854</span>
+                                </div>
+                                <div class="md-trx-item">
+                                    <div class="md-trx-ic out"><i data-lucide="send" size="10"></i></div>
+                                    <div class="md-trx-info"><span>Transfer ke BCA</span><span class="md-trx-date">Kemarin</span></div>
+                                    <span class="md-trx-val out">-Rp 500.000</span>
+                                </div>
+                                <div class="md-trx-item">
+                                    <div class="md-trx-ic in"><i data-lucide="arrow-down-left" size="10"></i></div>
+                                    <div class="md-trx-info"><span>Setor dari Wallet</span><span class="md-trx-date">2 hari lalu</span></div>
+                                    <span class="md-trx-val in">+Rp 1.000.000</span>
+                                </div>
+                            </div>
+
+                        </div><!-- end screen -->
+                    </div><!-- end phone -->
+
+                    <!-- Floating badges -->
+                    <div class="md-fbadge md-fbadge-1">
+                        <i data-lucide="shield-check" size="11"></i>
+                        OJK + LPS Terdaftar
+                    </div>
+                    <div class="md-fbadge md-fbadge-2">
+                        <i data-lucide="trending-up" size="11"></i>
+                        Bunga 2.5% p.a.
+                    </div>
+                    <div class="md-fbadge md-fbadge-3">
+                        <div class="md-fbadge-dot"></div>
+                        Live Interest Accruing
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sticky page nav -->
+        <nav class="md-page-nav" id="mdPageNav">
+            <div class="container">
+                <div class="md-page-nav-inner">
+                    <a href="#value"   class="md-pnav-link active-pnav">Nilai Bisnis</a>
+                    <a href="#fitur"   class="md-pnav-link">7 Fitur Utama</a>
+                    <a href="#usecase" class="md-pnav-link">Use Cases</a>
+                    <a href="#journey" class="md-pnav-link">User Journey</a>
+                    <a href="#revenue" class="md-pnav-link">Revenue Model</a>
+                    <a href="#faq"     class="md-pnav-link">FAQ</a>
+                    <button class="btn-primary sm md-pnav-cta">Jadwalkan Demo</button>
+                </div>
+            </div>
+        </nav>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         VALUE PROPOSITION
+    ══════════════════════════════════════ -->
+    <section id="value" class="md-section md-value-section">
+        <div class="container">
+            <div class="md-section-head">
+                <div class="md-eyebrow-tag">Mengapa Madera?</div>
+                <h2 class="md-section-title">Partner Punya Pengguna.<br><span class="md-green">Nobu Punya Lisensi Bank.</span></h2>
+                <p class="md-section-sub">Kolaborasi yang sempurna — partner fokus tumbuhkan ekosistem, Nobu yang handle semua regulasi dan infrastruktur perbankan.</p>
+            </div>
+
+            <!-- Big number stats -->
+            <div class="md-stats-row md-reveal">
+                <div class="md-stat-big">
+                    <div class="md-stat-num" data-target="0">0</div>
+                    <div class="md-stat-lbl">Lisensi Bank<br>yang Dibutuhkan</div>
+                    <div class="md-stat-note">Nobu yang pegang izin OJK</div>
+                </div>
+                <div class="md-stat-sep"></div>
+                <div class="md-stat-big">
+                    <div class="md-stat-num" data-target="7">0</div>
+                    <div class="md-stat-lbl">Modul Fitur<br>Banking</div>
+                    <div class="md-stat-note">Account, Transfer, Card, QRIS…</div>
+                </div>
+                <div class="md-stat-sep"></div>
+                <div class="md-stat-big">
+                    <div class="md-stat-num" data-target="150" data-suffix="+">0</div>
+                    <div class="md-stat-lbl">Bank Terhubung<br>untuk Transfer</div>
+                    <div class="md-stat-note">BI-FAST & RTOL real-time</div>
+                </div>
+                <div class="md-stat-sep"></div>
+                <div class="md-stat-big">
+                    <div class="md-stat-num" data-prefix="2.5" data-suffix="%">—</div>
+                    <div class="md-stat-lbl">Bunga Tabungan<br>per Tahun</div>
+                    <div class="md-stat-note">Dana nasabah dijamin LPS</div>
+                </div>
+            </div>
+
+            <!-- 4 Value cards -->
+            <div class="md-value-cards">
+                <div class="md-vc md-reveal">
+                    <div class="md-vc-icon" style="background:rgba(0,212,143,0.1);color:var(--green)">
+                        <i data-lucide="shield-off" size="26"></i>
+                    </div>
+                    <div class="md-vc-body">
+                        <h3>Tanpa Lisensi Bank</h3>
+                        <p>Partner tidak perlu mengurus izin OJK perbankan yang panjang dan mahal. Cukup PKS dengan Nobu — semua kewajiban regulasi kami yang tanggung.</p>
+                    </div>
+                    <div class="md-vc-num">01</div>
+                </div>
+                <div class="md-vc md-reveal">
+                    <div class="md-vc-icon" style="background:rgba(99,102,241,0.1);color:#6366F1">
+                        <i data-lucide="users" size="26"></i>
+                    </div>
+                    <div class="md-vc-body">
+                        <h3>Monetisasi Pengguna Aktif</h3>
+                        <p>Pengguna wallet Anda bisa langsung buka rekening tabungan berbunga tanpa pindah aplikasi. Tingkatkan lifetime value dan loyalitas sekaligus.</p>
+                    </div>
+                    <div class="md-vc-num">02</div>
+                </div>
+                <div class="md-vc md-reveal">
+                    <div class="md-vc-icon" style="background:rgba(245,158,11,0.1);color:#F59E0B">
+                        <i data-lucide="smartphone" size="26"></i>
+                    </div>
+                    <div class="md-vc-body">
+                        <h3>100% White-Label</h3>
+                        <p>Tampil dengan nama dan branding partner sepenuhnya. Pengguna hanya tahu ini produk Anda — banking experience yang terasa native di aplikasi.</p>
+                    </div>
+                    <div class="md-vc-num">03</div>
+                </div>
+                <div class="md-vc md-reveal">
+                    <div class="md-vc-icon" style="background:rgba(239,68,68,0.1);color:#EF4444">
+                        <i data-lucide="trending-up" size="26"></i>
+                    </div>
+                    <div class="md-vc-body">
+                        <h3>Revenue Sharing Otomatis</h3>
+                        <p>Partner dapat porsi dari fee transaksi, spread bunga, dan biaya kartu. Semakin aktif nasabah bertransaksi, semakin besar pendapatan partner.</p>
+                    </div>
+                    <div class="md-vc-num">04</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         7 FITUR UTAMA — Interactive Cards
+    ══════════════════════════════════════ -->
+    <section id="fitur" class="md-section md-dark-section">
+        <div class="md-dark-orb md-dorb-1"></div>
+        <div class="md-dark-orb md-dorb-2"></div>
+        <div class="container">
+            <div class="md-section-head">
+                <div class="md-eyebrow-tag green-tag">7 Modul Banking</div>
+                <h2 class="md-section-title" style="color:#fff">Satu Platform,<br><span class="md-green">Semua yang Nasabah Butuhkan</span></h2>
+                <p class="md-section-sub" style="color:rgba(255,255,255,0.55)">Pilih modul yang sesuai kebutuhan partner — bisa diaktifkan bertahap, tidak harus semua sekaligus.</p>
+            </div>
+
+            <!-- Interactive feature grid -->
+            <div class="md-feat-grid">
+
+                <div class="md-feat-card md-reveal" style="--fc-color:#3B82F6">
+                    <div class="md-fc-num">01</div>
+                    <div class="md-fc-icon"><i data-lucide="user-plus" size="24"></i></div>
+                    <h4>Account Opening</h4>
+                    <p>Buka rekening tabungan resmi langsung dari aplikasi partner via e-KYC webview Nobu. Proses selesai dalam menit.</p>
+                    <ul class="md-fc-list">
+                        <li>CIF Creation via API</li>
+                        <li>e-KYC + Liveness Detection</li>
+                        <li>Account Creation Webview</li>
+                    </ul>
+                    <div class="md-fc-glow"></div>
+                </div>
+
+                <div class="md-feat-card md-reveal" style="--fc-color:#10B981">
+                    <div class="md-fc-num">02</div>
+                    <div class="md-fc-icon"><i data-lucide="settings-2" size="24"></i></div>
+                    <h4>Account Management</h4>
+                    <p>Kelola rekening nasabah secara penuh dari dashboard maupun API — real-time dan tanpa hambatan.</p>
+                    <ul class="md-fc-list">
+                        <li>Balance Inquiry Real-time</li>
+                        <li>Transaction History & Detail</li>
+                        <li>Account Binding / Unbinding</li>
+                        <li>Change PIN &amp; Reset PIN</li>
+                    </ul>
+                    <div class="md-fc-glow"></div>
+                </div>
+
+                <div class="md-feat-card md-reveal" style="--fc-color:#8B5CF6">
+                    <div class="md-fc-num">03</div>
+                    <div class="md-fc-icon"><i data-lucide="credit-card" size="24"></i></div>
+                    <h4>Debit Card</h4>
+                    <p>Terbitkan kartu debit co-branded dengan nama partner. Virtual card langsung aktif, fisik dikirim ke alamat nasabah.</p>
+                    <ul class="md-fc-list">
+                        <li>Virtual &amp; Physical Card</li>
+                        <li>Card Details &amp; Security</li>
+                        <li>Change Debit Card PIN</li>
+                    </ul>
+                    <div class="md-fc-glow"></div>
+                </div>
+
+                <div class="md-feat-card md-reveal" style="--fc-color:#F59E0B">
+                    <div class="md-fc-num">04</div>
+                    <div class="md-fc-icon"><i data-lucide="arrow-up-down" size="24"></i></div>
+                    <h4>Cash In &amp; Cash Out</h4>
+                    <p>Nasabah bisa setor saldo dari wallet partner atau tarik tunai tanpa kartu di ATM jaringan luas.</p>
+                    <ul class="md-fc-list">
+                        <li>Customer Top-Up dari Wallet</li>
+                        <li>Cardless Cash Withdrawal</li>
+                        <li>ATM NOBU, BCA, CIMB, BNI, BRI, Indomaret</li>
+                    </ul>
+                    <div class="md-fc-glow"></div>
+                </div>
+
+                <div class="md-feat-card md-reveal" style="--fc-color:#06B6D4">
+                    <div class="md-fc-num">05</div>
+                    <div class="md-fc-icon"><i data-lucide="send" size="24"></i></div>
+                    <h4>Money Transfer</h4>
+                    <p>Transfer ke 150+ bank di Indonesia secara real-time. Intrabank gratis, BI-FAST dan RTOL tersedia.</p>
+                    <ul class="md-fc-list">
+                        <li>Intrabank (Sesama Nobu)</li>
+                        <li>BI-FAST — Real-time 24/7</li>
+                        <li>RTOL &amp; Transfer ke VA</li>
+                    </ul>
+                    <div class="md-fc-glow"></div>
+                </div>
+
+                <div class="md-feat-card md-reveal" style="--fc-color:#00D48F">
+                    <div class="md-fc-num">06</div>
+                    <div class="md-fc-icon"><i data-lucide="qr-code" size="24"></i></div>
+                    <h4>QRIS Payment</h4>
+                    <p>Nasabah bayar di merchant manapun pakai QRIS langsung dari rekening Madera mereka — tanpa perlu pindah aplikasi.</p>
+                    <ul class="md-fc-list">
+                        <li>Decode QR Merchant</li>
+                        <li>QR Payment (CPM)</li>
+                        <li>Terintegrasi Nobu Acquirer</li>
+                    </ul>
+                    <div class="md-fc-glow"></div>
+                </div>
+
+                <div class="md-feat-card md-reveal" style="--fc-color:#EF4444">
+                    <div class="md-fc-num">07</div>
+                    <div class="md-fc-icon"><i data-lucide="repeat-2" size="24"></i></div>
+                    <h4>Direct Debit</h4>
+                    <p>Debit otomatis rekening Madera nasabah untuk pembayaran berulang. Cocok untuk langganan, cicilan, dan tagihan rutin.</p>
+                    <ul class="md-fc-list">
+                        <li>Direct Debit with PIN</li>
+                        <li>Direct Debit without PIN*</li>
+                        <li>Direct Debit Status Check</li>
+                    </ul>
+                    <div class="md-fc-note">*Khusus partner PJP License</div>
+                    <div class="md-fc-glow"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         USE CASES — Partner Types
+    ══════════════════════════════════════ -->
+    <section id="usecase" class="md-section">
+        <div class="container">
+            <div class="md-section-head">
+                <div class="md-eyebrow-tag">Siapa yang Cocok?</div>
+                <h2 class="md-section-title">Platform Digital dengan<br><span class="md-green">Pengguna Aktif Bertransaksi</span></h2>
+                <p class="md-section-sub">Madera paling powerful untuk partner yang sudah punya ekosistem digital aktif — tinggal tambahkan lapisan banking di atasnya.</p>
+            </div>
+
+            <!-- Interactive usecase cards with hover -->
+            <div class="md-uc-grid">
+
+                <div class="md-uc-card md-reveal" data-accent="#6366F1">
+                    <div class="md-uc-card-top">
+                        <div class="md-uc-emoji">📱</div>
+                        <div class="md-uc-badge" style="background:rgba(99,102,241,0.1);color:#6366F1;">Top Partner</div>
+                    </div>
+                    <h3>Platform Top-Up &amp; PPOB</h3>
+                    <p>Pengguna sudah terbiasa isi saldo dan bayar tagihan. Dengan Madera, saldo mereka bisa berbunga — mendorong simpan lebih banyak di platform Anda.</p>
+                    <div class="md-uc-flow">
+                        <span>Wallet Partner</span>
+                        <i data-lucide="arrow-right" size="11"></i>
+                        <span class="md-ucf-hl">Madera Saving</span>
+                        <i data-lucide="arrow-right" size="11"></i>
+                        <span>2.5% p.a.</span>
+                    </div>
+                    <div class="md-uc-tags">
+                        <span>Top-Up</span><span>PPOB</span><span>Pulsa</span>
+                    </div>
+                    <div class="md-uc-hover-bar" style="background:#6366F1"></div>
+                </div>
+
+                <div class="md-uc-card md-reveal" data-accent="#00D48F">
+                    <div class="md-uc-card-top">
+                        <div class="md-uc-emoji">🛒</div>
+                        <div class="md-uc-badge" style="background:rgba(0,212,143,0.1);color:var(--green);">High Value</div>
+                    </div>
+                    <h3>E-Commerce &amp; Marketplace</h3>
+                    <p>Seller terima pembayaran langsung ke rekening Madera berbunga. Buyer punya rekening simpanan — dua sisi ekosistem sekaligus terlayani.</p>
+                    <div class="md-uc-flow">
+                        <span>Buyer Bayar</span>
+                        <i data-lucide="arrow-right" size="11"></i>
+                        <span class="md-ucf-hl">Madera Seller</span>
+                        <i data-lucide="arrow-right" size="11"></i>
+                        <span>Langsung Berbunga</span>
+                    </div>
+                    <div class="md-uc-tags">
+                        <span>Marketplace</span><span>Seller</span><span>Buyer</span>
+                    </div>
+                    <div class="md-uc-hover-bar" style="background:var(--green)"></div>
+                </div>
+
+                <div class="md-uc-card md-reveal" data-accent="#F59E0B">
+                    <div class="md-uc-card-top">
+                        <div class="md-uc-emoji">🎮</div>
+                        <div class="md-uc-badge" style="background:rgba(245,158,11,0.1);color:#D97706;">Growing</div>
+                    </div>
+                    <h3>Gaming &amp; Hiburan</h3>
+                    <p>Gamer isi saldo untuk beli item. Dengan Madera, saldo idle mereka berbunga — retensi naik karena ada insentif menyimpan saldo di platform.</p>
+                    <div class="md-uc-flow">
+                        <span>Saldo Game</span>
+                        <i data-lucide="arrow-right" size="11"></i>
+                        <span class="md-ucf-hl">Madera Saving</span>
+                        <i data-lucide="arrow-right" size="11"></i>
+                        <span>Earn Bunga</span>
+                    </div>
+                    <div class="md-uc-tags">
+                        <span>Gaming</span><span>Streaming</span><span>Digital</span>
+                    </div>
+                    <div class="md-uc-hover-bar" style="background:#F59E0B"></div>
+                </div>
+
+                <div class="md-uc-card md-reveal" data-accent="#10B981">
+                    <div class="md-uc-card-top">
+                        <div class="md-uc-emoji">🚗</div>
+                        <div class="md-uc-badge" style="background:rgba(16,185,129,0.1);color:#10B981;">Fintech Native</div>
+                    </div>
+                    <h3>Platform Gig &amp; Freelance</h3>
+                    <p>Driver, kurir, dan pekerja gig terima komisi langsung ke rekening Madera berbunga. Kartu debit untuk belanja sehari-hari — tidak perlu rekening bank lain.</p>
+                    <div class="md-uc-flow">
+                        <span>Komisi / Order</span>
+                        <i data-lucide="arrow-right" size="11"></i>
+                        <span class="md-ucf-hl">Madera Saving</span>
+                        <i data-lucide="arrow-right" size="11"></i>
+                        <span>Withdraw Real-time</span>
+                    </div>
+                    <div class="md-uc-tags">
+                        <span>Ojol</span><span>Kurir</span><span>Freelancer</span>
+                    </div>
+                    <div class="md-uc-hover-bar" style="background:#10B981"></div>
+                </div>
+
+                <div class="md-uc-card md-reveal" data-accent="#8B5CF6">
+                    <div class="md-uc-card-top">
+                        <div class="md-uc-emoji">🏛️</div>
+                        <div class="md-uc-badge" style="background:rgba(139,92,246,0.1);color:#8B5CF6;">Social Impact</div>
+                    </div>
+                    <h3>Koperasi &amp; Komunitas</h3>
+                    <p>Rekening tabungan resmi per anggota, laporan keuangan transparan via API, bunga tabungan yang kompetitif — semua tanpa lisensi keuangan sendiri.</p>
+                    <div class="md-uc-flow">
+                        <span>Setoran Anggota</span>
+                        <i data-lucide="arrow-right" size="11"></i>
+                        <span class="md-ucf-hl">Rekening Madera</span>
+                        <i data-lucide="arrow-right" size="11"></i>
+                        <span>Laporan Otomatis</span>
+                    </div>
+                    <div class="md-uc-tags">
+                        <span>Koperasi</span><span>Arisan</span><span>Komunitas</span>
+                    </div>
+                    <div class="md-uc-hover-bar" style="background:#8B5CF6"></div>
+                </div>
+
+                <div class="md-uc-card md-reveal" data-accent="#EF4444">
+                    <div class="md-uc-card-top">
+                        <div class="md-uc-emoji">🎓</div>
+                        <div class="md-uc-badge" style="background:rgba(239,68,68,0.1);color:#EF4444;">Edu-Fintech</div>
+                    </div>
+                    <h3>Pendidikan &amp; Healthcare</h3>
+                    <p>Tabungan pendidikan atau kesehatan yang bisa dibuka langsung dari platform Anda. Goal-based saving dengan auto-debit bulanan.</p>
+                    <div class="md-uc-flow">
+                        <span>Pengguna</span>
+                        <i data-lucide="arrow-right" size="11"></i>
+                        <span class="md-ucf-hl">Tabungan Tujuan</span>
+                        <i data-lucide="arrow-right" size="11"></i>
+                        <span>Auto-Debit</span>
+                    </div>
+                    <div class="md-uc-tags">
+                        <span>Edukasi</span><span>Kesehatan</span><span>Asuransi</span>
+                    </div>
+                    <div class="md-uc-hover-bar" style="background:#EF4444"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         USER JOURNEY — Timeline visual
+    ══════════════════════════════════════ -->
+    <section id="journey" class="md-section md-dark-section">
+        <div class="md-dark-orb" style="width:600px;height:600px;top:-200px;right:-150px;background:radial-gradient(circle,rgba(0,212,143,0.09) 0%,transparent 70%);"></div>
+        <div class="container">
+            <div class="md-section-head">
+                <div class="md-eyebrow-tag green-tag">Pengalaman Pengguna</div>
+                <h2 class="md-section-title" style="color:#fff">Dari Buka Aplikasi<br><span class="md-green">Jadi Punya Rekening Bank</span></h2>
+                <p class="md-section-sub" style="color:rgba(255,255,255,0.5)">Seluruh proses terjadi di dalam aplikasi partner — pengguna tidak perlu pindah ke aplikasi lain.</p>
+            </div>
+
+            <div class="md-journey-wrap">
+                <!-- Timeline steps -->
+                <div class="md-timeline">
+                    <div class="md-timeline-line"></div>
+
+                    <div class="md-tj-step md-reveal" id="mdJs1">
+                        <div class="md-tj-marker">
+                            <div class="md-tj-num">01</div>
+                            <div class="md-tj-icon"><i data-lucide="smartphone" size="20"></i></div>
+                        </div>
+                        <div class="md-tj-content">
+                            <h4>Buka Aplikasi Partner</h4>
+                            <p>Pengguna membuka aplikasi yang biasa mereka pakai — top-up, belanja, atau hiburan.</p>
+                            <div class="md-tj-tag">Existing experience</div>
+                        </div>
+                    </div>
+
+                    <div class="md-tj-step md-reveal" id="mdJs2">
+                        <div class="md-tj-marker">
+                            <div class="md-tj-num">02</div>
+                            <div class="md-tj-icon"><i data-lucide="layers" size="20"></i></div>
+                        </div>
+                        <div class="md-tj-content">
+                            <h4>Temukan Fitur "Madera Saving"</h4>
+                            <p>Banner atau menu baru muncul — mengundang pengguna membuka rekening tabungan berbunga.</p>
+                            <div class="md-tj-tag">In-app discovery</div>
+                        </div>
+                    </div>
+
+                    <div class="md-tj-step md-reveal" id="mdJs3">
+                        <div class="md-tj-marker">
+                            <div class="md-tj-num">03</div>
+                            <div class="md-tj-icon"><i data-lucide="scan-face" size="20"></i></div>
+                        </div>
+                        <div class="md-tj-content">
+                            <h4>e-KYC Cepat &lt;5 Menit</h4>
+                            <p>Webview Nobu muncul di dalam aplikasi. Foto KTP + selfie + setuju syarat. Semuanya dalam satu alur mulus.</p>
+                            <div class="md-tj-tag">Powered by Nobu</div>
+                        </div>
+                    </div>
+
+                    <div class="md-tj-step md-reveal" id="mdJs4">
+                        <div class="md-tj-marker">
+                            <div class="md-tj-num">04</div>
+                            <div class="md-tj-icon"><i data-lucide="landmark" size="20"></i></div>
+                        </div>
+                        <div class="md-tj-content">
+                            <h4>Rekening Aktif Instan</h4>
+                            <p>Rekening Nobu dengan nomor resmi langsung aktif. Nasabah bisa langsung setor saldo dari wallet partner.</p>
+                            <div class="md-tj-tag">Instant activation</div>
+                        </div>
+                    </div>
+
+                    <div class="md-tj-step md-reveal active-tj" id="mdJs5">
+                        <div class="md-tj-marker">
+                            <div class="md-tj-num">05</div>
+                            <div class="md-tj-icon active-tj-icon"><i data-lucide="trending-up" size="20"></i></div>
+                        </div>
+                        <div class="md-tj-content">
+                            <h4>Saldo Mulai Berbunga 🎉</h4>
+                            <p>Setiap rupiah yang tersimpan langsung menghasilkan bunga 2.5% p.a. — dihitung harian, dikreditkan bulanan. Dana dijamin LPS.</p>
+                            <div class="md-tj-tag active-tj-tag">Earn interest daily</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: visual phone screen per step -->
+                <div class="md-journey-visual">
+                    <div class="md-jv-card" id="mdJvCard">
+                        <div class="md-jv-step-label" id="mdJvLabel">Step 01 — Buka Aplikasi</div>
+                        <div class="md-jv-screen" id="mdJvScreen">
+                            <div class="md-jv-screen-inner jv-s1">
+                                <div class="md-jv-app-icon">P</div>
+                                <div class="md-jv-app-name">PartnerApp</div>
+                                <div class="md-jv-app-sub">Buka aplikasi seperti biasa</div>
+                                <div class="md-jv-loading">
+                                    <div class="md-jv-bar"></div>
+                                    <div class="md-jv-bar short"></div>
+                                    <div class="md-jv-bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Progress dots -->
+                        <div class="md-jv-dots">
+                            <div class="md-jv-dot active-jvdot" data-step="1"></div>
+                            <div class="md-jv-dot" data-step="2"></div>
+                            <div class="md-jv-dot" data-step="3"></div>
+                            <div class="md-jv-dot" data-step="4"></div>
+                            <div class="md-jv-dot" data-step="5"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         REVENUE MODEL
+    ══════════════════════════════════════ -->
+    <section id="revenue" class="md-section md-revenue-section">
+        <div class="container">
+            <div class="md-section-head">
+                <div class="md-eyebrow-tag">Model Pendapatan</div>
+                <h2 class="md-section-title">Partner Earn dari<br><span class="md-green">3 Sumber Revenue</span></h2>
+                <p class="md-section-sub">Revenue sharing dihitung dan didistribusikan otomatis setiap bulan — transparan, bisa dipantau via dashboard.</p>
+            </div>
+
+            <div class="md-rev-grid">
+                <div class="md-rev-card md-reveal">
+                    <div class="md-rev-icon" style="background:rgba(0,212,143,0.1);color:var(--green)">
+                        <i data-lucide="arrow-left-right" size="24"></i>
+                    </div>
+                    <div class="md-rev-badge" style="background:rgba(0,212,143,0.1);color:var(--green)">Sumber 1</div>
+                    <h3>Fee Transaksi</h3>
+                    <p>Partner mendapat porsi dari setiap transaksi transfer BI-FAST, RTOL, dan biaya layanan kartu yang dilakukan nasabah.</p>
+                    <div class="md-rev-formula">
+                        <span>Volume Trx</span>
+                        <span class="md-rev-x">×</span>
+                        <span>% Sharing</span>
+                        <span class="md-rev-eq">=</span>
+                        <span class="md-rev-result">Pendapatan</span>
+                    </div>
+                    <div class="md-rev-note">Semakin aktif nasabah bertransaksi, semakin besar pendapatan</div>
+                </div>
+
+                <div class="md-rev-card md-reveal featured-rev">
+                    <div class="md-rev-top-badge">Terbesar</div>
+                    <div class="md-rev-icon" style="background:rgba(0,212,143,0.15);color:var(--green)">
+                        <i data-lucide="percent" size="24"></i>
+                    </div>
+                    <div class="md-rev-badge" style="background:rgba(0,212,143,0.1);color:var(--green)">Sumber 2</div>
+                    <h3>Spread Bunga Tabungan</h3>
+                    <p>Partner mendapat porsi dari spread antara bunga yang diberikan ke nasabah dengan bunga yang dikelola Nobu Bank.</p>
+                    <div class="md-rev-formula">
+                        <span>Total DPK</span>
+                        <span class="md-rev-x">×</span>
+                        <span>Spread %</span>
+                        <span class="md-rev-eq">=</span>
+                        <span class="md-rev-result">Pendapatan</span>
+                    </div>
+                    <div class="md-rev-note">Semakin besar dana yang tersimpan nasabah, semakin besar return</div>
+                </div>
+
+                <div class="md-rev-card md-reveal">
+                    <div class="md-rev-icon" style="background:rgba(99,102,241,0.1);color:#6366F1">
+                        <i data-lucide="credit-card" size="24"></i>
+                    </div>
+                    <div class="md-rev-badge" style="background:rgba(99,102,241,0.1);color:#6366F1">Sumber 3</div>
+                    <h3>Biaya Kartu Debit</h3>
+                    <p>Sharing dari biaya penerbitan kartu debit, biaya administrasi kartu tahunan, dan biaya pengiriman kartu fisik.</p>
+                    <div class="md-rev-formula">
+                        <span>Jumlah Kartu</span>
+                        <span class="md-rev-x">×</span>
+                        <span>Fee Kartu</span>
+                        <span class="md-rev-eq">=</span>
+                        <span class="md-rev-result">Pendapatan</span>
+                    </div>
+                    <div class="md-rev-note">Passive income dari setiap nasabah yang punya kartu aktif</div>
+                </div>
+            </div>
+
+            <!-- Revenue calculator teaser -->
+            <div class="md-rev-calc md-reveal">
+                <div class="md-rc-left">
+                    <div class="md-rc-title">Estimasi Potensi Revenue Partner</div>
+                    <p class="md-rc-sub">Dengan 10.000 nasabah aktif dan rata-rata saldo Rp 2 juta per nasabah:</p>
+                    <div class="md-rc-numbers">
+                        <div class="md-rc-item">
+                            <span class="md-rc-label">Total Dana Kelola</span>
+                            <span class="md-rc-val">Rp 20 Miliar</span>
+                        </div>
+                        <div class="md-rc-item">
+                            <span class="md-rc-label">Estimasi Revenue Bunga/bln</span>
+                            <span class="md-rc-val green-val">Rp 8–15 Juta</span>
+                        </div>
+                        <div class="md-rc-item">
+                            <span class="md-rc-label">Estimasi Revenue Trx/bln</span>
+                            <span class="md-rc-val green-val">Rp 5–12 Juta</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="md-rc-right">
+                    <div class="md-rc-cta-text">Dapatkan proyeksi revenue<br>yang dipersonalisasi untuk bisnis Anda</div>
+                    <button class="btn-primary">
+                        <i data-lucide="calculator" size="15"></i>
+                        Minta Proyeksi Revenue
+                    </button>
+                    <div class="md-rc-note">*Estimasi ilustratif. Angka final berdasarkan PKS dan skema yang disepakati.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         FAQ — Clean accordion
+    ══════════════════════════════════════ -->
+    <section id="faq" class="md-section" style="background:var(--surface)">
+        <div class="container">
+            <div class="md-section-head">
+                <div class="md-eyebrow-tag">FAQ</div>
+                <h2 class="md-section-title">Pertanyaan yang<br><span class="md-green">Sering Ditanyakan</span></h2>
+            </div>
+
+            <div class="md-faq-wrap">
+                <div class="md-faq-item md-reveal">
+                    <button class="md-faq-trigger">
+                        <span>Apakah partner perlu izin OJK untuk menawarkan Madera?</span>
+                        <div class="md-faq-icon"><i data-lucide="plus" size="16"></i></div>
+                    </button>
+                    <div class="md-faq-body">
+                        <p>Tidak. Partner cukup menandatangani perjanjian kemitraan (PKS) dengan Nobu Bank. Seluruh kewajiban regulasi perbankan — izin OJK, laporan BI, compliance AML/KYC — menjadi tanggung jawab Nobu Bank sebagai pemilik lisensi. Partner berperan sebagai penyalur layanan.</p>
+                    </div>
+                </div>
+
+                <div class="md-faq-item md-reveal">
+                    <button class="md-faq-trigger">
+                        <span>Apakah dana nasabah dijamin LPS?</span>
+                        <div class="md-faq-icon"><i data-lucide="plus" size="16"></i></div>
+                    </button>
+                    <div class="md-faq-body">
+                        <p>Ya. Rekening CoBrand Saving Madera adalah rekening tabungan resmi PT Bank Nationalnobu Tbk yang terdaftar di OJK. Dana nasabah dijamin Lembaga Penjamin Simpanan (LPS) hingga Rp 2 miliar per nasabah, sesuai ketentuan yang berlaku.</p>
+                    </div>
+                </div>
+
+                <div class="md-faq-item md-reveal">
+                    <button class="md-faq-trigger">
+                        <span>Berapa lama proses integrasi sampai go-live?</span>
+                        <div class="md-faq-icon"><i data-lucide="plus" size="16"></i></div>
+                    </button>
+                    <div class="md-faq-body">
+                        <p>Estimasi total 6–10 minggu: dokumentasi legal PKS (1–2 minggu), development di sandbox (3–6 minggu tergantung modul), UAT (1–2 minggu), dan go-live. Tim teknis Nobu mendampingi seluruh proses dari awal hingga produksi.</p>
+                    </div>
+                </div>
+
+                <div class="md-faq-item md-reveal">
+                    <button class="md-faq-trigger">
+                        <span>Apakah semua modul harus diimplementasi sekaligus?</span>
+                        <div class="md-faq-icon"><i data-lucide="plus" size="16"></i></div>
+                    </button>
+                    <div class="md-faq-body">
+                        <p>Tidak. Partner bisa memilih modul mana yang diaktifkan terlebih dahulu sesuai kebutuhan dan kesiapan tim. Pendekatan umum: mulai dengan Account Opening + Balance Inquiry + Transfer, lalu tambahkan Debit Card dan QRIS setelah volume nasabah berkembang.</p>
+                    </div>
+                </div>
+
+                <div class="md-faq-item md-reveal">
+                    <button class="md-faq-trigger">
+                        <span>Bagaimana model revenue sharing bekerja?</span>
+                        <div class="md-faq-icon"><i data-lucide="plus" size="16"></i></div>
+                    </button>
+                    <div class="md-faq-body">
+                        <p>Partner mendapat sharing dari tiga sumber: fee transaksi (transfer, QRIS), spread bunga tabungan (porsi dari bunga yang dikelola), dan biaya kartu debit. Distribusi dilakukan otomatis setiap bulan ke rekening partner disertai laporan rincian lengkap.</p>
+                    </div>
+                </div>
+
+                <div class="md-faq-item md-reveal">
+                    <button class="md-faq-trigger">
+                        <span>Apakah tampilan bisa disesuaikan dengan brand partner?</span>
+                        <div class="md-faq-icon"><i data-lucide="plus" size="16"></i></div>
+                    </button>
+                    <div class="md-faq-body">
+                        <p>Ya, sepenuhnya white-label. Nama produk, warna, logo, dan seluruh tampilan UI di aplikasi partner bisa disesuaikan dengan brand identity partner. Hanya halaman webview Nobu (untuk PIN dan e-KYC) yang menampilkan identitas Nobu — itupun tetap menampilkan co-branding nama partner.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         CTA FINAL
+    ══════════════════════════════════════ -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-card">
+                <div class="cta-orb"></div>
+                <div class="cta-content">
+                    <div class="cta-badge"><i data-lucide="layers" size="14"></i> CoBrand Saving Madera by Nobu</div>
+                    <h2>Pengguna Anda Layak<br>Punya Rekening Bank Sungguhan</h2>
+                    <p>Tanpa lisensi. Tanpa infrastruktur baru. Nobu yang handle — Anda yang tumbuh.</p>
+                    <div class="cta-btns">
+                        <button class="btn-primary lg">
+                            <i data-lucide="message-square" size="16"></i>
+                            Jadwalkan Demo dengan Tim Kami
+                        </button>
+                        <button class="btn-outline-light">
+                            <i data-lucide="file-text" size="16"></i>
+                            Download Product Deck
+                        </button>
+                    </div>
+                    <div class="cta-trust">
+                        <span><i data-lucide="shield-check" size="13"></i> OJK Licensed</span>
+                        <span><i data-lucide="award" size="13"></i> LPS Guaranteed</span>
+                        <span><i data-lucide="lock" size="13"></i> SNAP BI Certified</span>
+                        <span><i data-lucide="check-circle" size="13"></i> e-KYC Ready</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand-col">
+                    <div class="footer-logo">
+                        <img src="nobu-logo.png" alt="Nobu Bank" style="height:28px;width:auto;">
+                        <div style="display:flex;flex-direction:column;line-height:1.15;margin-left:10px;">
+                            <span class="footer-brand-tag" style="font-size:0.72rem;color:var(--text-muted);font-weight:500;">Bank as a Service</span>
+                        </div>
+                    </div>
+                    <p class="footer-tagline">Infrastruktur perbankan digital terdepan untuk ekosistem modern Indonesia.</p>
+                    <div class="footer-socials">
+                        <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" size="16"></i></a>
+                        <a href="#" aria-label="Twitter"><i data-lucide="twitter" size="16"></i></a>
+                        <a href="#" aria-label="Instagram"><i data-lucide="instagram" size="16"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links-group">
+                    <h5>Produk BaaS</h5>
+                    <a href="qris.html">QRIS Solutions</a>
+                    <a href="payout.html">Payout Disbursement</a>
+                    <a href="madera.html">CoBrand Saving Madera</a>
+                    <a href="index.html#va-section">Virtual Account</a>
+                </div>
+                <div class="footer-links-group">
+                    <h5>Madera</h5>
+                    <a href="#value">Nilai Bisnis</a>
+                    <a href="#fitur">7 Fitur Utama</a>
+                    <a href="#usecase">Use Cases</a>
+                    <a href="#revenue">Revenue Model</a>
+                    <a href="#faq">FAQ</a>
+                </div>
+                <div class="footer-links-group">
+                    <h5>Perusahaan</h5>
+                    <a href="#">Tentang Nobu Bank</a>
+                    <a href="#">Partner Program</a>
+                    <a href="#">Karir</a>
+                    <a href="#">Blog & Insights</a>
+                </div>
+                <div class="footer-contact-col">
+                    <h5>Hubungi Kami</h5>
+                    <div class="contact-item"><i data-lucide="map-pin" size="14"></i><span>Graha Nobu, Tangerang, Indonesia</span></div>
+                    <div class="contact-item"><i data-lucide="mail" size="14"></i><a href="mailto:openbanking@nobubank.com">openbanking@nobubank.com</a></div>
+                    <div class="footer-badges">
+                        <div class="ojk-badge"><i data-lucide="shield" size="12"></i> OJK</div>
+                        <div class="ojk-badge"><i data-lucide="award" size="12"></i> LPS</div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 PT Bank Nationalnobu Tbk. Terdaftar & Diawasi oleh OJK.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Syarat & Ketentuan</a>
+                    <a href="#">Kebijakan Privasi</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="madera.js"></script>
+</body>
+</html>
