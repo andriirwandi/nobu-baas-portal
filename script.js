@@ -93,10 +93,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 revealObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+    }, { threshold: 0.01, rootMargin: '0px 0px 0px 0px' });
 
     document.querySelectorAll('.reveal-section').forEach(el => {
-        revealObserver.observe(el);
+        // If already in viewport on load, make visible immediately
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+            el.classList.add('visible');
+        } else {
+            revealObserver.observe(el);
+        }
     });
 
     /* ----------------------------------------
@@ -155,12 +161,12 @@ document.addEventListener('DOMContentLoaded', () => {
        Fix: fixed-height slots, no layout jump
     ---------------------------------------- */
     const trxData = [
-        { label: 'Pembayaran Diterima',  amount: 'Rp 250.000',    time: 'baru saja' },
-        { label: 'Cross-border SGD',     amount: 'Rp 1.200.000',  time: '5s ago'    },
-        { label: 'GoPay — Merchant A',   amount: 'Rp 75.500',     time: '12s ago'   },
-        { label: 'OVO — Merchant B',     amount: 'Rp 480.000',    time: '20s ago'   },
-        { label: 'DANA — Cross-border',  amount: 'Rp 3.100.000',  time: '35s ago'   },
-        { label: 'ShopeePay — Store C',  amount: 'Rp 128.000',    time: '42s ago'   },
+        { label: 'Issuer E-Wallet — Toko ABC',    amount: 'Rp 250.000',   time: 'baru saja' },
+        { label: 'Issuer Bank — Cross-border SGD', amount: 'Rp 1.200.000', time: '5s ago'    },
+        { label: 'Issuer E-Wallet — Merchant A',  amount: 'Rp 75.500',    time: '12s ago'   },
+        { label: 'Issuer Bank — Merchant B',       amount: 'Rp 480.000',   time: '20s ago'   },
+        { label: 'Issuer Fintech — Cross-border',  amount: 'Rp 3.100.000', time: '35s ago'   },
+        { label: 'Issuer E-Wallet — Store C',      amount: 'Rp 128.000',   time: '42s ago'   },
     ];
 
     const trxList = document.querySelector('.trx-live');
@@ -383,6 +389,5 @@ document.addEventListener('DOMContentLoaded', () => {
        INIT
     ---------------------------------------- */
     updateActiveNavLink();
-    updateStripItems();
-
 });
+
