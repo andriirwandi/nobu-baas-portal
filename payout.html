@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payout Disbursement | Nobu Bank BaaS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="qris.css">
+    <link rel="stylesheet" href="payout.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-content">
+            <div class="brand-group">
+                <a href="index.html" class="brand-logo" aria-label="Nobu Bank — Kembali ke Beranda">
+                    <img src="nobu-logo.png" alt="Nobu Bank" class="navbar-logo-img">
+                    <div class="brand-baas-label">
+                        <span class="baas-divider"></span>
+                        <div class="baas-text-group">
+                            <span class="baas-title">Bank as a Service</span>
+                            <span class="baas-sub">Partner Portal</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html#qr-section">QRIS</a>
+                <a href="index.html#payout-section" class="active">Payout</a>
+                <a href="index.html#madera-section">Madera</a>
+                <a href="index.html#va-section">Virtual Account</a>
+                <a href="index.html#integration-section">Integrasi</a>
+                <a href="index.html#pricing-section">Pricing</a>
+            </div>
+            <div class="nav-actions">
+                <a href="index.html" class="btn-kembali">
+                    <i data-lucide="arrow-left" size="14"></i>
+                    <span>Kembali</span>
+                </a>
+                <button class="btn-contact">
+                    <span>Hubungi Kami</span>
+                    <i data-lucide="arrow-right" size="14"></i>
+                </button>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html" class="mobile-link">← Kembali ke Beranda</a>
+            <a href="#overview" class="mobile-link">Overview</a>
+            <a href="#channel" class="mobile-link">Channel Transfer</a>
+            <a href="#fitur" class="mobile-link">Fitur</a>
+            <a href="#simulator" class="mobile-link">Simulator</a>
+            <a href="#alur" class="mobile-link">Alur Integrasi</a>
+            <a href="#pricing-payout" class="mobile-link">Pricing</a>
+            <a href="#faq" class="mobile-link">FAQ</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="po-hero">
+        <div class="po-hero-grid"></div>
+        <div class="po-hero-orb po-orb-1"></div>
+        <div class="po-hero-orb po-orb-2"></div>
+        <div class="container">
+            <!-- Breadcrumb -->
+            <div class="qp-breadcrumb">
+                <a href="index.html">Beranda</a>
+                <i data-lucide="chevron-right" size="13"></i>
+                <a href="index.html#payout-section">Produk</a>
+                <i data-lucide="chevron-right" size="13"></i>
+                <span>Payout Disbursement</span>
+            </div>
+
+            <div class="po-hero-inner">
+                <div class="po-hero-content">
+                    <div class="category-label">
+                        <i data-lucide="send" size="13"></i>
+                        Fund Transfer
+                    </div>
+                    <h1 class="po-hero-title">
+                        Distribusi Dana<br><span class="highlight-word">Massal & Real-time</span>
+                    </h1>
+                    <p class="po-hero-desc">Transfer ke 150+ bank di Indonesia secara instan — single maupun bulk ribuan transaksi dalam satu batch. Didukung BI-FAST, RTOL, dan jaringan interbankingBI.</p>
+
+                    <div class="po-hero-badges">
+                        <span class="qp-badge"><i data-lucide="zap" size="13"></i> BI-FAST 24/7</span>
+                        <span class="qp-badge"><i data-lucide="building-2" size="13"></i> 150+ Bank</span>
+                        <span class="qp-badge"><i data-lucide="list-ordered" size="13"></i> Bulk Payment API</span>
+                        <span class="qp-badge"><i data-lucide="clock" size="13"></i> Real-time Settlement</span>
+                    </div>
+
+                    <div class="po-hero-actions">
+                        <button class="btn-primary lg">
+                            <i data-lucide="zap" size="16"></i>
+                            Mulai Integrasi Payout
+                        </button>
+                        <button class="btn-outline">
+                            <i data-lucide="book-open" size="16"></i>
+                            Lihat API Docs
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Hero Visual: Live Dashboard Mockup -->
+                <div class="po-hero-visual">
+                    <div class="po-stat-row">
+                        <div class="po-stat-card">
+                            <span class="po-stat-num" id="heroStatDisbursed">Rp 4,2M</span>
+                            <span class="po-stat-lbl">Disbursed Today</span>
+                            <span class="po-stat-badge up">↑ 12.4%</span>
+                        </div>
+                        <div class="po-stat-card">
+                            <span class="po-stat-num">99.8%</span>
+                            <span class="po-stat-lbl">Success Rate</span>
+                            <span class="po-stat-badge up">↑ 0.2%</span>
+                        </div>
+                        <div class="po-stat-card">
+                            <span class="po-stat-num">&lt;3s</span>
+                            <span class="po-stat-lbl">Avg. Transfer Time</span>
+                            <span class="po-stat-badge up">BI-FAST</span>
+                        </div>
+                    </div>
+
+                    <div class="po-dashboard-card">
+                        <div class="visual-card-header">
+                            <span class="vc-dot red"></span>
+                            <span class="vc-dot yellow"></span>
+                            <span class="vc-dot green"></span>
+                            <span class="vc-title" style="margin-left:8px;">Payout Dashboard — Live</span>
+                            <span class="po-live-badge"><span class="pulse-dot"></span> Live</span>
+                        </div>
+                        <div class="po-dashboard-body">
+                            <!-- Channel bar chart visual -->
+                            <div class="po-chart-area">
+                                <div class="po-chart-label">Volume per Channel (Hari Ini)</div>
+                                <div class="po-bars">
+                                    <div class="po-bar-row">
+                                        <span class="po-bar-name">BI-FAST</span>
+                                        <div class="po-bar-track">
+                                            <div class="po-bar-fill" style="width:78%;background:var(--green)"></div>
+                                        </div>
+                                        <span class="po-bar-val">78%</span>
+                                    </div>
+                                    <div class="po-bar-row">
+                                        <span class="po-bar-name">RTOL</span>
+                                        <div class="po-bar-track">
+                                            <div class="po-bar-fill" style="width:15%;background:#6366F1"></div>
+                                        </div>
+                                        <span class="po-bar-val">15%</span>
+                                    </div>
+                                    <div class="po-bar-row">
+                                        <span class="po-bar-name">SKN</span>
+                                        <div class="po-bar-track">
+                                            <div class="po-bar-fill" style="width:7%;background:#F59E0B"></div>
+                                        </div>
+                                        <span class="po-bar-val">7%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Recent transfers -->
+                            <div class="po-recent-label">Recent Disbursements</div>
+                            <div class="po-trx-list" id="poTrxList">
+                                <div class="payout-row">
+                                    <div class="payout-avatar">BCA</div>
+                                    <div class="payout-detail">
+                                        <span class="payout-name">PT Mitra Sejahtera</span>
+                                        <span class="payout-meta">BI-FAST · 0001234567</span>
+                                    </div>
+                                    <div class="payout-right">
+                                        <span class="payout-amount">Rp 15.500.000</span>
+                                        <span class="payout-status sent">Sent</span>
+                                    </div>
+                                </div>
+                                <div class="payout-row">
+                                    <div class="payout-avatar">BNI</div>
+                                    <div class="payout-detail">
+                                        <span class="payout-name">CV Teknologi Nusa</span>
+                                        <span class="payout-meta">RTOL · 0009876543</span>
+                                    </div>
+                                    <div class="payout-right">
+                                        <span class="payout-amount">Rp 7.200.000</span>
+                                        <span class="payout-status sent">Sent</span>
+                                    </div>
+                                </div>
+                                <div class="payout-row">
+                                    <div class="payout-avatar">MDR</div>
+                                    <div class="payout-detail">
+                                        <span class="payout-name">Gaji Karyawan — Batch</span>
+                                        <span class="payout-meta">Bulk · 500 penerima</span>
+                                    </div>
+                                    <div class="payout-right">
+                                        <span class="payout-amount">Rp 250.000.000</span>
+                                        <span class="payout-status processing">Processing</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sticky page nav -->
+        <div class="qp-page-nav" id="poPageNav">
+            <div class="container">
+                <div class="qp-page-nav-inner">
+                    <a href="#overview"       class="qp-nav-link active-pn">Overview</a>
+                    <a href="#channel"        class="qp-nav-link">Channel Transfer</a>
+                    <a href="#fitur"          class="qp-nav-link">Fitur Lengkap</a>
+                    <a href="#simulator"      class="qp-nav-link">🚀 Simulator</a>
+                    <a href="#alur"           class="qp-nav-link">Alur Integrasi</a>
+                    <a href="#pricing-payout" class="qp-nav-link">Pricing</a>
+                    <a href="#faq"            class="qp-nav-link">FAQ</a>
+                    <button class="btn-primary sm qp-nav-cta">Mulai Integrasi</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ── OVERVIEW ── -->
+    <section id="overview" class="qp-section">
+        <div class="container">
+            <div class="qp-section-head">
+                <div class="section-eyebrow">Nobu Bank Payout Infrastructure</div>
+                <h2 class="section-title center-title">Satu API untuk<br><span class="title-accent">Semua Kebutuhan Transfer</span></h2>
+                <p class="section-subtitle">Dari transfer gaji bulanan hingga disbursement komisi real-time — Nobu Payout API menangani semua skenario dengan keandalan enterprise.</p>
+            </div>
+            <div class="po-overview-grid">
+                <div class="po-ov-card reveal-section">
+                    <div class="po-ov-icon" style="background:rgba(0,212,143,0.1);color:var(--green)"><i data-lucide="zap" size="22"></i></div>
+                    <h3>BI-FAST 24/7</h3>
+                    <p>Transfer hingga Rp 250 juta per transaksi secara instan kapan saja — termasuk malam, akhir pekan, dan hari libur nasional.</p>
+                </div>
+                <div class="po-ov-card reveal-section">
+                    <div class="po-ov-icon" style="background:rgba(99,102,241,0.1);color:#6366F1"><i data-lucide="list-ordered" size="22"></i></div>
+                    <h3>Bulk Payment API</h3>
+                    <p>Upload ribuan instruksi transfer sekaligus dalam satu batch. Sistem Nobu memproses, memvalidasi, dan melaporkan status setiap transaksi.</p>
+                </div>
+                <div class="po-ov-card reveal-section">
+                    <div class="po-ov-icon" style="background:rgba(245,158,11,0.1);color:#F59E0B"><i data-lucide="building-2" size="22"></i></div>
+                    <h3>150+ Bank Terhubung</h3>
+                    <p>Jangkau seluruh ekosistem perbankan Indonesia — dari bank nasional besar hingga BPR daerah — lewat satu endpoint yang sama.</p>
+                </div>
+                <div class="po-ov-card reveal-section">
+                    <div class="po-ov-icon" style="background:rgba(239,68,68,0.1);color:#EF4444"><i data-lucide="clock" size="22"></i></div>
+                    <h3>Scheduled Disbursement</h3>
+                    <p>Jadwalkan transfer gaji, komisi, atau refund di waktu tertentu. Sistem eksekusi otomatis tanpa intervensi manual.</p>
+                </div>
+                <div class="po-ov-card reveal-section">
+                    <div class="po-ov-icon" style="background:rgba(16,185,129,0.1);color:#10B981"><i data-lucide="file-spreadsheet" size="22"></i></div>
+                    <h3>Auto Rekonsiliasi</h3>
+                    <p>Laporan rekonsiliasi harian dikirim otomatis ke SFTP atau email partner dalam format CSV/Excel yang siap diimport ke ERP.</p>
+                </div>
+                <div class="po-ov-card reveal-section">
+                    <div class="po-ov-icon" style="background:rgba(0,212,143,0.1);color:var(--green)"><i data-lucide="webhook" size="22"></i></div>
+                    <h3>Webhook Real-time</h3>
+                    <p>Notifikasi status transfer instan ke endpoint partner — success, failed, atau pending — dalam &lt;500ms setelah proses selesai.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── CHANNEL TRANSFER ── -->
+    <section id="channel" class="qp-section" style="background:var(--surface)">
+        <div class="container">
+            <div class="qp-section-head">
+                <div class="section-eyebrow">Transfer Channel</div>
+                <h2 class="section-title center-title">Pilih Channel yang<br><span class="title-accent">Sesuai Kebutuhan</span></h2>
+                <p class="section-subtitle">Nobu Payout mendukung tiga jalur transfer utama — masing-masing dengan kecepatan, limit, dan biaya berbeda.</p>
+            </div>
+
+            <div class="po-channel-grid">
+                <!-- BI-FAST -->
+                <div class="po-channel-card featured-channel reveal-section">
+                    <div class="po-ch-top">
+                        <div class="po-ch-icon" style="background:rgba(0,212,143,0.15);color:var(--green)"><i data-lucide="zap" size="24"></i></div>
+                        <div class="po-ch-badge green-badge">Rekomendasi</div>
+                    </div>
+                    <h3>BI-FAST</h3>
+                    <p class="po-ch-desc">Transfer instan antar bank berbasis infrastruktur Bank Indonesia. Tersedia 24 jam, 7 hari, 365 hari — termasuk hari libur.</p>
+                    <div class="po-ch-specs">
+                        <div class="po-ch-spec">
+                            <span class="po-spec-lbl">Limit Per Trx</span>
+                            <span class="po-spec-val">Rp 250.000.000</span>
+                        </div>
+                        <div class="po-ch-spec">
+                            <span class="po-spec-lbl">Kecepatan</span>
+                            <span class="po-spec-val">&lt; 25 detik</span>
+                        </div>
+                        <div class="po-ch-spec">
+                            <span class="po-spec-lbl">Biaya</span>
+                            <span class="po-spec-val">Rp 2.500 / trx</span>
+                        </div>
+                        <div class="po-ch-spec">
+                            <span class="po-spec-lbl">Availability</span>
+                            <span class="po-spec-val">24/7/365</span>
+                        </div>
+                    </div>
+                    <div class="po-ch-tags green-tags">
+                        <span>Gaji</span><span>Komisi</span><span>Refund</span><span>Insentif</span>
+                    </div>
+                </div>
+
+                <!-- RTOL -->
+                <div class="po-channel-card reveal-section">
+                    <div class="po-ch-top">
+                        <div class="po-ch-icon" style="background:rgba(99,102,241,0.1);color:#6366F1"><i data-lucide="arrow-left-right" size="24"></i></div>
+                        <div class="po-ch-badge" style="background:rgba(99,102,241,0.1);color:#6366F1;border-color:rgba(99,102,241,0.25)">RTOL</div>
+                    </div>
+                    <h3>RTOL</h3>
+                    <p class="po-ch-desc">Real Time Online Transfer — transfer online antar bank secara real-time melalui jaringan interbanking nasional.</p>
+                    <div class="po-ch-specs">
+                        <div class="po-ch-spec">
+                            <span class="po-spec-lbl">Limit Per Trx</span>
+                            <span class="po-spec-val">Rp 500.000.000</span>
+                        </div>
+                        <div class="po-ch-spec">
+                            <span class="po-spec-lbl">Kecepatan</span>
+                            <span class="po-spec-val">Real-time</span>
+                        </div>
+                        <div class="po-ch-spec">
+                            <span class="po-spec-lbl">Biaya</span>
+                            <span class="po-spec-val">Rp 6.500 / trx</span>
+                        </div>
+                        <div class="po-ch-spec">
+                            <span class="po-spec-lbl">Availability</span>
+                            <span class="po-spec-val">24/7</span>
+                        </div>
+                    </div>
+                    <div class="po-ch-tags">
+                        <span>Vendor</span><span>Supplier</span><span>B2B</span>
+                    </div>
+                </div>
+
+                <!-- SKN -->
+                <div class="po-channel-card reveal-section">
+                    <div class="po-ch-top">
+                        <div class="po-ch-icon" style="background:rgba(245,158,11,0.1);color:#F59E0B"><i data-lucide="layers" size="24"></i></div>
+                        <div class="po-ch-badge" style="background:rgba(245,158,11,0.1);color:#D97706;border-color:rgba(245,158,11,0.25)">SKN</div>
+                    </div>
+                    <h3>SKN / SKNBI</h3>
+                    <p class="po-ch-desc">Sistem Kliring Nasional Bank Indonesia — cocok untuk transfer nilai besar dalam jumlah banyak dengan biaya rendah per transaksi.</p>
+                    <div class="po-ch-specs">
+                        <div class="po-ch-spec">
+                            <span class="po-spec-lbl">Limit Per Trx</span>
+                            <span class="po-spec-val">Tidak terbatas</span>
+                        </div>
+                        <div class="po-ch-spec">
+                            <span class="po-spec-lbl">Kecepatan</span>
+                            <span class="po-spec-val">D+1 (batch)</span>
+                        </div>
+                        <div class="po-ch-spec">
+                            <span class="po-spec-lbl">Biaya</span>
+                            <span class="po-spec-val">Rp 2.900 / trx</span>
+                        </div>
+                        <div class="po-ch-spec">
+                            <span class="po-spec-lbl">Availability</span>
+                            <span class="po-spec-val">Hari Kerja</span>
+                        </div>
+                    </div>
+                    <div class="po-ch-tags">
+                        <span>Volume Besar</span><span>Kliring</span><span>Non-urgent</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FITUR LENGKAP ── -->
+    <section id="fitur" class="qp-section qp-dark-section">
+        <div class="dark-bg-inner">
+            <div class="dark-orb" style="width:500px;height:500px;background:radial-gradient(circle,rgba(0,212,143,0.1) 0%,transparent 70%);top:-150px;right:-100px;"></div>
+            <div class="dark-orb" style="width:300px;height:300px;background:radial-gradient(circle,rgba(0,212,143,0.07) 0%,transparent 70%);bottom:-50px;left:100px;"></div>
+        </div>
+        <div class="container">
+            <div class="qp-section-head">
+                <div class="section-eyebrow" style="color:var(--green)">Fitur Lengkap</div>
+                <h2 class="section-title center-title" style="color:#fff">Semua Kebutuhan Disbursement<br><span class="title-accent">dalam Satu Platform</span></h2>
+            </div>
+
+            <div class="qp-feat-tabs">
+                <button class="qp-tab active-tab" data-tab="transfer">Transfer API</button>
+                <button class="qp-tab" data-tab="bulk">Bulk & Batch</button>
+                <button class="qp-tab" data-tab="monitoring">Monitoring</button>
+                <button class="qp-tab" data-tab="rekon">Rekonsiliasi</button>
+            </div>
+
+            <div class="qp-tab-content">
+                <!-- Transfer API -->
+                <div class="qp-tab-panel active-panel" data-panel="transfer">
+                    <div class="qp-feat-grid">
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="send" size="18"></i></div>
+                            <div><h4>Single Transfer API</h4><p>Kirim dana ke satu rekening tujuan secara instan. Response dalam &lt;3 detik dengan status real-time.</p></div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="search" size="18"></i></div>
+                            <div><h4>Account Inquiry</h4><p>Validasi nama dan nomor rekening tujuan sebelum transfer untuk mengurangi kesalahan pengiriman.</p></div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="zap" size="18"></i></div>
+                            <div><h4>BI-FAST Transfer</h4><p>Manfaatkan infrastruktur BI-FAST untuk transfer instan hingga Rp 250 juta 24/7 tanpa jeda.</p></div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="arrow-left-right" size="18"></i></div>
+                            <div><h4>RTOL Transfer</h4><p>Transfer online real-time antar bank dengan limit hingga Rp 500 juta untuk kebutuhan B2B.</p></div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="webhook" size="18"></i></div>
+                            <div><h4>Webhook Notifikasi</h4><p>Notifikasi status transfer dikirim ke endpoint partner dalam &lt;500ms — success, failed, atau pending.</p></div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="rotate-ccw" size="18"></i></div>
+                            <div><h4>Auto Retry</h4><p>Transfer gagal otomatis diulangi hingga 3 kali dengan interval eksponensial sebelum masuk ke status failed.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bulk & Batch -->
+                <div class="qp-tab-panel" data-panel="bulk">
+                    <div class="qp-feat-grid">
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="upload" size="18"></i></div>
+                            <div><h4>Bulk Upload CSV/Excel</h4><p>Upload file berisi ribuan instruksi transfer sekaligus. Sistem otomatis memvalidasi format dan data setiap baris.</p></div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="list-ordered" size="18"></i></div>
+                            <div><h4>Batch Processing API</h4><p>Submit ribuan transaksi via satu API call. Proses berjalan asynchronous dengan callback saat selesai.</p></div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="clock" size="18"></i></div>
+                            <div><h4>Scheduled Batch</h4><p>Jadwalkan batch disbursement di waktu tertentu — misalnya setiap tanggal 25 untuk gaji bulanan karyawan.</p></div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="split" size="18"></i></div>
+                            <div><h4>Auto Split Channel</h4><p>Sistem otomatis memilih channel transfer terbaik (BI-FAST/RTOL) berdasarkan bank tujuan dan nominal.</p></div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="activity" size="18"></i></div>
+                            <div><h4>Batch Status Tracking</h4><p>Monitor progres batch secara real-time — berapa yang berhasil, gagal, dan masih diproses.</p></div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="download" size="18"></i></div>
+                            <div><h4>Batch Result Export</h4><p>Download hasil setiap batch dalam format CSV/Excel lengkap dengan status, referensi bank, dan timestamp.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Monitoring -->
+                <div class="qp-tab-panel" data-panel="monitoring">
+                    <div class="qp-feat-grid">
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="layout-dashboard" size="18"></i></div>
+                            <div><h4>Dashboard Real-time</h4><p>Pantau volume disbursement, success rate, dan biaya secara real-time dari dashboard partner terpusat.</p></div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="search" size="18"></i></div>
+                            <div><h4>Transaction Lookup</h4><p>Cari transaksi by ID, referensi, tanggal, atau bank tujuan untuk kebutuhan audit dan sengketa.</p></div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="bell-ring" size="18"></i></div>
+                            <div><h4>Alert & Threshold</h4><p>Konfigurasi alert otomatis jika failure rate melampaui batas atau saldo disbursement menipis.</p></div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="bar-chart-3" size="18"></i></div>
+                            <div><h4>Analytics & Insight</h4><p>Grafik trend volume harian/mingguan, distribusi bank tujuan, dan peak hour disbursement.</p></div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="git-branch" size="18"></i></div>
+                            <div><h4>API Log</h4><p>Riwayat lengkap setiap API call dengan request/response payload untuk debugging dan compliance.</p></div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="users-2" size="18"></i></div>
+                            <div><h4>Multi-Role Access</h4><p>Atur hak akses berbeda untuk Admin, Finance, dan Approver dengan workflow approval sebelum eksekusi.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rekonsiliasi -->
+                <div class="qp-tab-panel" data-panel="rekon">
+                    <div class="qp-feat-grid">
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="file-spreadsheet" size="18"></i></div>
+                            <div><h4>Auto Rekonsiliasi Harian</h4><p>File rekonsiliasi dikirim otomatis ke SFTP atau email setiap pukul 07.00 WIB — tanpa perlu request manual.</p></div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="link" size="18"></i></div>
+                            <div><h4>ERP Integration Ready</h4><p>Format rekonsiliasi kompatibel dengan SAP, Oracle, dan sistem ERP populer lainnya tanpa konversi tambahan.</p></div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="receipt" size="18"></i></div>
+                            <div><h4>E-Receipt per Transaksi</h4><p>Generate bukti transfer digital berformat JSON atau PDF yang dapat ditampilkan di aplikasi partner.</p></div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="split" size="18"></i></div>
+                            <div><h4>Fee Report Otomatis</h4><p>Laporan biaya transfer terpisah per channel (BI-FAST/RTOL/SKN) untuk keperluan budgeting dan akuntansi.</p></div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="shield-check" size="18"></i></div>
+                            <div><h4>Audit Trail Lengkap</h4><p>Setiap aksi — submit, approve, eksekusi — tercatat dengan user, timestamp, dan IP address untuk compliance.</p></div>
+                        </div>
+                        <div class="qp-feat-item dark-card">
+                            <div class="feature-icon dark-icon"><i data-lucide="refresh-cw" size="18"></i></div>
+                            <div><h4>Failed Transaction Report</h4><p>Laporan khusus transaksi gagal beserta kode error dan alasan penolakan dari bank tujuan.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── SIMULATOR ── -->
+    <section id="simulator" class="qp-section">
+        <div class="container">
+            <div class="qp-section-head">
+                <div class="section-eyebrow">🚀 Simulator Interaktif</div>
+                <h2 class="section-title center-title">Coba <span class="title-accent">Payout Simulator</span></h2>
+                <p class="section-subtitle">Simulasikan single transfer dan bulk disbursement — lihat bagaimana API Nobu memproses transaksi secara real-time.</p>
+            </div>
+
+            <div class="po-sim-layout">
+
+                <!-- LEFT: Single Transfer -->
+                <div class="po-sim-card reveal-section">
+                    <div class="po-sim-card-header">
+                        <div class="po-sim-icon"><i data-lucide="send" size="16"></i></div>
+                        <div>
+                            <div class="po-sim-title">Single Transfer</div>
+                            <div class="po-sim-sub">Transfer ke satu rekening tujuan</div>
+                        </div>
+                    </div>
+
+                    <div class="po-sim-form">
+                        <div class="po-form-group">
+                            <label class="po-form-label">Bank Tujuan</label>
+                            <div class="po-bank-select">
+                                <button class="po-bank-btn active-bank" data-bank="BCA">BCA</button>
+                                <button class="po-bank-btn" data-bank="BNI">BNI</button>
+                                <button class="po-bank-btn" data-bank="BRI">BRI</button>
+                                <button class="po-bank-btn" data-bank="Mandiri">Mandiri</button>
+                                <button class="po-bank-btn" data-bank="BSI">BSI</button>
+                                <button class="po-bank-btn" data-bank="CIMB">CIMB</button>
+                            </div>
+                        </div>
+                        <div class="po-form-group">
+                            <label class="po-form-label">Channel Transfer</label>
+                            <div class="po-ch-select">
+                                <button class="po-ch-btn active-ch" data-channel="BI-FAST">BI-FAST <span>Rp 2.500</span></button>
+                                <button class="po-ch-btn" data-channel="RTOL">RTOL <span>Rp 6.500</span></button>
+                                <button class="po-ch-btn" data-channel="SKN">SKN <span>Rp 2.900</span></button>
+                            </div>
+                        </div>
+                        <div class="po-form-group">
+                            <label class="po-form-label">Nominal</label>
+                            <div class="po-amount-select">
+                                <button class="po-amt-btn active-amt" data-amount="5000000">Rp 5 Jt</button>
+                                <button class="po-amt-btn" data-amount="15000000">Rp 15 Jt</button>
+                                <button class="po-amt-btn" data-amount="50000000">Rp 50 Jt</button>
+                                <button class="po-amt-btn" data-amount="250000000">Rp 250 Jt</button>
+                            </div>
+                        </div>
+
+                        <button class="po-sim-btn" id="poSimBtn">
+                            <i data-lucide="send" size="15"></i>
+                            <span>Simulasikan Transfer</span>
+                        </button>
+                    </div>
+
+                    <!-- Result -->
+                    <div class="po-sim-result" id="poSimResult">
+                        <div class="po-result-header">
+                            <div class="po-result-icon" id="poResultIcon"><i data-lucide="clock" size="14"></i></div>
+                            <span class="po-result-status" id="poResultStatus">Menunggu...</span>
+                        </div>
+                        <div class="po-result-body" id="poResultBody">
+                            <div class="po-result-row"><span>Status</span><span id="rStatus">—</span></div>
+                            <div class="po-result-row"><span>Channel</span><span id="rChannel">—</span></div>
+                            <div class="po-result-row"><span>Nominal</span><span id="rAmount">—</span></div>
+                            <div class="po-result-row"><span>Biaya</span><span id="rFee">—</span></div>
+                            <div class="po-result-row"><span>Bank Tujuan</span><span id="rBank">—</span></div>
+                            <div class="po-result-row"><span>Waktu Proses</span><span id="rDuration">—</span></div>
+                            <div class="po-result-row"><span>TRX ID</span><span id="rTrxId" style="font-family:monospace;font-size:0.72rem">—</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT: Bulk Simulator -->
+                <div class="po-sim-card reveal-section">
+                    <div class="po-sim-card-header">
+                        <div class="po-sim-icon" style="background:rgba(99,102,241,0.15);color:#6366F1"><i data-lucide="list-ordered" size="16"></i></div>
+                        <div>
+                            <div class="po-sim-title">Bulk Disbursement</div>
+                            <div class="po-sim-sub">Simulasi transfer ke banyak penerima</div>
+                        </div>
+                    </div>
+
+                    <!-- Bulk recipient list -->
+                    <div class="po-bulk-list" id="poBulkList">
+                        <div class="po-bulk-header">
+                            <span>Penerima</span>
+                            <span>Bank</span>
+                            <span>Nominal</span>
+                            <span>Status</span>
+                        </div>
+                        <div class="po-bulk-row" data-idx="0">
+                            <span class="po-bulk-name">PT Mitra Sejahtera</span>
+                            <span class="po-bulk-bank">BCA</span>
+                            <span class="po-bulk-amt">Rp 15.500.000</span>
+                            <span class="po-bulk-status idle">Pending</span>
+                        </div>
+                        <div class="po-bulk-row" data-idx="1">
+                            <span class="po-bulk-name">CV Teknologi Nusa</span>
+                            <span class="po-bulk-bank">BNI</span>
+                            <span class="po-bulk-amt">Rp 8.200.000</span>
+                            <span class="po-bulk-status idle">Pending</span>
+                        </div>
+                        <div class="po-bulk-row" data-idx="2">
+                            <span class="po-bulk-name">Rudi Santoso</span>
+                            <span class="po-bulk-bank">BRI</span>
+                            <span class="po-bulk-amt">Rp 4.750.000</span>
+                            <span class="po-bulk-status idle">Pending</span>
+                        </div>
+                        <div class="po-bulk-row" data-idx="3">
+                            <span class="po-bulk-name">PT Sinar Digital</span>
+                            <span class="po-bulk-bank">Mandiri</span>
+                            <span class="po-bulk-amt">Rp 32.000.000</span>
+                            <span class="po-bulk-status idle">Pending</span>
+                        </div>
+                        <div class="po-bulk-row" data-idx="4">
+                            <span class="po-bulk-name">Dewi Rahayu</span>
+                            <span class="po-bulk-bank">BSI</span>
+                            <span class="po-bulk-amt">Rp 5.500.000</span>
+                            <span class="po-bulk-status idle">Pending</span>
+                        </div>
+                        <div class="po-bulk-row" data-idx="5">
+                            <span class="po-bulk-name">CV Maju Bersama</span>
+                            <span class="po-bulk-bank">BCA</span>
+                            <span class="po-bulk-amt">Rp 12.300.000</span>
+                            <span class="po-bulk-status idle">Pending</span>
+                        </div>
+                    </div>
+
+                    <div class="po-bulk-summary">
+                        <span>Total: <strong>6 penerima</strong></span>
+                        <span>Total Nominal: <strong>Rp 78.250.000</strong></span>
+                    </div>
+
+                    <button class="po-sim-btn po-bulk-btn" id="poBulkBtn">
+                        <i data-lucide="play-circle" size="15"></i>
+                        <span>Proses Bulk Transfer</span>
+                    </button>
+
+                    <!-- Bulk progress -->
+                    <div class="po-bulk-progress" id="poBulkProgress" style="display:none">
+                        <div class="po-bp-label">
+                            <span id="poBpLabel">Memproses...</span>
+                            <span id="poBpCount">0/6</span>
+                        </div>
+                        <div class="po-bp-bar-track">
+                            <div class="po-bp-bar-fill" id="poBpFill"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ── ALUR INTEGRASI ── -->
+    <section id="alur" class="qp-section" style="background:var(--surface)">
+        <div class="container">
+            <div class="qp-section-head">
+                <div class="section-eyebrow">Dokumentasi Teknis</div>
+                <h2 class="section-title center-title">Alur API <span class="title-accent">Single Transfer</span></h2>
+                <p class="section-subtitle">Contoh flow API untuk transfer dana single — dari request hingga webhook konfirmasi.</p>
+            </div>
+
+            <div class="qp-flow-grid">
+                <div class="qp-flow-step reveal-section">
+                    <div class="qp-flow-num">1</div>
+                    <div class="qp-flow-body">
+                        <div class="qp-flow-label">Partner → Nobu API</div>
+                        <h4>Account Inquiry</h4>
+                        <div class="qp-code-block">
+                            <div class="qp-code-header">
+                                <span>POST /v1/payout/inquiry</span>
+                                <button class="qp-copy-code"><i data-lucide="copy" size="12"></i></button>
+                            </div>
+<pre>{
+  "bank_code": "014",
+  "account_number": "1234567890",
+  "channel": "BIFFAST"
+}</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="qp-flow-step reveal-section">
+                    <div class="qp-flow-num">2</div>
+                    <div class="qp-flow-body">
+                        <div class="qp-flow-label">Nobu API → Partner</div>
+                        <h4>Response Inquiry</h4>
+                        <div class="qp-code-block">
+                            <div class="qp-code-header">
+                                <span>200 OK</span>
+                                <span class="qp-code-badge success">Valid</span>
+                            </div>
+<pre>{
+  "account_name": "PT Mitra Sejahtera",
+  "account_number": "1234567890",
+  "bank_code": "014",
+  "bank_name": "Bank Central Asia"
+}</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="qp-flow-step reveal-section">
+                    <div class="qp-flow-num">3</div>
+                    <div class="qp-flow-body">
+                        <div class="qp-flow-label">Partner → Nobu API</div>
+                        <h4>Execute Transfer</h4>
+                        <div class="qp-code-block">
+                            <div class="qp-code-header">
+                                <span>POST /v1/payout/transfer</span>
+                                <button class="qp-copy-code"><i data-lucide="copy" size="12"></i></button>
+                            </div>
+<pre>{
+  "amount": 15500000,
+  "bank_code": "014",
+  "account_number": "1234567890",
+  "reference_no": "PAY-20260523",
+  "channel": "BIFFAST",
+  "note": "Pembayaran invoice"
+}</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="qp-flow-step reveal-section">
+                    <div class="qp-flow-num">4</div>
+                    <div class="qp-flow-body">
+                        <div class="qp-flow-label">Nobu → Partner Webhook</div>
+                        <h4>Transfer Confirmation</h4>
+                        <div class="qp-code-block">
+                            <div class="qp-code-header">
+                                <span>POST /your-webhook</span>
+                                <span class="qp-code-badge success">Success</span>
+                            </div>
+<pre>{
+  "trx_id": "NBK-PAY-9912",
+  "status": "SUCCESS",
+  "amount": 15500000,
+  "channel": "BIFFAST",
+  "reference_no": "PAY-20260523",
+  "completed_at": "2026-05-23T10:02:34Z"
+}</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="qp-api-cta">
+                <a href="#" class="btn-primary">
+                    <i data-lucide="book-open" size="15"></i>
+                    Full API Documentation
+                </a>
+                <a href="#" class="link-plain" style="color:var(--green)">
+                    Download Postman Collection
+                    <i data-lucide="download" size="14"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── PRICING ── -->
+    <section id="pricing-payout" class="qp-section">
+        <div class="container">
+            <div class="qp-section-head">
+                <div class="section-eyebrow">Pricing</div>
+                <h2 class="section-title center-title">Biaya <span class="title-accent">Transparan</span></h2>
+                <p class="section-subtitle">Tidak ada biaya tersembunyi. Bayar hanya untuk transaksi yang berhasil.</p>
+            </div>
+
+            <div class="po-pricing-table reveal-section">
+                <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Channel</th>
+                            <th>Biaya per Transaksi</th>
+                            <th>Limit per Trx</th>
+                            <th>Kecepatan</th>
+                            <th>Availability</th>
+                            <th>Revenue Sharing</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="featured-row">
+                            <td>
+                                <div style="display:flex;align-items:center;gap:8px">
+                                    <div class="product-cell-icon bifast-icon"><i data-lucide="zap" size="14"></i></div>
+                                    <strong>BI-FAST</strong>
+                                    <span class="popular-tag">Popular</span>
+                                </div>
+                            </td>
+                            <td><span class="fee-value">Rp 2.500</span></td>
+                            <td>Rp 250.000.000</td>
+                            <td><span class="settlement-badge rt">Real-time</span></td>
+                            <td><span class="avail-dot"></span> 24/7/365</td>
+                            <td><span class="sharing-badge flat">Flat Incentive</span></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="display:flex;align-items:center;gap:8px">
+                                    <div class="product-cell-icon rtol-icon"><i data-lucide="arrow-left-right" size="14"></i></div>
+                                    <strong>RTOL</strong>
+                                </div>
+                            </td>
+                            <td><span class="fee-value">Rp 6.500</span></td>
+                            <td>Rp 500.000.000</td>
+                            <td><span class="settlement-badge rt">Real-time</span></td>
+                            <td><span class="avail-dot"></span> 24/7</td>
+                            <td><span class="sharing-badge share">Up to 25%</span></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="display:flex;align-items:center;gap:8px">
+                                    <div class="product-cell-icon" style="background:rgba(245,158,11,0.1);color:#F59E0B"><i data-lucide="layers" size="14"></i></div>
+                                    <strong>SKN</strong>
+                                </div>
+                            </td>
+                            <td><span class="fee-value">Rp 2.900</span></td>
+                            <td>Tidak terbatas</td>
+                            <td><span class="settlement-badge t1">D+1 Batch</span></td>
+                            <td><span style="color:var(--text-muted);font-size:0.82rem">Hari Kerja</span></td>
+                            <td><span class="sharing-badge fixed">Fixed Sharing</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div><!-- end table-scroll -->
+                <div class="table-footer-note">
+                    <i data-lucide="info" size="14"></i>
+                    <span>Pricing bersifat indikatif. Skema revenue sharing final mengacu pada perjanjian kemitraan. Hubungi tim kami untuk penawaran customized volume-based.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FAQ ── -->
+    <section id="faq" class="qp-section" style="background:var(--surface)">
+        <div class="container">
+            <div class="qp-section-head">
+                <div class="section-eyebrow">FAQ</div>
+                <h2 class="section-title center-title">Pertanyaan yang<br><span class="title-accent">Sering Ditanyakan</span></h2>
+                <p class="section-subtitle">Belum menemukan jawaban? <a href="#" style="color:var(--green);font-weight:600">Hubungi tim kami</a>.</p>
+            </div>
+
+            <div class="qp-faq-grid">
+                <div class="qp-faq-col">
+                    <div class="qp-faq-group">
+                        <div class="qp-faq-group-label">Umum & Onboarding</div>
+
+                        <div class="faq-item reveal-section">
+                            <button class="faq-trigger">
+                                <span>Apa perbedaan BI-FAST dan RTOL?</span>
+                                <div class="faq-icon"><i data-lucide="plus" size="16"></i></div>
+                            </button>
+                            <div class="faq-body">
+                                <p>BI-FAST adalah infrastruktur transfer instan Bank Indonesia dengan biaya Rp 2.500 dan limit Rp 250 juta per transaksi, tersedia 24/7/365. RTOL (Real Time Online) memiliki limit lebih tinggi (Rp 500 juta) dengan biaya Rp 6.500, juga real-time. Untuk disbursement massal, BI-FAST umumnya lebih ekonomis.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item reveal-section">
+                            <button class="faq-trigger">
+                                <span>Berapa lama proses onboarding Payout API?</span>
+                                <div class="faq-icon"><i data-lucide="plus" size="16"></i></div>
+                            </button>
+                            <div class="faq-body">
+                                <p>Proses onboarding Payout mengikuti alur standar BaaS Nobu: dokumentasi legal (3–5 hari), development di sandbox (2–4 minggu), UAT (1–2 minggu), dan go-live. Total estimasi 6–8 minggu tergantung kesiapan tim teknis partner.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item reveal-section">
+                            <button class="faq-trigger">
+                                <span>Apakah ada minimum transaksi per bulan?</span>
+                                <div class="faq-icon"><i data-lucide="plus" size="16"></i></div>
+                            </button>
+                            <div class="faq-body">
+                                <p>Tidak ada minimum transaksi untuk memulai. Biaya hanya dikenakan per transaksi sukses. Untuk skema revenue sharing yang lebih menguntungkan, tersedia tiering berdasarkan volume bulanan yang dapat dinegosiasikan dalam PKS.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item reveal-section">
+                            <button class="faq-trigger">
+                                <span>Bank apa saja yang didukung sebagai tujuan transfer?</span>
+                                <div class="faq-icon"><i data-lucide="plus" size="16"></i></div>
+                            </button>
+                            <div class="faq-body">
+                                <p>Nobu Payout mendukung transfer ke 150+ bank di Indonesia termasuk BCA, BNI, BRI, Mandiri, BSI, CIMB, Danamon, Permata, BPD seluruh provinsi, dan BPR. Daftar lengkap bank tersedia di dokumentasi API.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="qp-faq-col">
+                    <div class="qp-faq-group">
+                        <div class="qp-faq-group-label">Teknis & Operasional</div>
+
+                        <div class="faq-item reveal-section">
+                            <button class="faq-trigger">
+                                <span>Bagaimana jika transfer gagal?</span>
+                                <div class="faq-icon"><i data-lucide="plus" size="16"></i></div>
+                            </button>
+                            <div class="faq-body">
+                                <p>Transfer gagal akan otomatis diulangi hingga 3 kali dengan interval eksponensial. Jika tetap gagal, notifikasi webhook dikirim ke partner dengan kode error lengkap. Dana tidak akan terdebit jika transfer tidak berhasil.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item reveal-section">
+                            <button class="faq-trigger">
+                                <span>Berapa maksimal transaksi dalam satu batch?</span>
+                                <div class="faq-icon"><i data-lucide="plus" size="16"></i></div>
+                            </button>
+                            <div class="faq-body">
+                                <p>Satu batch dapat memuat hingga 10.000 instruksi transfer. Untuk kebutuhan di atas itu, dapat dipecah menjadi beberapa batch yang disubmit secara paralel. Sistem Nobu memproses setiap batch secara asynchronous.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item reveal-section">
+                            <button class="faq-trigger">
+                                <span>Apakah tersedia fitur approval sebelum transfer dieksekusi?</span>
+                                <div class="faq-icon"><i data-lucide="plus" size="16"></i></div>
+                            </button>
+                            <div class="faq-body">
+                                <p>Ya. Partner dapat mengaktifkan workflow dual-control — Maker/Checker — di mana setiap instruksi transfer harus disetujui oleh pihak kedua (Checker) sebelum dieksekusi. Fitur ini sangat direkomendasikan untuk disbursement nilai besar.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item reveal-section">
+                            <button class="faq-trigger">
+                                <span>Bagaimana keamanan API Payout Nobu?</span>
+                                <div class="faq-icon"><i data-lucide="plus" size="16"></i></div>
+                            </button>
+                            <div class="faq-body">
+                                <p>API Payout Nobu menggunakan autentikasi OAuth 2.0, enkripsi TLS 1.3, dan signature verification pada setiap request. Setiap API call juga divalidasi dengan IP whitelist partner dan rate limiting untuk mencegah penyalahgunaan.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-card">
+                <div class="cta-orb"></div>
+                <div class="cta-content">
+                    <div class="cta-badge"><i data-lucide="send" size="14"></i> Mulai dengan Payout Nobu Bank</div>
+                    <h2>Siap Otomasi Disbursement<br>Bisnis Anda?</h2>
+                    <p>Dari transfer gaji hingga bulk ribuan penerima — satu API untuk semua kebutuhan payout Anda.</p>
+                    <div class="cta-btns">
+                        <button class="btn-primary lg">
+                            <i data-lucide="message-square" size="16"></i>
+                            Hubungi Tim Kami
+                        </button>
+                        <button class="btn-outline-light">
+                            <i data-lucide="book-open" size="16"></i>
+                            Lihat API Documentation
+                        </button>
+                    </div>
+                    <div class="cta-trust">
+                        <span><i data-lucide="shield-check" size="13"></i> OJK Licensed</span>
+                        <span><i data-lucide="award" size="13"></i> SNAP BI Certified</span>
+                        <span><i data-lucide="lock" size="13"></i> ISO 27001</span>
+                        <span><i data-lucide="check-circle" size="13"></i> PCI DSS L1</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand-col">
+                    <div class="footer-logo">
+                        <img src="nobu-logo.png" alt="Nobu Bank" style="height:28px;width:auto;">
+                        <div style="display:flex;flex-direction:column;line-height:1.15;margin-left:10px;">
+                            <span class="footer-brand-tag" style="font-size:0.72rem;color:var(--text-muted);font-weight:500;">Bank as a Service</span>
+                        </div>
+                    </div>
+                    <p class="footer-tagline">Infrastruktur perbankan digital terdepan untuk ekosistem modern Indonesia.</p>
+                    <div class="footer-socials">
+                        <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" size="16"></i></a>
+                        <a href="#" aria-label="Twitter"><i data-lucide="twitter" size="16"></i></a>
+                        <a href="#" aria-label="Instagram"><i data-lucide="instagram" size="16"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links-group">
+                    <h5>Produk BaaS</h5>
+                    <a href="qris.html">QRIS Solutions</a>
+                    <a href="payout.html">Payout Disbursement</a>
+                    <a href="index.html#madera-section">CoBrand Saving Madera</a>
+                    <a href="index.html#va-section">Virtual Account</a>
+                </div>
+                <div class="footer-links-group">
+                    <h5>Developer</h5>
+                    <a href="#">API Documentation</a>
+                    <a href="#">Sandbox Environment</a>
+                    <a href="#">SDK & Libraries</a>
+                    <a href="#">Changelog</a>
+                    <a href="#">Status Page</a>
+                </div>
+                <div class="footer-links-group">
+                    <h5>Perusahaan</h5>
+                    <a href="#">Tentang Nobu Bank</a>
+                    <a href="#">Partner Program</a>
+                    <a href="#">Karir</a>
+                    <a href="#">Blog & Insights</a>
+                    <a href="#">Kebijakan Privasi</a>
+                </div>
+                <div class="footer-contact-col">
+                    <h5>Hubungi Kami</h5>
+                    <div class="contact-item"><i data-lucide="map-pin" size="14"></i><span>Graha Nobu, Tangerang, Indonesia</span></div>
+                    <div class="contact-item"><i data-lucide="mail" size="14"></i><a href="mailto:openbanking@nobubank.com">openbanking@nobubank.com</a></div>
+                    <div class="contact-item"><i data-lucide="phone" size="14"></i><a href="tel:+6221500123">+62 21 500 123</a></div>
+                    <div class="footer-badges">
+                        <div class="ojk-badge"><i data-lucide="shield" size="12"></i> OJK</div>
+                        <div class="ojk-badge"><i data-lucide="award" size="12"></i> SNAP BI</div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 PT Bank Nationalnobu Tbk. Terdaftar & Diawasi oleh Otoritas Jasa Keuangan (OJK).</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Syarat & Ketentuan</a>
+                    <a href="#">Kebijakan Privasi</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="payout.js"></script>
+</body>
+</html>
