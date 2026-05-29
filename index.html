@@ -15,7 +15,7 @@
     <nav class="navbar" id="navbar">
         <div class="nav-content">
             <div class="brand-group">
-                <div class="brand-logo">
+                <a href="#" class="brand-logo" aria-label="Nobu Bank — Kembali ke Beranda">
                     <img src="nobu-logo.png" alt="Nobu Bank" class="navbar-logo-img">
                     <div class="brand-baas-label">
                         <span class="baas-divider"></span>
@@ -24,7 +24,7 @@
                             <span class="baas-sub">Partner Portal</span>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="nav-links">
                 <a href="#qr-section">QRIS</a>
@@ -132,8 +132,8 @@
                     <i data-lucide="arrow-right" size="14" class="strip-arrow"></i>
                 </a>
                 <a href="#madera-section" class="strip-item">
-                    <div class="strip-icon"><i data-lucide="credit-card" size="20"></i></div>
-                    <span>CoBrand Saving</span>
+                    <div class="strip-icon"><i data-lucide="layers" size="20"></i></div>
+                    <span>CoBrand Saving Madera</span>
                     <i data-lucide="arrow-right" size="14" class="strip-arrow"></i>
                 </a>
                 <a href="#va-section" class="strip-item">
@@ -146,7 +146,7 @@
     </section>
 
     <!-- QRIS SECTION -->
-    <section id="qr-section" class="product-section reveal-section">
+    <section id="qr-section" class="product-section reveal-section visible">
         <div class="container">
             <div class="product-grid">
                 <div class="product-content">
@@ -187,60 +187,175 @@
                         </div>
                     </div>
                     <div class="product-cta">
-                        <a href="qris.html" class="btn-primary sm">Pelajari QRIS <i data-lucide="arrow-right" size="14"></i></a>
-                        <a href="qris.html#alur-integrasi" class="link-plain">Lihat Demo <i data-lucide="external-link" size="13"></i></a>
+                        <a href="qris.html" class="btn-primary sm">Dokumentasi QRIS <i data-lucide="arrow-right" size="14"></i></a>
+                        <a href="qris.html#soundbox" class="link-plain">Detail Soundbox <i data-lucide="external-link" size="13"></i></a>
                     </div>
                 </div>
-                <div class="product-visual">
-                    <div class="visual-card qris-card">
-                        <div class="visual-card-header">
-                            <span class="vc-dot red"></span>
-                            <span class="vc-dot yellow"></span>
-                            <span class="vc-dot green"></span>
-                            <span class="vc-title">QRIS Payment Terminal</span>
-                        </div>
-                        <div class="qris-mockup">
-                            <div class="qr-frame">
-                                <div class="qr-pattern">
-                                    <div class="qr-corner tl"></div>
-                                    <div class="qr-corner tr"></div>
-                                    <div class="qr-corner bl"></div>
-                                    <div class="qr-dots"></div>
-                                    <div class="qr-logo-center">N</div>
+                <!-- SOUNDBOX INTERACTIVE DEMO -->
+                <div class="product-visual sb-inline-wrap">
+
+                    <!-- Device Mockup -->
+                    <div class="sb-device-wrap">
+                        <div class="sb-device" id="sbDevice">
+                            <div class="sb-device-body">
+                                <div class="sb-camera-bar">
+                                    <div class="sb-camera-lens"><div class="sb-camera-inner"></div></div>
                                 </div>
-                            </div>
-                            <div class="qris-label">
-                                <div class="qris-logo-bar">
-                                    <span class="qris-text-logo">QRIS</span>
-                                    <span class="qris-sub-label">Scan to Pay</span>
-                                </div>
-                            </div>
-                            <div class="payment-chips">
-                                <span class="chip">GoPay</span>
-                                <span class="chip">OVO</span>
-                                <span class="chip">DANA</span>
-                                <span class="chip">+40</span>
-                            </div>
-                            <div class="trx-live">
-                                <div class="trx-item">
-                                    <div class="trx-dot success"></div>
-                                    <div class="trx-info">
-                                        <span>Pembayaran Diterima</span>
-                                        <span class="trx-amt">Rp 250.000</span>
+                                <div class="sb-screen" id="sbScreen">
+                                    <!-- IDLE -->
+                                    <div class="sb-state" id="sbStateIdle">
+                                        <div class="sb-screen-accent"><div class="sb-accent-pink"></div><div class="sb-accent-yellow"></div></div>
+                                        <div class="sb-logo-row"><div class="sb-nobu-logo">nobu</div></div>
+                                        <div class="sb-idle-qr">
+                                            <div class="qr-frame sm-qr">
+                                                <div class="qr-pattern">
+                                                    <div class="qr-corner tl"></div><div class="qr-corner tr"></div>
+                                                    <div class="qr-corner bl"></div><div class="qr-dots"></div>
+                                                    <div class="qr-logo-center sm-logo">N</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="sb-qris-tap-label">BAYAR PRAKTIS PAKE</div>
+                                        <div class="sb-qristap-logo">QRIS<span>Tap</span></div>
+                                        <div class="sb-idle-sub">Scan QR untuk membayar</div>
                                     </div>
-                                    <span class="trx-time">2s ago</span>
-                                </div>
-                                <div class="trx-item">
-                                    <div class="trx-dot success"></div>
-                                    <div class="trx-info">
-                                        <span>Cross-border SGD</span>
-                                        <span class="trx-amt">Rp 1.200.000</span>
+                                    <!-- SCANNING -->
+                                    <div class="sb-state hidden" id="sbStateScanning">
+                                        <div class="sb-screen-accent"><div class="sb-accent-pink"></div><div class="sb-accent-yellow"></div></div>
+                                        <div class="sb-logo-row"><div class="sb-nobu-logo">nobu</div></div>
+                                        <div class="sb-scan-anim">
+                                            <div class="sb-scan-ring"></div><div class="sb-scan-ring delay1"></div>
+                                            <i data-lucide="scan-line" size="28" style="color:var(--green)"></i>
+                                        </div>
+                                        <div class="sb-scanning-text">Mohon Menunggu...</div>
+                                        <div class="sb-scanning-sub">Memproses pembayaran</div>
+                                        <div class="sb-progress-bar"><div class="sb-progress-fill" id="sbProgressFill"></div></div>
                                     </div>
-                                    <span class="trx-time">15s ago</span>
+                                    <!-- SUCCESS -->
+                                    <div class="sb-state hidden" id="sbStateSuccess">
+                                        <div class="sb-screen-accent"><div class="sb-accent-pink"></div><div class="sb-accent-yellow"></div></div>
+                                        <div class="sb-logo-row"><div class="sb-nobu-logo">nobu</div></div>
+                                        <div class="sb-success-icon">
+                                            <div class="sb-checkmark">
+                                                <svg viewBox="0 0 52 52" class="sb-check-svg">
+                                                    <circle class="sb-check-circle" cx="26" cy="26" r="25" fill="none"/>
+                                                    <path class="sb-check-path" fill="none" d="M14 27l8 8 16-16"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="sb-success-label">BERHASIL!</div>
+                                        <div class="sb-success-amount" id="sbSuccessAmount">Rp 75.000</div>
+                                        <div class="sb-success-via" id="sbSuccessVia">via Nobu QRIS</div>
+                                        <div class="sb-success-trxid">TRX#NBK-<span id="sbTrxId">8821</span></div>
+                                    </div>
                                 </div>
+                                <div class="sb-bottom-brand">
+                                    <div class="sb-brand-left">BAYAR PRAKTIS PAKE</div>
+                                    <div class="sb-brand-logo-sm">QRIS<span>Tap</span></div>
+                                </div>
+                                <div class="sb-keypad">
+                                    <div class="sb-keypad-nav">
+                                        <button class="sb-nav-btn">⏻</button><button class="sb-nav-btn">↺</button>
+                                        <button class="sb-nav-btn">↻</button><button class="sb-nav-btn">↑</button>
+                                        <button class="sb-nav-btn">↓</button>
+                                    </div>
+                                    <div class="sb-keypad-row">
+                                        <button class="sb-key sb-key-num">1<sub>QZ</sub></button>
+                                        <button class="sb-key sb-key-num">2<sub>ABC</sub></button>
+                                        <button class="sb-key sb-key-num">3<sub>DEF</sub></button>
+                                        <button class="sb-key sb-key-special sb-key-menu">M</button>
+                                    </div>
+                                    <div class="sb-keypad-row">
+                                        <button class="sb-key sb-key-num">4<sub>GHI</sub></button>
+                                        <button class="sb-key sb-key-num">5<sub>JKL</sub></button>
+                                        <button class="sb-key sb-key-num">6<sub>MNO</sub></button>
+                                        <button class="sb-key sb-key-special sb-key-cancel">✕</button>
+                                    </div>
+                                    <div class="sb-keypad-row">
+                                        <button class="sb-key sb-key-num">7<sub>PRS</sub></button>
+                                        <button class="sb-key sb-key-num">8<sub>TUV</sub></button>
+                                        <button class="sb-key sb-key-num">9<sub>WXY</sub></button>
+                                        <button class="sb-key sb-key-special sb-key-plus">+</button>
+                                    </div>
+                                    <div class="sb-keypad-row">
+                                        <button class="sb-key sb-key-special sb-key-del">⌫</button>
+                                        <button class="sb-key sb-key-num">0</button>
+                                        <button class="sb-key sb-key-num">•</button>
+                                        <button class="sb-key sb-key-special sb-key-enter">OK</button>
+                                    </div>
+                                </div>
+                                <div class="sb-sound-waves" id="sbSoundWaves">
+                                    <div class="sb-wave"></div><div class="sb-wave"></div><div class="sb-wave"></div>
+                                    <div class="sb-wave"></div><div class="sb-wave"></div>
+                                </div>
+                                <div class="sb-led" id="sbLed"></div>
+                            </div>
+                            <div class="sb-stand"><div class="sb-stand-neck"></div><div class="sb-stand-base"></div></div>
+                            <div class="sb-sound-badge" id="sbSoundBadge">
+                                <i data-lucide="volume-2" size="12"></i><span>Suara Diputar</span>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Mini Simulator Panel -->
+                    <div class="sb-inline-panel">
+                        <div class="sb-inline-title">
+                            <i data-lucide="play-circle" size="14"></i>
+                            Coba Demo Soundbox
+                        </div>
+                        <!-- Amount picker -->
+                        <div class="sb-inline-row">
+                            <span class="sb-inline-label">Nominal</span>
+                            <div class="sb-amount-select">
+                                <button class="sb-amt-btn active-amt" data-amount="75000">Rp 75K</button>
+                                <button class="sb-amt-btn" data-amount="150000">Rp 150K</button>
+                                <button class="sb-amt-btn" data-amount="500000">Rp 500K</button>
+                                <button class="sb-amt-btn" data-amount="1200000">Rp 1,2Jt</button>
+                            </div>
+                        </div>
+                        <!-- Volume -->
+                        <div class="sb-inline-row">
+                            <span class="sb-inline-label">Volume</span>
+                            <div class="sb-volume-row">
+                                <i data-lucide="volume-1" size="13" style="color:rgba(0,0,0,0.3)"></i>
+                                <input type="range" class="sb-volume-slider" id="sbVolume" min="0" max="1" step="0.05" value="0.8">
+                                <i data-lucide="volume-2" size="13" style="color:var(--green)"></i>
+                                <span class="sb-vol-pct" id="sbVolPct">80%</span>
+                            </div>
+                        </div>
+                        <!-- Trigger button -->
+                        <button class="sb-trigger-btn" id="sbTriggerBtn">
+                            <div class="sb-btn-inner">
+                                <div class="sb-btn-icon"><i data-lucide="play-circle" size="18"></i></div>
+                                <div class="sb-btn-text">
+                                    <span class="sb-btn-label">Simulasikan Pembayaran</span>
+                                    <span class="sb-btn-sub">Klik untuk demo</span>
+                                </div>
+                            </div>
+                        </button>
+                        <!-- Mini log -->
+                        <div class="sb-log" id="sbLog">
+                            <div class="sb-log-header">
+                                <i data-lucide="terminal" size="11"></i>
+                                <span>System Log</span>
+                                <button class="sb-log-clear" id="sbLogClear">Clear</button>
+                            </div>
+                            <div class="sb-log-body" id="sbLogBody">
+                                <div class="sb-log-entry info">
+                                    <span class="sb-log-time">--:--:--</span>
+                                    <span class="sb-log-msg">Nobu Soundbox v2.1 ready</span>
+                                </div>
+                                <div class="sb-log-entry info">
+                                    <span class="sb-log-time">--:--:--</span>
+                                    <span class="sb-log-msg">QRIS MPM active · Awaiting scan...</span>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="qris.html" class="sb-inline-more">
+                            Lihat dokumentasi lengkap <i data-lucide="arrow-right" size="12"></i>
+                        </a>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -292,8 +407,8 @@
                         </div>
                     </div>
                     <div class="product-cta">
-                        <button class="btn-primary sm">Pelajari Payout <i data-lucide="arrow-right" size="14"></i></button>
-                        <a href="#" class="link-plain light-link">Lihat Dokumentasi <i data-lucide="external-link" size="13"></i></a>
+                        <a href="payout.html" class="btn-primary sm">Pelajari Payout <i data-lucide="arrow-right" size="14"></i></a>
+                        <a href="payout.html#alur" class="link-plain light-link">Lihat Dokumentasi <i data-lucide="external-link" size="13"></i></a>
                     </div>
                 </div>
                 <div class="product-visual">
@@ -361,85 +476,163 @@
     </section>
 
     <!-- MADERA SECTION -->
-    <section id="madera-section" class="product-section reveal-section">
+    <section id="madera-section" class="product-section madera-section reveal-section">
         <div class="container">
-            <div class="product-grid">
-                <div class="product-content">
-                    <div class="category-label">
-                        <i data-lucide="credit-card" size="13"></i>
-                        CoBrand Saving
-                    </div>
-                    <h2 class="section-title">Madera <span class="title-accent"></span></h2>
-                    <p class="section-desc">Solusi embedded banking untuk partner digital ecosystem yang memungkinkan layanan perbankan hadir langsung di aplikasi partner melalui integrasi API. Mendukung e-KYC, rekening digital, card cash withdrawal, transfer BI-FAST & RTOL, transfer sesama Nobu, QRIS CPM, top up, Direct Debit, serta pengelolaan account profile seperti reset PIN, change PIN, dan card detail management secara real-time.</p>
-                    <div class="feature-grid">
-                        <div class="feature-card">
-                            <div class="feature-icon"><i data-lucide="smartphone" size="18"></i></div>
-                            <div>
-                                <h4>Virtual & Physical Card</h4>
-                                <p>Terbitkan kartu virtual instan atau kartu fisik dengan personalisasi branding partner.</p>
-                            </div>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon"><i data-lucide="settings-2" size="18"></i></div>
-                            <div>
-                                <h4>Spending Control API</h4>
-                                <p>Atur limit transaksi, kategori merchant, dan geography restriction melalui API real-time.</p>
-                            </div>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon"><i data-lucide="repeat" size="18"></i></div>
-                            <div>
-                                <h4>Auto Top-Up</h4>
-                                <p>Mekanisme pengisian saldo otomatis berdasarkan trigger balance atau jadwal tertentu.</p>
-                            </div>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon"><i data-lucide="users" size="18"></i></div>
-                            <div>
-                                <h4>Multi-User Management</h4>
-                                <p>Kelola ratusan kartu karyawan dari satu dashboard terpusat dengan role-based access.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-cta">
-                        <button class="btn-primary sm">Pelajari Madera <i data-lucide="arrow-right" size="14"></i></button>
-                        <a href="#" class="link-plain">Lihat Demo <i data-lucide="external-link" size="13"></i></a>
+            <!-- Header -->
+            <div class="madera-header">
+                <div class="category-label">
+                    <i data-lucide="layers" size="13"></i>
+                    Embedded Banking
+                </div>
+                <h2 class="section-title">CoBrand Saving <span class="title-accent">Madera</span></h2>
+                <p class="madera-lead">Partner tanpa lisensi perbankan kini bisa menghadirkan layanan keuangan lengkap di dalam aplikasi mereka sendiri — powered by Nobu Bank melalui API.</p>
+            </div>
+
+            <!-- Value Prop Banner -->
+            <div class="madera-value-banner reveal-section">
+                <div class="madera-val-item">
+                    <div class="madera-val-icon"><i data-lucide="shield-off" size="20"></i></div>
+                    <div>
+                        <div class="madera-val-title">Tanpa Lisensi Bank</div>
+                        <div class="madera-val-sub">Partner tidak perlu izin OJK perbankan</div>
                     </div>
                 </div>
-                <div class="product-visual">
-                    <div class="card-3d-wrapper">
-                        <div class="credit-card-mockup">
-                            <div class="card-chip"></div>
-                            <div class="card-logo-area">
-                                <span class="card-bank-name">Nobu Bank</span>
-                                <div class="card-mastercard">
-                                    <div class="mc-circle mc-left"></div>
-                                    <div class="mc-circle mc-right"></div>
-                                </div>
-                            </div>
-                            <div class="card-number">•••• &nbsp;•••• &nbsp;•••• &nbsp;8821</div>
-                            <div class="card-footer">
-                                <div>
-                                    <div class="card-label">Pemegang Kartu</div>
-                                    <div class="card-value">PARTNER NAME</div>
-                                </div>
-                                <div>
-                                    <div class="card-label">Berlaku s/d</div>
-                                    <div class="card-value">12/28</div>
-                                </div>
-                                <div>
-                                    <div class="card-label">Tipe</div>
-                                    <div class="card-value">PREPAID</div>
-                                </div>
-                            </div>
-                            <div class="card-shine"></div>
-                            <div class="card-watermark">MADERA</div>
-                        </div>
-                        <div class="card-stats-badge">
-                            <i data-lucide="trending-up" size="14"></i>
-                            <span>2.4M Kartu Aktif</span>
-                        </div>
+                <div class="madera-val-divider"></div>
+                <div class="madera-val-item">
+                    <div class="madera-val-icon"><i data-lucide="plug-zap" size="20"></i></div>
+                    <div>
+                        <div class="madera-val-title">Satu Integrasi API</div>
+                        <div class="madera-val-sub">Semua fitur banking via REST API SNAP BI</div>
                     </div>
+                </div>
+                <div class="madera-val-divider"></div>
+                <div class="madera-val-item">
+                    <div class="madera-val-icon"><i data-lucide="smartphone" size="20"></i></div>
+                    <div>
+                        <div class="madera-val-title">White-Label Ready</div>
+                        <div class="madera-val-sub">Tampil dengan branding & UI partner sendiri</div>
+                    </div>
+                </div>
+                <div class="madera-val-divider"></div>
+                <div class="madera-val-item">
+                    <div class="madera-val-icon"><i data-lucide="building-2" size="20"></i></div>
+                    <div>
+                        <div class="madera-val-title">Nobu sebagai Backend</div>
+                        <div class="madera-val-sub">Core banking, compliance & settlement</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7 Feature Cards -->
+            <div class="madera-feat-grid">
+
+                <div class="madera-feat-card reveal-section" style="--accent:#3B82F6">
+                    <div class="madera-feat-num">01</div>
+                    <div class="madera-feat-icon" style="background:rgba(59,130,246,0.1);color:#3B82F6">
+                        <i data-lucide="user-plus" size="22"></i>
+                    </div>
+                    <h4>Account Opening</h4>
+                    <ul class="madera-feat-list">
+                        <li>CIF Creation</li>
+                        <li>Account Creation via Webview</li>
+                        <li>e-KYC terintegrasi</li>
+                    </ul>
+                </div>
+
+                <div class="madera-feat-card reveal-section" style="--accent:#10B981">
+                    <div class="madera-feat-num">02</div>
+                    <div class="madera-feat-icon" style="background:rgba(16,185,129,0.1);color:#10B981">
+                        <i data-lucide="settings-2" size="22"></i>
+                    </div>
+                    <h4>Account Management</h4>
+                    <ul class="madera-feat-list">
+                        <li>Account Binding / Unbinding</li>
+                        <li>Balance Inquiry</li>
+                        <li>Transaction History & Detail</li>
+                        <li>Change PIN / Reset PIN</li>
+                        <li>Account Profile</li>
+                    </ul>
+                </div>
+
+                <div class="madera-feat-card reveal-section" style="--accent:#8B5CF6">
+                    <div class="madera-feat-num">03</div>
+                    <div class="madera-feat-icon" style="background:rgba(139,92,246,0.1);color:#8B5CF6">
+                        <i data-lucide="credit-card" size="22"></i>
+                    </div>
+                    <h4>Debit Card Management</h4>
+                    <ul class="madera-feat-list">
+                        <li>Card Details & Security Info</li>
+                        <li>Change Debit Card PIN</li>
+                        <li>Virtual & Physical Card</li>
+                    </ul>
+                </div>
+
+                <div class="madera-feat-card reveal-section" style="--accent:#F59E0B">
+                    <div class="madera-feat-num">04</div>
+                    <div class="madera-feat-icon" style="background:rgba(245,158,11,0.1);color:#F59E0B">
+                        <i data-lucide="arrow-up-down" size="22"></i>
+                    </div>
+                    <h4>Cash In & Cash Out</h4>
+                    <ul class="madera-feat-list">
+                        <li>Customer Top Up</li>
+                        <li>Cardless Cash Withdrawal</li>
+                        <li>Create Token Penarikan</li>
+                    </ul>
+                </div>
+
+                <div class="madera-feat-card reveal-section" style="--accent:#06B6D4">
+                    <div class="madera-feat-num">05</div>
+                    <div class="madera-feat-icon" style="background:rgba(6,182,212,0.1);color:#06B6D4">
+                        <i data-lucide="send" size="22"></i>
+                    </div>
+                    <h4>Money Transfer</h4>
+                    <ul class="madera-feat-list">
+                        <li>Intrabank Transfer (Sesama Nobu)</li>
+                        <li>Interbank RTOL Real-time</li>
+                        <li>BI-FAST Transfer</li>
+                        <li>Transfer ke Virtual Account</li>
+                    </ul>
+                </div>
+
+                <div class="madera-feat-card reveal-section" style="--accent:#00D48F">
+                    <div class="madera-feat-num">06</div>
+                    <div class="madera-feat-icon" style="background:rgba(0,212,143,0.1);color:#00D48F">
+                        <i data-lucide="qr-code" size="22"></i>
+                    </div>
+                    <h4>QRIS Payment</h4>
+                    <ul class="madera-feat-list">
+                        <li>Decode QR</li>
+                        <li>QR Payment (CPM)</li>
+                        <li>Terintegrasi Nobu Acquirer</li>
+                    </ul>
+                </div>
+
+                <div class="madera-feat-card reveal-section" style="--accent:#EF4444; grid-column: span 1;">
+                    <div class="madera-feat-num">07</div>
+                    <div class="madera-feat-icon" style="background:rgba(239,68,68,0.1);color:#EF4444">
+                        <i data-lucide="repeat-2" size="22"></i>
+                    </div>
+                    <h4>Direct Debit</h4>
+                    <ul class="madera-feat-list">
+                        <li>Direct Debit Payment (With / Without PIN)</li>
+                        <li>Direct Debit Check Status</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Bottom CTA -->
+            <div class="madera-bottom-cta reveal-section">
+                <div class="madera-cta-left">
+                    <div class="madera-cta-icon"><i data-lucide="rocket" size="20"></i></div>
+                    <div>
+                        <div class="madera-cta-title">Siap embed banking ke aplikasi Anda?</div>
+                        <div class="madera-cta-sub">Mulai dari sandbox — go live dalam hitungan minggu.</div>
+                    </div>
+                </div>
+                <div class="madera-cta-right">
+                    <a href="madera.html" class="btn-primary sm">Pelajari Madera <i data-lucide="arrow-right" size="14"></i></a>
+                    <a href="madera.html#revenue" class="link-plain">Lihat Revenue Model <i data-lucide="external-link" size="13"></i></a>
                 </div>
             </div>
         </div>
@@ -676,8 +869,8 @@
                                 <tr>
                                     <td>
                                         <div class="product-cell">
-                                            <div class="product-cell-icon madera-icon"><i data-lucide="credit-card" size="15"></i></div>
-                                            <div><strong>CoBrand Saving</strong></div>
+                                            <div class="product-cell-icon madera-icon"><i data-lucide="layers" size="15"></i></div>
+                                            <div><strong>CoBrand Saving Madera</strong></div>
                                         </div>
                                     </td>
                                     <td><span class="fee-value">Custom</span></td>
@@ -733,10 +926,9 @@
             <div class="footer-top">
                 <div class="footer-brand-col">
                     <div class="footer-logo">
-                        <div class="logo-mark sm">N</div>
-                        <div>
-                            <span class="footer-brand-name">Nobu Bank</span>
-                            <span class="footer-brand-tag">#NoOneButU</span>
+                        <img src="nobu-logo.png" alt="Nobu Bank" style="height:28px;width:auto;">
+                        <div style="display:flex;flex-direction:column;line-height:1.15;margin-left:10px;">
+                            <span class="footer-brand-tag" style="font-size:0.72rem;color:var(--text-muted);font-weight:500;">Bank as a Service</span>
                         </div>
                     </div>
                     <p class="footer-tagline">Infrastruktur perbankan digital terdepan untuk ekosistem modern Indonesia.</p>
@@ -807,5 +999,283 @@
     </footer>
 
     <script src="script.js"></script>
+
+    <!-- SOUNDBOX SIMULATOR — inline to avoid scope/loading issues -->
+    <script>
+    (function() {
+        function initSoundbox() {
+            var sbTriggerBtn   = document.getElementById('sbTriggerBtn');
+            if (!sbTriggerBtn) return;  // not on this page
+
+            var sbLogBody      = document.getElementById('sbLogBody');
+            var sbLogClear     = document.getElementById('sbLogClear');
+            var sbProgressFill = document.getElementById('sbProgressFill');
+            var sbSoundWaves   = document.getElementById('sbSoundWaves');
+            var sbSoundBadge   = document.getElementById('sbSoundBadge');
+            var sbLed          = document.getElementById('sbLed');
+            var sbVolSlider    = document.getElementById('sbVolume');
+            var sbVolPct       = document.getElementById('sbVolPct');
+
+            var sbSelectedAmount = 75000;
+            var sbSelectedMethod = 'Nobu QRIS';
+            var sbVolume         = 0.8;
+            var sbIsRunning      = false;
+            var sbAudioCtx       = null;
+
+            function getSbAudioCtx() {
+                if (!sbAudioCtx || sbAudioCtx.state === 'closed') {
+                    sbAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                if (sbAudioCtx.state === 'suspended') sbAudioCtx.resume();
+                return sbAudioCtx;
+            }
+
+            function formatRp(n) {
+                return 'Rp ' + n.toLocaleString('id-ID');
+            }
+
+            function randomTrxId() {
+                return Math.floor(1000 + Math.random() * 8999).toString();
+            }
+
+            function sbWait(ms) {
+                return new Promise(function(r){ setTimeout(r, ms); });
+            }
+
+            function sbLog(msg, type) {
+                type = type || 'info';
+                var time  = new Date().toTimeString().slice(0, 8);
+                var entry = document.createElement('div');
+                entry.className = 'sb-log-entry ' + type;
+                entry.innerHTML = '<span class="sb-log-time">' + time + '</span><span class="sb-log-msg">' + msg + '</span>';
+                sbLogBody.appendChild(entry);
+                sbLogBody.scrollTop = sbLogBody.scrollHeight;
+            }
+
+            function sbShowState(stateId) {
+                document.querySelectorAll('.sb-state').forEach(function(s){ s.classList.add('hidden'); });
+                var el = document.getElementById(stateId);
+                if (!el) return;
+                if (stateId === 'sbStateSuccess') {
+                    var clone = el.cloneNode(true);
+                    el.parentNode.replaceChild(clone, el);
+                    clone.classList.remove('hidden');
+                    var amtEl = clone.querySelector('#sbSuccessAmount');
+                    var viaEl = clone.querySelector('#sbSuccessVia');
+                    var tidEl = clone.querySelector('#sbTrxId');
+                    if (amtEl) amtEl.textContent = formatRp(sbSelectedAmount);
+                    if (viaEl) viaEl.textContent = 'via ' + sbSelectedMethod;
+                    if (tidEl) tidEl.textContent  = randomTrxId();
+                } else {
+                    el.classList.remove('hidden');
+                }
+            }
+
+            function sbSetStep(n) {
+                for (var i = 1; i <= 4; i++) {
+                    var el = document.getElementById('sbStep' + i);
+                    if (!el) continue;
+                    el.classList.remove('active-step','done-step');
+                    if (i < n) el.classList.add('done-step');
+                    if (i === n) el.classList.add('active-step');
+                }
+            }
+
+            function playSbChime() {
+                try {
+                    var ctx    = getSbAudioCtx();
+                    var master = ctx.createGain();
+                    master.gain.setValueAtTime(sbVolume * 0.55, ctx.currentTime);
+                    master.connect(ctx.destination);
+                    var notes = [
+                        { freq: 523.25, t: 0,    dur: 0.25 },
+                        { freq: 659.25, t: 0.15, dur: 0.25 },
+                        { freq: 783.99, t: 0.30, dur: 0.25 },
+                        { freq: 1046.5, t: 0.48, dur: 0.55 }
+                    ];
+                    notes.forEach(function(n) {
+                        var osc  = ctx.createOscillator();
+                        var gain = ctx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(n.freq, ctx.currentTime + n.t);
+                        gain.gain.setValueAtTime(0, ctx.currentTime + n.t);
+                        gain.gain.linearRampToValueAtTime(0.9, ctx.currentTime + n.t + 0.03);
+                        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + n.t + n.dur);
+                        osc.connect(gain);
+                        gain.connect(master);
+                        osc.start(ctx.currentTime + n.t);
+                        osc.stop(ctx.currentTime + n.t + n.dur + 0.05);
+                    });
+                } catch(e) { console.warn('chime error', e); }
+            }
+
+            function playSbBeep() {
+                try {
+                    var ctx    = getSbAudioCtx();
+                    var master = ctx.createGain();
+                    master.gain.setValueAtTime(sbVolume * 0.35, ctx.currentTime);
+                    master.connect(ctx.destination);
+                    [0, 0.13].forEach(function(t) {
+                        var osc  = ctx.createOscillator();
+                        var gain = ctx.createGain();
+                        osc.type = 'square';
+                        osc.frequency.setValueAtTime(880, ctx.currentTime + t);
+                        gain.gain.setValueAtTime(0.3, ctx.currentTime + t);
+                        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + t + 0.09);
+                        osc.connect(gain);
+                        gain.connect(master);
+                        osc.start(ctx.currentTime + t);
+                        osc.stop(ctx.currentTime + t + 0.1);
+                    });
+                } catch(e) {}
+            }
+
+            function speakSbConfirmation(amount, method) {
+                if (!window.speechSynthesis) return;
+                window.speechSynthesis.cancel();
+                var text  = 'Pembayaran diterima. ' + amount.toLocaleString('id-ID') + ' rupiah. Melalui ' + method + '. Terima kasih.';
+                var utter = new SpeechSynthesisUtterance(text);
+                utter.lang   = 'id-ID';
+                utter.rate   = 0.9;
+                utter.pitch  = 1.05;
+                utter.volume = sbVolume;
+                var voices  = window.speechSynthesis.getVoices();
+                var idVoice = voices.find(function(v){ return v.lang.startsWith('id') || v.lang.startsWith('ms'); });
+                if (idVoice) utter.voice = idVoice;
+                setTimeout(function(){ window.speechSynthesis.speak(utter); }, 750);
+            }
+
+            async function runSbSimulation() {
+                if (sbIsRunning) return;
+                sbIsRunning = true;
+                sbTriggerBtn.disabled = true;
+
+                sbShowState('sbStateIdle');
+                sbSetStep(1);
+                sbSoundWaves.classList.remove('playing');
+                sbSoundBadge.classList.remove('visible');
+                sbLed.className = 'sb-led';
+                sbProgressFill.style.width = '0%';
+
+                sbLog('[QRIS] Nobu Acquirer active · QR displayed', 'info');
+                sbLog('[QRIS] Awaiting Issuer scan...', 'info');
+                await sbWait(1400);
+
+                sbSetStep(2);
+                sbLog('[SCAN] QR scanned · amount ' + formatRp(sbSelectedAmount), 'system');
+                await sbWait(700);
+
+                sbSetStep(3);
+                sbShowState('sbStateScanning');
+                sbLed.className = 'sb-led processing';
+                sbLog('[NET]  Processing via ' + sbSelectedMethod + '...', 'process');
+                sbLog('[BI]   SNAP BI validation in progress...', 'process');
+
+                // progress bar
+                var PROG_MS = 2400;
+                var t0 = performance.now();
+                await new Promise(function(resolve) {
+                    (function tick(now) {
+                        var pct = Math.min(((now - t0) / PROG_MS) * 100, 100);
+                        sbProgressFill.style.width = pct + '%';
+                        if (pct < 100) requestAnimationFrame(tick);
+                        else resolve();
+                    })(performance.now());
+                });
+
+                sbLog('[BI]   Validation PASSED ✓', 'success');
+                await sbWait(280);
+
+                sbSetStep(4);
+                sbShowState('sbStateSuccess');
+                sbLed.className = 'sb-led success';
+                sbLog('[PAID] ' + formatRp(sbSelectedAmount) + ' · SUCCESS ✓', 'success');
+                sbLog('[TTS]  Playing audio announcement...', 'system');
+
+                playSbBeep();
+                await sbWait(300);
+                playSbChime();
+                await sbWait(450);
+                speakSbConfirmation(sbSelectedAmount, sbSelectedMethod);
+
+                sbSoundWaves.classList.add('playing');
+                sbSoundBadge.classList.add('visible');
+
+                await sbWait(3400);
+                sbSoundWaves.classList.remove('playing');
+                sbSoundBadge.classList.remove('visible');
+
+                sbLog('[SYS]  Reset to idle...', 'info');
+                await sbWait(1000);
+
+                sbShowState('sbStateIdle');
+                sbSetStep(1);
+                sbLed.className = 'sb-led';
+                sbIsRunning = false;
+                sbTriggerBtn.disabled = false;
+            }
+
+            // Amount buttons
+            document.querySelectorAll('.sb-amt-btn').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    if (sbIsRunning) return;
+                    document.querySelectorAll('.sb-amt-btn').forEach(function(b){ b.classList.remove('active-amt'); });
+                    btn.classList.add('active-amt');
+                    sbSelectedAmount = parseInt(btn.dataset.amount);
+                });
+            });
+
+            // Volume
+            if (sbVolSlider) {
+                sbVolSlider.addEventListener('input', function() {
+                    sbVolume = parseFloat(sbVolSlider.value);
+                    if (sbVolPct) sbVolPct.textContent = Math.round(sbVolume * 100) + '%';
+                });
+            }
+
+            // Log clear
+            if (sbLogClear) {
+                sbLogClear.addEventListener('click', function() {
+                    sbLogBody.innerHTML = '';
+                    sbLog('Log cleared · ready', 'info');
+                });
+            }
+
+            // Trigger — create AudioContext on user click (browser policy)
+            sbTriggerBtn.addEventListener('click', function() {
+                try {
+                    if (!sbAudioCtx) {
+                        sbAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                    }
+                    if (sbAudioCtx.state === 'suspended') sbAudioCtx.resume();
+                } catch(e) {}
+                runSbSimulation();
+            });
+
+            // Preload TTS voices
+            if (window.speechSynthesis) {
+                window.speechSynthesis.getVoices();
+                window.speechSynthesis.addEventListener('voiceschanged', function() {
+                    window.speechSynthesis.getVoices();
+                });
+            }
+
+            // Timestamp initial log entries
+            var nowStr = new Date().toTimeString().slice(0, 8);
+            document.querySelectorAll('#sbLogBody .sb-log-time').forEach(function(el) {
+                el.textContent = nowStr;
+            });
+
+            console.log('[Soundbox] Initialized ✓ trigger:', sbTriggerBtn);
+        }
+
+        // Run after DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initSoundbox);
+        } else {
+            initSoundbox();
+        }
+    })();
+    </script>
 </body>
 </html>
