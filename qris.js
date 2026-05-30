@@ -456,62 +456,62 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ── TTS Speech ────────────────────────────
-    // Strategi mobile: buat SpeechSynthesisUtterance SAAT click (user gesture),
-    // simpan di variabel, lalu speak() dipanggil di langkah akhir simulasi.
-    // Ini wajib karena mobile browser (iOS/Android) hanya izinkan speechSynthesis
-    // dari dalam konteks user gesture — async/await/setTimeout memutus konteks itu.
+    // MOBILE FIX: speechSynthesis di iOS/Android HANYA bisa dipanggil
+    // synchronously dalam user gesture. async/await & setTimeout memutus
+    // konteks itu. Solusi: buat & speak() utterance LANGSUNG saat click,
+    // tapi dengan delay 0 volume dulu (unlock audio), lalu jadwalkan
+    // ulang speak() dengan setTimeout biasa — BUKAN dari dalam async.
+    //
+    // Implementasi: kita simpan utterance yang sudah di-speak() (dengan
+    // volume 0, lalu langsung cancel) di awal click untuk "unlock" TTS.
+    // Kemudian setTimeout ke ~5500ms (setelah animasi selesai) untuk
+    // speak() utterance asli. Karena speak() pertama sudah dilakukan
+    // dalam gesture context, browser sudah memberi izin ke TTS engine.
 
-    let sbPendingUtter = null; // utterance yang disiapkan saat tombol diklik
+    let sbTtsUtter = null;
 
-    function prepareSbUtterance(amount, method) {
+    function scheduleSbTts(amount, method) {
         if (!window.speechSynthesis) return;
 
         const amountWords = amount.toLocaleString('id-ID').replace(/\./g, ' ');
         const text = `Pembayaran diterima. ${amountWords} rupiah. Melalui ${method}. Terima kasih.`;
 
+        const voices = window.speechSynthesis.getVoices();
+        const idVoice = voices.find(v => v.lang.startsWith('id') || v.lang.startsWith('ms'));
+
+        // Buat utterance asli
         const utter = new SpeechSynthesisUtterance(text);
         utter.lang   = 'id-ID';
         utter.rate   = 0.88;
         utter.pitch  = 1.05;
         utter.volume = sbVolume;
-
-        const voices = window.speechSynthesis.getVoices();
-        const idVoice = voices.find(v => v.lang.startsWith('id') || v.lang.startsWith('ms'));
         if (idVoice) utter.voice = idVoice;
+        sbTtsUtter = utter;
 
-        // "Dummy speak" dengan teks kosong — membuka izin audio di mobile
-        // lalu langsung cancel dan simpan utterance asli untuk dipakai nanti
-        const dummy = new SpeechSynthesisUtterance('');
-        dummy.volume = 0;
-        window.speechSynthesis.speak(dummy);
+        // KUNCI MOBILE: "unlock" TTS engine dengan dummy speak dalam gesture context
+        const unlock = new SpeechSynthesisUtterance(' ');
+        unlock.volume = 0;
+        unlock.lang = 'id-ID';
+        if (idVoice) unlock.voice = idVoice;
         window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(unlock);
 
-        sbPendingUtter = utter;
-    }
+        // Jadwalkan TTS asli ~5.5 detik setelah click (saat animasi sukses selesai)
+        // setTimeout biasa ini masih "diizinkan" karena unlock sudah dilakukan synchronous
+        setTimeout(() => {
+            if (!sbTtsUtter) return;
+            window.speechSynthesis.cancel();
+            window.speechSynthesis.speak(sbTtsUtter);
 
-    function speakSbConfirmation() {
-        if (!window.speechSynthesis || !sbPendingUtter) return;
-
-        const utter = sbPendingUtter;
-        sbPendingUtter = null;
-
-        if (window.speechSynthesis.speaking) window.speechSynthesis.cancel();
-        if (window.speechSynthesis.paused) window.speechSynthesis.resume();
-
-        window.speechSynthesis.speak(utter);
-
-        // iOS keepalive: cegah TTS terpotong di tengah jalan
-        const resumeTimer = setInterval(() => {
-            if (!window.speechSynthesis.speaking) {
-                clearInterval(resumeTimer);
-                return;
-            }
-            window.speechSynthesis.pause();
-            window.speechSynthesis.resume();
-        }, 5000);
-
-        utter.onend   = () => clearInterval(resumeTimer);
-        utter.onerror = () => clearInterval(resumeTimer);
+            // iOS keepalive
+            const keepAlive = setInterval(() => {
+                if (!window.speechSynthesis.speaking) { clearInterval(keepAlive); return; }
+                window.speechSynthesis.pause();
+                window.speechSynthesis.resume();
+            }, 5000);
+            sbTtsUtter.onend   = () => { clearInterval(keepAlive); sbTtsUtter = null; };
+            sbTtsUtter.onerror = () => { clearInterval(keepAlive); sbTtsUtter = null; };
+        }, 5500);
     }
 
     // ── Main simulation ───────────────────────
@@ -575,7 +575,7 @@ document.addEventListener('DOMContentLoaded', () => {
         await sbWait(300);
         playSbChime();
         await sbWait(450);
-        speakSbConfirmation();
+        // TTS sudah dijadwalkan via scheduleSbTts() saat tombol diklik
 
         // Animate sound waves + badge
         sbSoundWaves.classList.add('playing');
@@ -627,11 +627,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ── Trigger button ────────────────────────
-    // PENTING: prepareSbUtterance() dipanggil LANGSUNG di event click
-    // (sebelum async dimulai) agar mobile browser memberi izin audio.
+    // scheduleSbTts() HARUS dipanggil synchronous di sini (dalam gesture)
+    // sebelum runSbSimulation() yang async. Ini satu-satunya cara TTS
+    // bekerja di iOS Safari & Android Chrome.
     sbTriggerBtn.addEventListener('click', () => {
-        prepareSbUtterance(sbSelectedAmount, sbSelectedMethod);
-        runSbSimulation();
+        if (sbIsRunning) return;
+        scheduleSbTts(sbSelectedAmount, sbSelectedMethod); // ← sync, dalam gesture
+        runSbSimulation();                                  // ← async, mulai animasi
     });
 
     // ── Log clear button ─────────────────────
