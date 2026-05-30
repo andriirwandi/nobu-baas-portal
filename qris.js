@@ -456,20 +456,69 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ── TTS Speech ────────────────────────────
-    function speakSbConfirmation(amount, method) {
-        if (!window.speechSynthesis) return;
-        window.speechSynthesis.cancel();
-        const text  = `Pembayaran diterima. ${amount.toLocaleString('id-ID')} rupiah. Melalui ${method}. Terima kasih.`;
+    // function speakSbConfirmation(amount, method) {
+    //     if (!window.speechSynthesis) return;
+    //     window.speechSynthesis.cancel();
+    //     const text  = `Pembayaran diterima. ${amount.toLocaleString('id-ID')} rupiah. Melalui ${method}. Terima kasih.`;
+    //     const utter = new SpeechSynthesisUtterance(text);
+    //     utter.lang   = 'id-ID';
+    //     utter.rate   = 0.9;
+    //     utter.pitch  = 1.05;
+    //     utter.volume = sbVolume;
+    //     const voices = window.speechSynthesis.getVoices();
+    //     const idVoice = voices.find(v => v.lang.startsWith('id') || v.lang.startsWith('ms'));
+    //     if (idVoice) utter.voice = idVoice;
+    //     setTimeout(() => window.speechSynthesis.speak(utter), 750);
+    // }
+
+   function speakSbConfirmation(amount, method) {
+    if (!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+
+    // Format angka sebagai kata, bukan angka dengan titik
+    const amountWords = amount.toLocaleString('id-ID').replace(/\./g, ' ');
+    const text = `Pembayaran diterima. ${amountWords} rupiah. Melalui ${method}. Terima kasih.`;
+
+    function doSpeak() {
         const utter = new SpeechSynthesisUtterance(text);
         utter.lang   = 'id-ID';
-        utter.rate   = 0.9;
+        utter.rate   = 0.88;
         utter.pitch  = 1.05;
         utter.volume = sbVolume;
+
         const voices = window.speechSynthesis.getVoices();
         const idVoice = voices.find(v => v.lang.startsWith('id') || v.lang.startsWith('ms'));
         if (idVoice) utter.voice = idVoice;
-        setTimeout(() => window.speechSynthesis.speak(utter), 750);
+
+        // Workaround iOS bug: resume dulu sebelum speak
+        if (window.speechSynthesis.paused) {
+            window.speechSynthesis.resume();
+        }
+
+        window.speechSynthesis.speak(utter);
+
+        // Workaround iOS cut-off: keep synthesis alive dengan resume interval
+        const resumeTimer = setInterval(() => {
+            if (!window.speechSynthesis.speaking) {
+                clearInterval(resumeTimer);
+                return;
+            }
+            window.speechSynthesis.pause();
+            window.speechSynthesis.resume();
+        }, 5000);
+
+        utter.onend = () => clearInterval(resumeTimer);
+        utter.onerror = () => clearInterval(resumeTimer);
     }
+
+    // Pastikan voices sudah loaded
+    const voices = window.speechSynthesis.getVoices();
+    if (voices.length > 0) {
+        setTimeout(doSpeak, 400); // delay lebih pendek
+    } else {
+        window.speechSynthesis.addEventListener('voiceschanged', doSpeak, { once: true });
+    }
+}
 
     // ── Main simulation ───────────────────────
     async function runSbSimulation() {
