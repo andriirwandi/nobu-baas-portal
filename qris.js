@@ -318,6 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ── State ──────────────────────────────────
     let sbSelectedAmount = 75000;
     let sbSelectedMethod = 'NOBU QRIS';
+    let sbSelectedLang   = 'normal'; // 'normal' | 'betawi' | 'jawa'
     let sbVolume         = 0.8;
     let sbIsRunning      = false;
     let sbAudioCtx       = null;
@@ -332,6 +333,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sbLed           = document.getElementById('sbLed');
     const sbVolSlider     = document.getElementById('sbVolume');
     const sbVolPct        = document.getElementById('sbVolPct');
+    const sbLangBtns      = document.querySelectorAll('.sb-lang-btn');
 
     if (!sbTriggerBtn) { return; }
 
@@ -456,67 +458,72 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ── TTS Speech ────────────────────────────
-    // iOS 17 Safari Fix:
-    // speak() WAJIB dipanggil synchronous dalam gesture handler.
-    // Trick: speak() langsung dengan rate sangat lambat & volume=0 (diam)
-    // — ini "membuka kunci" izin TTS di iOS Safari.
-    // Setelah animasi selesai (~5.5s): cancel, tunggu 80ms, speak asli.
-    // iOS mengizinkan speak() di setTimeout karena izin sudah terbuka.
+    // MOBILE FIX: speechSynthesis di iOS/Android HANYA bisa dipanggil
+    // synchronously dalam user gesture. async/await & setTimeout memutus
+    // konteks itu. Solusi: buat & speak() utterance LANGSUNG saat click,
+    // tapi dengan delay 0 volume dulu (unlock audio), lalu jadwalkan
+    // ulang speak() dengan setTimeout biasa — BUKAN dari dalam async.
+    //
+    // Implementasi: kita simpan utterance yang sudah di-speak() (dengan
+    // volume 0, lalu langsung cancel) di awal click untuk "unlock" TTS.
+    // Kemudian setTimeout ke ~5500ms (setelah animasi selesai) untuk
+    // speak() utterance asli. Karena speak() pertama sudah dilakukan
+    // dalam gesture context, browser sudah memberi izin ke TTS engine.
 
-    let sbTtsTimer = null;
+    let sbTtsUtter = null;
 
     function scheduleSbTts(amount, method) {
         if (!window.speechSynthesis) return;
 
-        if (sbTtsTimer) { clearTimeout(sbTtsTimer); sbTtsTimer = null; }
-        window.speechSynthesis.cancel();
-
         const amountWords = amount.toLocaleString('id-ID').replace(/\./g, ' ');
-        const text = `Pembayaran diterima. ${amountWords} rupiah. Melalui ${method}. Terima kasih.`;
+
+        // ── Teks per bahasa ───────────────────────
+        const langTexts = {
+            normal: `Pembayaran diterima. ${amountWords} rupiah. Melalui ${method}. Terima kasih.`,
+            betawi: `Hore! Duit masuk nih. ${amountWords} rebu perak udah nyampe. Makasih banyak ye!`,
+            jawa:   `Maturnuwun. Pembayaran sampun katampi. ${amountWords} rupiah. Matur nuwun sanget.`,
+        };
+        const text = langTexts[sbSelectedLang] || langTexts.normal;
 
         const voices = window.speechSynthesis.getVoices();
         const idVoice = voices.find(v => v.lang.startsWith('id') || v.lang.startsWith('ms'));
 
-        function buildUtter(vol) {
-            const u = new SpeechSynthesisUtterance(text);
-            u.lang   = 'id-ID';
-            u.rate   = 0.88;
-            u.pitch  = 1.05;
-            u.volume = vol;
-            if (idVoice) u.voice = idVoice;
-            return u;
-        }
+        // Buat utterance asli
+        const utter = new SpeechSynthesisUtterance(text);
+        utter.lang   = 'id-ID';
+        utter.rate   = 0.88;
+        utter.pitch  = 1.05;
+        utter.volume = sbVolume;
+        if (idVoice) utter.voice = idVoice;
+        sbTtsUtter = utter;
 
-        // LANGKAH 1 — Speak diam (volume 0, rate sangat lambat) SEKARANG dalam gesture
-        // iOS membuka izin TTS saat speak() dipanggil synchronous di sini
-        const silentUtter = buildUtter(0);
-        silentUtter.rate = 0.1;
-        window.speechSynthesis.speak(silentUtter);
+        // KUNCI MOBILE: "unlock" TTS engine dengan dummy speak dalam gesture context
+        const unlock = new SpeechSynthesisUtterance(' ');
+        unlock.volume = 0;
+        unlock.lang = 'id-ID';
+        if (idVoice) unlock.voice = idVoice;
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(unlock);
 
-        // LANGKAH 2 — Setelah animasi (~5.5s): cancel silent, speak asli
-        sbTtsTimer = setTimeout(() => {
-            sbTtsTimer = null;
+        // Jadwalkan TTS asli ~5.5 detik setelah click (saat animasi sukses selesai)
+        // setTimeout biasa ini masih "diizinkan" karena unlock sudah dilakukan synchronous
+        setTimeout(() => {
+            if (!sbTtsUtter) return;
             window.speechSynthesis.cancel();
+            window.speechSynthesis.speak(sbTtsUtter);
 
-            // iOS perlu jeda 80ms setelah cancel sebelum speak baru
-            setTimeout(() => {
-                const realUtter = buildUtter(sbVolume);
-
-                // iOS keepalive: cegah Safari memotong TTS di tengah jalan
-                const keepAlive = setInterval(() => {
-                    if (!window.speechSynthesis.speaking) { clearInterval(keepAlive); return; }
-                    window.speechSynthesis.pause();
-                    window.speechSynthesis.resume();
-                }, 5000);
-                realUtter.onend   = () => clearInterval(keepAlive);
-                realUtter.onerror = () => clearInterval(keepAlive);
-
-                window.speechSynthesis.speak(realUtter);
-            }, 80);
+            // iOS keepalive
+            const keepAlive = setInterval(() => {
+                if (!window.speechSynthesis.speaking) { clearInterval(keepAlive); return; }
+                window.speechSynthesis.pause();
+                window.speechSynthesis.resume();
+            }, 5000);
+            sbTtsUtter.onend   = () => { clearInterval(keepAlive); sbTtsUtter = null; };
+            sbTtsUtter.onerror = () => { clearInterval(keepAlive); sbTtsUtter = null; };
         }, 5500);
     }
 
-        // ── Main simulation ───────────────────────
+    // ── Main simulation ───────────────────────
     async function runSbSimulation() {
         if (sbIsRunning) return;
         sbIsRunning = true;
@@ -617,6 +624,16 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.sb-method-btn').forEach(b => b.classList.remove('active-method'));
             btn.classList.add('active-method');
             sbSelectedMethod = btn.dataset.method;
+        });
+    });
+
+    // ── Language buttons ─────────────────────
+    sbLangBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (sbIsRunning) return;
+            sbLangBtns.forEach(b => b.classList.remove('active-lang'));
+            btn.classList.add('active-lang');
+            sbSelectedLang = btn.dataset.lang;
         });
     });
 
