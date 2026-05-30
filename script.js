@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
                 e.preventDefault();
-                const offset = 80;
+                const offset = 90;
                 const top = target.getBoundingClientRect().top + window.scrollY - offset;
                 window.scrollTo({ top, behavior: 'smooth' });
             }
@@ -390,4 +390,3 @@ document.addEventListener('DOMContentLoaded', () => {
     ---------------------------------------- */
     updateActiveNavLink();
 });
-
