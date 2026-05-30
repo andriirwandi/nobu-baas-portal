@@ -2034,3 +2034,48 @@
     .qp-stat-div { width: 60px; height: 1px; }
     .qp-hero-title { letter-spacing: -0.5px; }
 }
+
+/* ── Language selector ───────────────────── */
+.sb-lang-select {
+    display: flex;
+    gap: 6px;
+}
+
+.sb-lang-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 13px;
+    border-radius: 8px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    font-family: var(--font-body);
+    color: rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.sb-lang-btn:hover {
+    border-color: rgba(0,212,143,0.4);
+    color: rgba(255,255,255,0.8);
+    background: rgba(0,212,143,0.08);
+}
+
+.sb-lang-btn.active-lang {
+    background: var(--green);
+    border-color: var(--green);
+    color: #fff;
+    box-shadow: 0 3px 10px var(--green-glow);
+}
+
+.sb-lang-flag {
+    font-size: 0.9rem;
+    line-height: 1;
+}
+
+@media (max-width: 480px) {
+    .sb-lang-btn { font-size: 0.72rem; padding: 5px 10px; }
+}
