@@ -1,5 +1,5 @@
 /* =============================================
-   NOBU BANK BaaS PORTAL â€” Revamped UI
+   NOBU BANK BaaS PORTAL — Revamped UI
    Font: Syne (Display) + DM Sans (Body)
    ============================================= */
 
@@ -177,7 +177,7 @@ i[data-lucide] { display: inline-block; flex-shrink: 0; }
 
 .nav-docs:hover { color: var(--green); background: var(--green-dim); }
 
-/* Tombol Kembali â€” presisi, sejajar vertikal */
+/* Tombol Kembali — presisi, sejajar vertikal */
 .btn-kembali {
     display: inline-flex;
     align-items: center;
@@ -1961,7 +1961,7 @@ tbody tr.featured-row:hover td { background: rgba(0,212,143,0.08); }
 }
 
 /* =============================================
-   MADERA â€” EMBEDDED BANKING SECTION
+   MADERA — EMBEDDED BANKING SECTION
    ============================================= */
 .madera-section {
     background: var(--bg);
@@ -2040,7 +2040,7 @@ tbody tr.featured-row:hover td { background: rgba(0,212,143,0.08); }
     flex-shrink: 0;
 }
 
-/* Feature Grid â€” 7 cards, 4 col row 1, 3 col row 2 centered */
+/* Feature Grid — 7 cards, 4 col row 1, 3 col row 2 centered */
 .madera-feat-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -2128,7 +2128,7 @@ tbody tr.featured-row:hover td { background: rgba(0,212,143,0.08); }
 }
 
 .madera-feat-list li::before {
-    content: 'â€º';
+    content: '›';
     position: absolute;
     left: 0;
     color: var(--accent, var(--green));
@@ -2241,7 +2241,7 @@ tbody tr.featured-row:hover td { background: rgba(0,212,143,0.08); }
     bottom: -80px; right: 60px;
 }
 
-/* â”€â”€ Layout â”€â”€ */
+/* ── Layout ── */
 .sb-layout {
     display: grid;
     grid-template-columns: 340px 1fr;
@@ -2254,7 +2254,7 @@ tbody tr.featured-row:hover td { background: rgba(0,212,143,0.08); }
    DEVICE MOCKUP
    ============================================= */
 /* =============================================
-   NOBU SOUNDBOX DEVICE MOCKUP â€” Redesign
+   NOBU SOUNDBOX DEVICE MOCKUP — Redesign
    Based on actual Nobu Soundbox appearance
    ============================================= */
 
@@ -2273,7 +2273,7 @@ tbody tr.featured-row:hover td { background: rgba(0,212,143,0.08); }
     transition: transform 0.3s ease;
 }
 
-/* BODY â€” white rounded body like real Nobu Soundbox */
+/* BODY — white rounded body like real Nobu Soundbox */
 .sb-device-body {
     width: 200px;
     background: linear-gradient(160deg, #F5F5F3 0%, #E8E8E5 60%, #D8D8D5 100%);
@@ -2293,7 +2293,7 @@ tbody tr.featured-row:hover td { background: rgba(0,212,143,0.08); }
     padding-bottom: 14px;
 }
 
-/* Camera bar â€” matches Nobu Soundbox front camera at top */
+/* Camera bar — matches Nobu Soundbox front camera at top */
 .sb-camera-bar {
     width: 100%;
     background: linear-gradient(to bottom, #222, #333);
@@ -2319,7 +2319,7 @@ tbody tr.featured-row:hover td { background: rgba(0,212,143,0.08); }
     border-radius: 50%;
 }
 
-/* Screen â€” larger, brighter, like actual LCD display */
+/* Screen — larger, brighter, like actual LCD display */
 .sb-screen {
     width: calc(100% - 16px);
     background: #fff;
@@ -2355,7 +2355,7 @@ tbody tr.featured-row:hover td { background: rgba(0,212,143,0.08); }
 
 .sb-state.hidden { display: none; }
 
-/* Accent diagonal bars â€” pink & yellow (Nobu Soundbox brand) */
+/* Accent diagonal bars — pink & yellow (Nobu Soundbox brand) */
 .sb-screen-accent {
     position: absolute;
     bottom: 0; right: 0;
@@ -2674,7 +2674,7 @@ tbody tr.featured-row:hover td { background: rgba(0,212,143,0.08); }
     gap: 5px;
 }
 
-/* Numeric keys â€” gray like real soundbox */
+/* Numeric keys — gray like real soundbox */
 .sb-key {
     height: 28px;
     border-radius: 6px;
@@ -3136,7 +3136,7 @@ tbody tr.featured-row:hover td { background: rgba(0,212,143,0.08); }
 .sb-log-entry.process .sb-log-msg { color: #FFB700; }
 .sb-log-entry.system  .sb-log-msg { color: rgba(99,102,241,0.9); }
 
-/* â”€â”€ Feature pills â”€â”€ */
+/* ── Feature pills ── */
 .sb-feature-row {
     display: flex;
     flex-wrap: wrap;
@@ -3166,7 +3166,7 @@ tbody tr.featured-row:hover td { background: rgba(0,212,143,0.08); }
 
 .sb-feat-pill i { color: var(--green); }
 
-/* â”€â”€ RESPONSIVE â”€â”€ */
+/* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
     .sb-layout { grid-template-columns: 1fr; gap: 40px; }
     .sb-device-wrap { order: 2; }
@@ -3180,7 +3180,7 @@ tbody tr.featured-row:hover td { background: rgba(0,212,143,0.08); }
     .sb-amt-btn, .sb-method-btn { font-size: 0.72rem; padding: 5px 10px; }
 }
 
-/* â”€â”€ ACQUIRER BANNER â”€â”€ */
+/* ── ACQUIRER BANNER ── */
 .qp-acquirer-banner {
     display: flex;
     align-items: center;
@@ -3273,7 +3273,7 @@ tbody tr.featured-row:hover td { background: rgba(0,212,143,0.08); }
     letter-spacing: 0.5px;
 }
 
-/* â”€â”€ 6-PRODUCT GRID â”€â”€ */
+/* ── 6-PRODUCT GRID ── */
 .qp-type-grid-6 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -3281,7 +3281,7 @@ tbody tr.featured-row:hover td { background: rgba(0,212,143,0.08); }
     align-items: start;
 }
 
-/* â”€â”€ RESPONSIVE â”€â”€ */
+/* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
     .qp-hero-inner { grid-template-columns: 1fr; gap: 40px; }
     .qp-hero-visual { max-width: 480px; width: 100%; }
@@ -3402,12 +3402,13 @@ tbody tr.featured-row:hover td { background: rgba(0,212,143,0.08); }
     .sb-inline-panel { max-width: 100%; width: 100%; }
 }
 
-/* â”€â”€ Scroll offset fix â€” kompensasi navbar 68px + breathing room â”€â”€ */
+
+/* ── Scroll offset fix — hanya kompensasi tinggi navbar 68px ── */
 #qr-section,
 #payout-section,
 #madera-section,
 #va-section,
 #integration-section,
 #pricing-section {
-    scroll-margin-top: 90px;
+    scroll-margin-top: 72px;
 }
