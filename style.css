@@ -3401,3 +3401,37 @@ tbody tr.featured-row:hover td { background: rgba(0,212,143,0.08); }
     .sb-inline-wrap { flex-direction: column; align-items: center; }
     .sb-inline-panel { max-width: 100%; width: 100%; }
 }
+
+/* ── Language selector (index soundbox) ─── */
+.sb-lang-select {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.sb-lang-btn {
+    padding: 4px 10px;
+    border-radius: 7px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    font-family: var(--font-body);
+    color: var(--text-muted-dark);
+    background: rgba(0,0,0,0.04);
+    border: 1px solid rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.sb-lang-btn:hover {
+    border-color: rgba(0,212,143,0.5);
+    color: var(--green);
+    background: rgba(0,212,143,0.06);
+}
+
+.sb-lang-btn.active-lang {
+    background: var(--green);
+    border-color: var(--green);
+    color: #fff;
+    box-shadow: 0 2px 8px var(--green-glow);
+}
