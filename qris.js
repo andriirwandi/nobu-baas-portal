@@ -471,15 +471,14 @@ document.addEventListener('DOMContentLoaded', () => {
     //     setTimeout(() => window.speechSynthesis.speak(utter), 750);
     // }
 
-   function speakSbConfirmation(amount, method) {
+    function speakSbConfirmation(amount, method) {
     if (!window.speechSynthesis) return;
-    window.speechSynthesis.cancel();
-
-    // Format angka sebagai kata, bukan angka dengan titik
-    const amountWords = amount.toLocaleString('id-ID').replace(/\./g, ' ');
-    const text = `Pembayaran diterima. ${amountWords} rupiah. Melalui ${method}. Terima kasih.`;
+    // JANGAN cancel() di sini — di mobile ini justru membunuh speech engine
 
     function doSpeak() {
+        const amountWords = amount.toLocaleString('id-ID').replace(/\./g, ' ');
+        const text = `Pembayaran diterima. ${amountWords} rupiah. Melalui ${method}. Terima kasih.`;
+        
         const utter = new SpeechSynthesisUtterance(text);
         utter.lang   = 'id-ID';
         utter.rate   = 0.88;
@@ -490,14 +489,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const idVoice = voices.find(v => v.lang.startsWith('id') || v.lang.startsWith('ms'));
         if (idVoice) utter.voice = idVoice;
 
-        // Workaround iOS bug: resume dulu sebelum speak
-        if (window.speechSynthesis.paused) {
-            window.speechSynthesis.resume();
-        }
-
+        if (window.speechSynthesis.paused) window.speechSynthesis.resume();
         window.speechSynthesis.speak(utter);
 
-        // Workaround iOS cut-off: keep synthesis alive dengan resume interval
+        // iOS keepalive: cegah TTS mati di tengah jalan
         const resumeTimer = setInterval(() => {
             if (!window.speechSynthesis.speaking) {
                 clearInterval(resumeTimer);
@@ -507,14 +502,13 @@ document.addEventListener('DOMContentLoaded', () => {
             window.speechSynthesis.resume();
         }, 5000);
 
-        utter.onend = () => clearInterval(resumeTimer);
+        utter.onend   = () => clearInterval(resumeTimer);
         utter.onerror = () => clearInterval(resumeTimer);
     }
 
-    // Pastikan voices sudah loaded
     const voices = window.speechSynthesis.getVoices();
     if (voices.length > 0) {
-        setTimeout(doSpeak, 400); // delay lebih pendek
+        doSpeak();
     } else {
         window.speechSynthesis.addEventListener('voiceschanged', doSpeak, { once: true });
     }
