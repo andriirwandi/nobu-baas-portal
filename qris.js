@@ -456,29 +456,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ── TTS Speech ────────────────────────────
-    // function speakSbConfirmation(amount, method) {
-    //     if (!window.speechSynthesis) return;
-    //     window.speechSynthesis.cancel();
-    //     const text  = `Pembayaran diterima. ${amount.toLocaleString('id-ID')} rupiah. Melalui ${method}. Terima kasih.`;
-    //     const utter = new SpeechSynthesisUtterance(text);
-    //     utter.lang   = 'id-ID';
-    //     utter.rate   = 0.9;
-    //     utter.pitch  = 1.05;
-    //     utter.volume = sbVolume;
-    //     const voices = window.speechSynthesis.getVoices();
-    //     const idVoice = voices.find(v => v.lang.startsWith('id') || v.lang.startsWith('ms'));
-    //     if (idVoice) utter.voice = idVoice;
-    //     setTimeout(() => window.speechSynthesis.speak(utter), 750);
-    // }
+    // Strategi mobile: buat SpeechSynthesisUtterance SAAT click (user gesture),
+    // simpan di variabel, lalu speak() dipanggil di langkah akhir simulasi.
+    // Ini wajib karena mobile browser (iOS/Android) hanya izinkan speechSynthesis
+    // dari dalam konteks user gesture — async/await/setTimeout memutus konteks itu.
 
-    function speakSbConfirmation(amount, method) {
-    if (!window.speechSynthesis) return;
-    // JANGAN cancel() di sini — di mobile ini justru membunuh speech engine
+    let sbPendingUtter = null; // utterance yang disiapkan saat tombol diklik
 
-    function doSpeak() {
+    function prepareSbUtterance(amount, method) {
+        if (!window.speechSynthesis) return;
+
         const amountWords = amount.toLocaleString('id-ID').replace(/\./g, ' ');
         const text = `Pembayaran diterima. ${amountWords} rupiah. Melalui ${method}. Terima kasih.`;
-        
+
         const utter = new SpeechSynthesisUtterance(text);
         utter.lang   = 'id-ID';
         utter.rate   = 0.88;
@@ -489,10 +479,28 @@ document.addEventListener('DOMContentLoaded', () => {
         const idVoice = voices.find(v => v.lang.startsWith('id') || v.lang.startsWith('ms'));
         if (idVoice) utter.voice = idVoice;
 
+        // "Dummy speak" dengan teks kosong — membuka izin audio di mobile
+        // lalu langsung cancel dan simpan utterance asli untuk dipakai nanti
+        const dummy = new SpeechSynthesisUtterance('');
+        dummy.volume = 0;
+        window.speechSynthesis.speak(dummy);
+        window.speechSynthesis.cancel();
+
+        sbPendingUtter = utter;
+    }
+
+    function speakSbConfirmation() {
+        if (!window.speechSynthesis || !sbPendingUtter) return;
+
+        const utter = sbPendingUtter;
+        sbPendingUtter = null;
+
+        if (window.speechSynthesis.speaking) window.speechSynthesis.cancel();
         if (window.speechSynthesis.paused) window.speechSynthesis.resume();
+
         window.speechSynthesis.speak(utter);
 
-        // iOS keepalive: cegah TTS mati di tengah jalan
+        // iOS keepalive: cegah TTS terpotong di tengah jalan
         const resumeTimer = setInterval(() => {
             if (!window.speechSynthesis.speaking) {
                 clearInterval(resumeTimer);
@@ -505,14 +513,6 @@ document.addEventListener('DOMContentLoaded', () => {
         utter.onend   = () => clearInterval(resumeTimer);
         utter.onerror = () => clearInterval(resumeTimer);
     }
-
-    const voices = window.speechSynthesis.getVoices();
-    if (voices.length > 0) {
-        doSpeak();
-    } else {
-        window.speechSynthesis.addEventListener('voiceschanged', doSpeak, { once: true });
-    }
-}
 
     // ── Main simulation ───────────────────────
     async function runSbSimulation() {
@@ -575,7 +575,7 @@ document.addEventListener('DOMContentLoaded', () => {
         await sbWait(300);
         playSbChime();
         await sbWait(450);
-        speakSbConfirmation(sbSelectedAmount, sbSelectedMethod);
+        speakSbConfirmation();
 
         // Animate sound waves + badge
         sbSoundWaves.classList.add('playing');
@@ -627,7 +627,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ── Trigger button ────────────────────────
-    sbTriggerBtn.addEventListener('click', runSbSimulation);
+    // PENTING: prepareSbUtterance() dipanggil LANGSUNG di event click
+    // (sebelum async dimulai) agar mobile browser memberi izin audio.
+    sbTriggerBtn.addEventListener('click', () => {
+        prepareSbUtterance(sbSelectedAmount, sbSelectedMethod);
+        runSbSimulation();
+    });
 
     // ── Log clear button ─────────────────────
     if (sbLogClear) {
