@@ -313,6 +313,15 @@
                                 <button class="sb-amt-btn" data-amount="1200000">Rp 1,2Jt</button>
                             </div>
                         </div>
+                        <!-- Bahasa -->
+                        <div class="sb-inline-row">
+                            <span class="sb-inline-label">Bahasa</span>
+                            <div class="sb-lang-select">
+                                <button class="sb-lang-btn active-lang" data-lang="normal">🇮🇩 Normal</button>
+                                <button class="sb-lang-btn" data-lang="betawi">🏙️ Betawi</button>
+                                <button class="sb-lang-btn" data-lang="jawa">🌿 Jawa</button>
+                            </div>
+                        </div>
                         <!-- Volume -->
                         <div class="sb-inline-row">
                             <span class="sb-inline-label">Volume</span>
@@ -1018,7 +1027,9 @@
 
             var sbSelectedAmount = 75000;
             var sbSelectedMethod = 'Nobu QRIS';
+            var sbSelectedLang   = 'normal';
             var sbVolume         = 0.8;
+            var sbTtsTimer       = null;
             var sbIsRunning      = false;
             var sbAudioCtx       = null;
 
@@ -1130,19 +1141,50 @@
                 } catch(e) {}
             }
 
-            function speakSbConfirmation(amount, method) {
+            function scheduleSbTts(amount, method) {
                 if (!window.speechSynthesis) return;
+                if (sbTtsTimer) { clearTimeout(sbTtsTimer); sbTtsTimer = null; }
                 window.speechSynthesis.cancel();
-                var text  = 'Pembayaran diterima. ' + amount.toLocaleString('id-ID') + ' rupiah. Melalui ' + method + '. Terima kasih.';
-                var utter = new SpeechSynthesisUtterance(text);
-                utter.lang   = 'id-ID';
-                utter.rate   = 0.9;
-                utter.pitch  = 1.05;
-                utter.volume = sbVolume;
+
+                var amountWords = amount.toLocaleString('id-ID').replace(/\./g, ' ');
+                var langTexts = {
+                    normal: 'Pembayaran diterima. ' + amountWords + ' rupiah. Melalui ' + method + '. Terima kasih.',
+                    betawi: 'Hore! Duit masuk nih. ' + amountWords + ' rebu perak udah nyampe. Makasih banyak ye!',
+                    jawa:   'Maturnuwun. Pembayaran sampun katampi. ' + amountWords + ' rupiah. Matur nuwun sanget.'
+                };
+                var text = langTexts[sbSelectedLang] || langTexts.normal;
+
                 var voices  = window.speechSynthesis.getVoices();
                 var idVoice = voices.find(function(v){ return v.lang.startsWith('id') || v.lang.startsWith('ms'); });
-                if (idVoice) utter.voice = idVoice;
-                setTimeout(function(){ window.speechSynthesis.speak(utter); }, 750);
+
+                function buildUtter(vol) {
+                    var u = new SpeechSynthesisUtterance(text);
+                    u.lang = 'id-ID'; u.rate = 0.88; u.pitch = 1.05; u.volume = vol;
+                    if (idVoice) u.voice = idVoice;
+                    return u;
+                }
+
+                // Unlock TTS di iOS: speak diam dalam gesture context
+                var silentUtter = buildUtter(0);
+                silentUtter.rate = 0.1;
+                window.speechSynthesis.speak(silentUtter);
+
+                // Speak asli setelah animasi selesai (~5.5s)
+                sbTtsTimer = setTimeout(function() {
+                    sbTtsTimer = null;
+                    window.speechSynthesis.cancel();
+                    setTimeout(function() {
+                        var realUtter = buildUtter(sbVolume);
+                        var keepAlive = setInterval(function() {
+                            if (!window.speechSynthesis.speaking) { clearInterval(keepAlive); return; }
+                            window.speechSynthesis.pause();
+                            window.speechSynthesis.resume();
+                        }, 5000);
+                        realUtter.onend   = function() { clearInterval(keepAlive); };
+                        realUtter.onerror = function() { clearInterval(keepAlive); };
+                        window.speechSynthesis.speak(realUtter);
+                    }, 80);
+                }, 5500);
             }
 
             async function runSbSimulation() {
@@ -1196,7 +1238,7 @@
                 await sbWait(300);
                 playSbChime();
                 await sbWait(450);
-                speakSbConfirmation(sbSelectedAmount, sbSelectedMethod);
+                // TTS dijadwalkan via scheduleSbTts() saat tombol diklik
 
                 sbSoundWaves.classList.add('playing');
                 sbSoundBadge.classList.add('visible');
@@ -1241,15 +1283,25 @@
                 });
             }
 
-            // Trigger — create AudioContext on user click (browser policy)
+            // Trigger
             sbTriggerBtn.addEventListener('click', function() {
+                if (sbIsRunning) return;
                 try {
-                    if (!sbAudioCtx) {
-                        sbAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                    }
+                    if (!sbAudioCtx) sbAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
                     if (sbAudioCtx.state === 'suspended') sbAudioCtx.resume();
                 } catch(e) {}
+                scheduleSbTts(sbSelectedAmount, sbSelectedMethod); // sync dalam gesture — wajib untuk iOS
                 runSbSimulation();
+            });
+
+            // Language buttons
+            document.querySelectorAll('.sb-lang-btn').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    if (sbIsRunning) return;
+                    document.querySelectorAll('.sb-lang-btn').forEach(function(b){ b.classList.remove('active-lang'); });
+                    btn.classList.add('active-lang');
+                    sbSelectedLang = btn.dataset.lang;
+                });
             });
 
             // Preload TTS voices
