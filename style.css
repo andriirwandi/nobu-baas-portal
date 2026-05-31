@@ -3402,8 +3402,7 @@ tbody tr.featured-row:hover td { background: rgba(0,212,143,0.08); }
     .sb-inline-panel { max-width: 100%; width: 100%; }
 }
 
-
-/* ── Scroll offset fix — hanya kompensasi tinggi navbar 68px ── */
+/* ── Scroll offset fix ── */
 #qr-section,
 #payout-section,
 #madera-section,
@@ -3411,4 +3410,39 @@ tbody tr.featured-row:hover td { background: rgba(0,212,143,0.08); }
 #integration-section,
 #pricing-section {
     scroll-margin-top: 72px;
+}
+
+/* ── Language selector (index soundbox) ── */
+.sb-lang-select {
+    display: flex;
+    gap: 6px;
+}
+
+.sb-lang-btn {
+    padding: 5px 12px;
+    border-radius: 7px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    font-family: var(--font-body);
+    letter-spacing: 0.3px;
+    color: rgba(255,255,255,0.45);
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    line-height: 1.6;
+}
+
+.sb-lang-btn:hover {
+    color: rgba(255,255,255,0.85);
+    border-color: rgba(0,212,143,0.4);
+    background: rgba(0,212,143,0.1);
+}
+
+.sb-lang-btn.active-lang {
+    color: #fff;
+    background: var(--green);
+    border-color: var(--green);
+    box-shadow: 0 2px 10px rgba(0,212,143,0.35);
 }
