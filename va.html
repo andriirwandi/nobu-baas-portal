@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Account | Nobu Bank BaaS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="qris.css">
+    <style>
+        /* ── VA Page Specific Styles ── */
+        .va-page-nav { background: rgba(247,250,249,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); position: sticky; top: 68px; z-index: 90; }
+        .va-page-nav-inner { display: flex; align-items: center; gap: 4px; overflow-x: auto; padding: 0; scrollbar-width: none; }
+        .va-page-nav-inner::-webkit-scrollbar { display: none; }
+        .va-nav-link { padding: 14px 16px; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); white-space: nowrap; text-decoration: none; border-bottom: 2px solid transparent; transition: all 0.2s; }
+        .va-nav-link:hover, .va-nav-link.active-pn { color: var(--green); border-bottom-color: var(--green); }
+        .va-nav-cta { margin-left: auto; flex-shrink: 0; padding: 7px 16px; font-size: 0.78rem; }
+
+        /* ── Hero ── */
+        .va-hero { padding: 100px 0 80px; background: linear-gradient(160deg, #f0faf6 0%, #f7faf9 50%, #edf7f3 100%); position: relative; overflow: hidden; }
+        .va-hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0,212,143,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,212,143,0.06) 1px, transparent 1px); background-size: 40px 40px; }
+        .va-hero-orb { position: absolute; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(0,212,143,0.12) 0%, transparent 70%); top: -200px; right: -100px; pointer-events: none; }
+        .va-hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; }
+        .va-hero-eyebrow { display: inline-flex; align-items: center; gap: 7px; background: var(--green-dim); color: var(--green); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; padding: 5px 12px; border-radius: 20px; margin-bottom: 18px; }
+        .va-hero-title { font-family: var(--font-display); font-size: 3rem; line-height: 1.1; font-weight: 800; color: var(--text-dark); margin-bottom: 18px; }
+        .va-hero-title .hl { color: var(--green); }
+        .va-hero-desc { font-size: 1rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 28px; max-width: 480px; }
+        .va-hero-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+        .va-hero-badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 20px; font-size: 0.72rem; font-weight: 600; background: #fff; border: 1px solid var(--border); color: var(--text-muted); }
+        .va-hero-badge i { color: var(--green); }
+        .va-hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+        .va-breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 0.78rem; color: var(--text-muted); margin-bottom: 28px; }
+        .va-breadcrumb a { color: var(--text-muted); text-decoration: none; } .va-breadcrumb a:hover { color: var(--green); }
+
+        /* Hero visual — animated VA card */
+        .va-hero-visual { position: relative; display: flex; flex-direction: column; gap: 16px; }
+        .va-hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        .va-hero-stat { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; text-align: center; }
+        .va-hero-stat-num { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: var(--green); display: block; }
+        .va-hero-stat-lbl { font-size: 0.65rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
+        .va-live-card { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.06); }
+        .va-live-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+        .va-live-title { font-size: 0.78rem; font-weight: 700; color: var(--text-dark); display: flex; align-items: center; gap: 6px; }
+        .va-live-ping { width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: ping 1.5s infinite; }
+        @keyframes ping { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+        .va-trx-list { display: flex; flex-direction: column; gap: 8px; }
+        .va-trx-item { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 8px; background: var(--surface); font-size: 0.75rem; }
+        .va-trx-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+        .va-trx-info { flex: 1; }
+        .va-trx-name { color: var(--text-dark); font-weight: 500; }
+        .va-trx-time { font-size: 0.65rem; color: var(--text-muted); }
+        .va-trx-amount { font-weight: 700; color: var(--green); white-space: nowrap; }
+
+        /* ── Section Base ── */
+        .va-section { padding: 80px 0; }
+        .va-section.alt-bg { background: var(--surface); }
+        .va-section.dark-bg { background: var(--dark); color: #fff; }
+        .va-section-header { text-align: center; max-width: 640px; margin: 0 auto 56px; }
+        .va-section-eyebrow { display: inline-flex; align-items: center; gap: 6px; background: var(--green-dim); color: var(--green); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 14px; }
+        .va-section-eyebrow.dark { background: rgba(0,212,143,0.12); }
+        .va-section-title { font-family: var(--font-display); font-size: 2.1rem; font-weight: 800; color: var(--text-dark); margin-bottom: 12px; line-height: 1.15; }
+        .va-section-title.light { color: #fff; }
+        .va-section-desc { color: var(--text-muted); line-height: 1.7; font-size: 0.95rem; }
+        .va-section-desc.light { color: rgba(255,255,255,0.6); }
+
+        /* ── Type Cards (Online / Offline / RAKD) ── */
+        .va-types-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .va-type-card { background: #fff; border: 1px solid var(--border); border-radius: 20px; padding: 32px; position: relative; overflow: hidden; transition: all 0.3s ease; }
+        .va-type-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.08); border-color: var(--green); }
+        .va-type-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--green); opacity: 0; transition: opacity 0.3s; }
+        .va-type-card:hover::before { opacity: 1; }
+        .va-type-icon { width: 48px; height: 48px; border-radius: 12px; background: var(--green-dim); display: flex; align-items: center; justify-content: center; color: var(--green); margin-bottom: 18px; }
+        .va-type-tag { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 20px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+        .va-type-tag.online { background: rgba(0,212,143,0.1); color: var(--green); }
+        .va-type-tag.offline { background: rgba(59,130,246,0.1); color: #3b82f6; }
+        .va-type-tag.rakd { background: rgba(168,85,247,0.1); color: #a855f7; }
+        .va-type-title { font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; color: var(--text-dark); margin-bottom: 8px; }
+        .va-type-platform { font-size: 0.72rem; color: var(--text-muted); font-weight: 600; margin-bottom: 14px; }
+        .va-type-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px; }
+        .va-type-features { display: flex; flex-direction: column; gap: 7px; }
+        .va-type-feat { display: flex; align-items: flex-start; gap: 8px; font-size: 0.8rem; color: var(--text-dark); }
+        .va-type-feat i { color: var(--green); flex-shrink: 0; margin-top: 1px; }
+
+        /* ── Comparison Table ── */
+        .va-compare-wrap { background: #fff; border: 1px solid var(--border); border-radius: 20px; overflow: hidden; }
+        .va-compare-table { width: 100%; border-collapse: collapse; }
+        .va-compare-table th { padding: 16px 20px; text-align: left; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); background: var(--surface); border-bottom: 1px solid var(--border); }
+        .va-compare-table th:not(:first-child) { text-align: center; }
+        .va-compare-table td { padding: 14px 20px; font-size: 0.82rem; color: var(--text-dark); border-bottom: 1px solid rgba(0,0,0,0.04); vertical-align: middle; }
+        .va-compare-table td:not(:first-child) { text-align: center; }
+        .va-compare-table tr:last-child td { border-bottom: none; }
+        .va-compare-table tr:hover td { background: rgba(0,212,143,0.03); }
+        .va-col-header { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .va-col-name { font-size: 0.85rem; font-weight: 700; color: var(--text-dark); }
+        .va-col-sub { font-size: 0.65rem; color: var(--text-muted); font-weight: 500; }
+        .check-yes { color: var(--green); font-size: 1rem; }
+        .check-no { color: #e2e8f0; font-size: 1rem; }
+        .check-partial { color: #f59e0b; font-size: 0.8rem; font-weight: 600; }
+        .va-feat-label { font-weight: 500; color: var(--text-dark); }
+        .va-feat-sub { font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; }
+
+        /* ── Flow Steps ── */
+        .va-flow-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+        .va-flow-grid::before { content: ''; position: absolute; top: 28px; left: 12.5%; right: 12.5%; height: 2px; background: linear-gradient(90deg, var(--green), rgba(0,212,143,0.2)); z-index: 0; }
+        .va-flow-step { text-align: center; padding: 0 12px; position: relative; z-index: 1; }
+        .va-flow-num { width: 56px; height: 56px; border-radius: 50%; background: var(--green); color: #fff; font-family: var(--font-display); font-size: 1.1rem; font-weight: 800; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; box-shadow: 0 4px 16px var(--green-glow); }
+        .va-flow-step-title { font-size: 0.85rem; font-weight: 700; color: var(--text-dark); margin-bottom: 6px; }
+        .va-flow-step-desc { font-size: 0.76rem; color: var(--text-muted); line-height: 1.5; }
+        .va-flow-step-who { display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; border-radius: 8px; background: var(--green-dim); color: var(--green); font-size: 0.65rem; font-weight: 700; margin-top: 8px; }
+
+        /* ── RAKD Section ── */
+        .rakd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+        .rakd-desc { font-size: 0.9rem; color: rgba(255,255,255,0.65); line-height: 1.7; margin-bottom: 28px; }
+        .rakd-highlight-list { display: flex; flex-direction: column; gap: 14px; }
+        .rakd-hl-item { display: flex; align-items: flex-start; gap: 12px; }
+        .rakd-hl-icon { width: 36px; height: 36px; border-radius: 10px; background: rgba(0,212,143,0.15); display: flex; align-items: center; justify-content: center; color: var(--green); flex-shrink: 0; }
+        .rakd-hl-text strong { display: block; font-size: 0.85rem; font-weight: 700; color: #fff; margin-bottom: 2px; }
+        .rakd-hl-text span { font-size: 0.78rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
+
+        /* Name matching card */
+        .rakd-visual { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 28px; }
+        .rakd-visual-title { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.45); margin-bottom: 20px; display: flex; align-items: center; gap: 7px; }
+        .name-match-list { display: flex; flex-direction: column; gap: 10px; }
+        .name-match-item { display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px; align-items: center; padding: 10px 14px; border-radius: 10px; font-size: 0.78rem; }
+        .name-match-item.match { background: rgba(0,212,143,0.1); border: 1px solid rgba(0,212,143,0.2); }
+        .name-match-item.review { background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.2); }
+        .name-match-item.no-match { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); }
+        .nm-label { font-size: 0.65rem; color: rgba(255,255,255,0.4); margin-bottom: 2px; font-weight: 600; text-transform: uppercase; }
+        .nm-val { color: rgba(255,255,255,0.9); font-weight: 500; }
+        .nm-badge { padding: 3px 8px; border-radius: 6px; font-size: 0.65rem; font-weight: 700; white-space: nowrap; }
+        .nm-badge.match { background: var(--green); color: #fff; }
+        .nm-badge.review { background: #f59e0b; color: #fff; }
+        .nm-badge.no-match { background: #ef4444; color: #fff; }
+        .rakd-note { margin-top: 20px; padding: 12px 14px; border-radius: 10px; background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.2); font-size: 0.75rem; color: rgba(255,255,255,0.65); display: flex; align-items: flex-start; gap: 8px; }
+        .rakd-note i { color: #a855f7; flex-shrink: 0; margin-top: 1px; }
+
+        /* ── Feature grid ── */
+        .va-feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .va-feat-card { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 24px; transition: all 0.2s; }
+        .va-feat-card:hover { border-color: var(--green); box-shadow: 0 8px 24px rgba(0,212,143,0.08); }
+        .va-feat-card-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--green-dim); display: flex; align-items: center; justify-content: center; color: var(--green); margin-bottom: 14px; }
+        .va-feat-card-title { font-size: 0.88rem; font-weight: 700; color: var(--text-dark); margin-bottom: 6px; }
+        .va-feat-card-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.6; }
+
+        /* ── CTA ── */
+        .va-cta-section { padding: 80px 0; background: linear-gradient(135deg, var(--dark) 0%, #0a2a1f 100%); position: relative; overflow: hidden; text-align: center; }
+        .va-cta-orb { position: absolute; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(0,212,143,0.15) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; }
+        .va-cta-title { font-family: var(--font-display); font-size: 2.5rem; font-weight: 800; color: #fff; margin-bottom: 14px; position: relative; }
+        .va-cta-desc { color: rgba(255,255,255,0.6); font-size: 0.95rem; line-height: 1.7; max-width: 520px; margin: 0 auto 36px; position: relative; }
+        .va-cta-actions { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; position: relative; }
+
+        /* ── Responsive ── */
+        @media (max-width: 960px) {
+            .va-hero-inner { grid-template-columns: 1fr; }
+            .va-hero-visual { display: none; }
+            .va-types-grid { grid-template-columns: 1fr; }
+            .va-flow-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+            .va-flow-grid::before { display: none; }
+            .rakd-grid { grid-template-columns: 1fr; }
+            .va-feat-grid { grid-template-columns: repeat(2, 1fr); }
+            .va-hero-title { font-size: 2.2rem; }
+        }
+        @media (max-width: 600px) {
+            .va-feat-grid { grid-template-columns: 1fr; }
+            .va-types-grid { grid-template-columns: 1fr; }
+            .va-flow-grid { grid-template-columns: 1fr; }
+            .va-compare-table { font-size: 0.75rem; }
+            .va-compare-table th, .va-compare-table td { padding: 10px 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-content">
+            <div class="brand-group">
+                <a href="index.html" class="brand-logo" aria-label="Nobu Bank — Kembali ke Beranda">
+                    <img src="nobu-logo.png" alt="Nobu Bank" class="navbar-logo-img">
+                    <div class="brand-baas-label">
+                        <span class="baas-divider"></span>
+                        <div class="baas-text-group">
+                            <span class="baas-title">Bank as a Service</span>
+                            <span class="baas-sub">Partner Portal</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html#qr-section">QRIS</a>
+                <a href="index.html#payout-section">Payout</a>
+                <a href="index.html#madera-section">Madera</a>
+                <a href="index.html#va-section" class="active">Virtual Account</a>
+                <a href="index.html#integration-section">Integrasi</a>
+                <a href="index.html#pricing-section">Pricing</a>
+            </div>
+            <div class="nav-actions">
+                <a href="index.html" class="btn-kembali">
+                    <i data-lucide="arrow-left" size="14"></i>
+                    <span>Kembali</span>
+                </a>
+                <button class="btn-contact">
+                    <span>Hubungi Kami</span>
+                    <i data-lucide="arrow-right" size="14"></i>
+                </button>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html" class="mobile-link">← Kembali ke Beranda</a>
+            <a href="#overview" class="mobile-link">Overview</a>
+            <a href="#tipe-va" class="mobile-link">Tipe VA</a>
+            <a href="#fitur" class="mobile-link">Fitur</a>
+            <a href="#alur" class="mobile-link">Alur Integrasi</a>
+            <a href="#rakd" class="mobile-link">RAKD & Keamanan</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="va-hero" id="overview">
+        <div class="va-hero-grid"></div>
+        <div class="va-hero-orb"></div>
+        <div class="container">
+            <div class="va-breadcrumb">
+                <a href="index.html">Beranda</a>
+                <i data-lucide="chevron-right" size="13"></i>
+                <a href="index.html#va-section">Produk</a>
+                <i data-lucide="chevron-right" size="13"></i>
+                <span>Virtual Account</span>
+            </div>
+            <div class="va-hero-inner">
+                <div class="va-hero-content">
+                    <div class="va-hero-eyebrow">
+                        <i data-lucide="landmark" size="13"></i>
+                        Nobu Bank — Payment Collection
+                    </div>
+                    <h1 class="va-hero-title">
+                        Virtual Account<br><span class="hl">Infrastruktur Koleksi</span><br>Pembayaran Modern
+                    </h1>
+                    <p class="va-hero-desc">Sediakan nomor VA unik per pelanggan atau per transaksi. Identifikasi pembayaran otomatis, settlement real-time, dan notifikasi webhook langsung ke sistem Anda — didukung SNAP API Bank Indonesia.</p>
+                    <div class="va-hero-badges">
+                        <span class="va-hero-badge"><i data-lucide="zap" size="12"></i> SNAP BI Certified</span>
+                        <span class="va-hero-badge"><i data-lucide="shield-check" size="12"></i> OJK Licensed</span>
+                        <span class="va-hero-badge"><i data-lucide="wifi" size="12"></i> BI-Fast Ready</span>
+                        <span class="va-hero-badge"><i data-lucide="layers" size="12"></i> Open & Close Amount</span>
+                    </div>
+                    <div class="va-hero-actions">
+                        <button class="btn-primary lg">
+                            <i data-lucide="zap" size="16"></i>
+                            Mulai Integrasi VA
+                        </button>
+                        <button class="btn-outline">
+                            <i data-lucide="book-open" size="16"></i>
+                            Dokumentasi API
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Hero Visual -->
+                <div class="va-hero-visual">
+                    <div class="va-hero-stats">
+                        <div class="va-hero-stat">
+                            <span class="va-hero-stat-num">16</span>
+                            <span class="va-hero-stat-lbl">Digit VA Number</span>
+                        </div>
+                        <div class="va-hero-stat">
+                            <span class="va-hero-stat-num">Real-time</span>
+                            <span class="va-hero-stat-lbl">Settlement</span>
+                        </div>
+                        <div class="va-hero-stat">
+                            <span class="va-hero-stat-num">1,5M</span>
+                            <span class="va-hero-stat-lbl">Limit per Transaksi</span>
+                        </div>
+                    </div>
+                    <div class="va-live-card">
+                        <div class="va-live-card-header">
+                            <div class="va-live-title">
+                                <i data-lucide="activity" size="14"></i>
+                                Live Incoming VA Payments
+                                <span class="va-live-ping"></span>
+                            </div>
+                            <span style="font-size:0.7rem;color:var(--text-muted);">Real-time</span>
+                        </div>
+                        <div class="va-trx-list" id="vaTrxList">
+                            <div class="va-trx-item">
+                                <div class="va-trx-dot"></div>
+                                <div class="va-trx-info">
+                                    <div class="va-trx-name">PT Mitra Digital — VA #8991 2345</div>
+                                    <div class="va-trx-time">BI-Fast • 2 detik lalu</div>
+                                </div>
+                                <span class="va-trx-amount">Rp 5.000.000</span>
+                            </div>
+                            <div class="va-trx-item">
+                                <div class="va-trx-dot"></div>
+                                <div class="va-trx-info">
+                                    <div class="va-trx-name">CV Sukses Mandiri — VA #8991 6789</div>
+                                    <div class="va-trx-time">RTOL • 15 detik lalu</div>
+                                </div>
+                                <span class="va-trx-amount">Rp 250.000</span>
+                            </div>
+                            <div class="va-trx-item">
+                                <div class="va-trx-dot"></div>
+                                <div class="va-trx-info">
+                                    <div class="va-trx-name">Tokocrypto — VA #8991 1122</div>
+                                    <div class="va-trx-time">nobuGo • 42 detik lalu</div>
+                                </div>
+                                <span class="va-trx-amount">Rp 1.200.000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- In-page nav -->
+        <div class="va-page-nav">
+            <div class="container">
+                <div class="va-page-nav-inner">
+                    <a href="#overview" class="va-nav-link active-pn">Overview</a>
+                    <a href="#tipe-va" class="va-nav-link">Tipe VA</a>
+                    <a href="#perbandingan" class="va-nav-link">Perbandingan</a>
+                    <a href="#fitur" class="va-nav-link">Fitur Lengkap</a>
+                    <a href="#alur" class="va-nav-link">Alur Integrasi</a>
+                    <a href="#rakd" class="va-nav-link">🛡️ RAKD & Keamanan</a>
+                    <button class="btn-primary sm va-nav-cta">Mulai Integrasi</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- TIPE VA -->
+    <section class="va-section alt-bg" id="tipe-va">
+        <div class="container">
+            <div class="va-section-header">
+                <div class="va-section-eyebrow"><i data-lucide="layers" size="12"></i> Tipe Produk</div>
+                <h2 class="va-section-title">Tiga Varian VA Nobu</h2>
+                <p class="va-section-desc">Dari koleksi pembayaran digital hingga ekosistem Payment Gateway yang aman — pilih sesuai model bisnis Anda.</p>
+            </div>
+            <div class="va-types-grid">
+
+                <!-- VA Online -->
+                <div class="va-type-card">
+                    <div class="va-type-icon"><i data-lucide="globe" size="22"></i></div>
+                    <div class="va-type-tag online"><i data-lucide="zap" size="10"></i> VA Online</div>
+                    <div class="va-type-title">VA Online</div>
+                    <div class="va-type-platform">Platform: Matcha (New Platform) · SNAP API</div>
+                    <p class="va-type-desc">Solusi VA berbasis API modern. Partner mengelola VA Number sendiri, Nobu berperan sebagai pass-through untuk inquiry dan payment. Cocok untuk fintech, e-commerce, dan payment gateway.</p>
+                    <div class="va-type-features">
+                        <div class="va-type-feat"><i data-lucide="check" size="13"></i><span>16 digit VA Number unik per transaksi</span></div>
+                        <div class="va-type-feat"><i data-lucide="check" size="13"></i><span>Customizable prefix 6 digit dari Nobu</span></div>
+                        <div class="va-type-feat"><i data-lucide="check" size="13"></i><span>Open Amount & Close Amount</span></div>
+                        <div class="va-type-feat"><i data-lucide="check" size="13"></i><span>BI-Fast, RTOL, SKN, RTGS, nobuGo</span></div>
+                        <div class="va-type-feat"><i data-lucide="check" size="13"></i><span>Notifikasi webhook real-time ke Partner</span></div>
+                        <div class="va-type-feat"><i data-lucide="check" size="13"></i><span>Laporan via Email / SFTP (H+1)</span></div>
+                    </div>
+                </div>
+
+                <!-- VA Offline -->
+                <div class="va-type-card">
+                    <div class="va-type-icon" style="background:rgba(59,130,246,0.1);color:#3b82f6;"><i data-lucide="landmark" size="22"></i></div>
+                    <div class="va-type-tag offline"><i data-lucide="cpu" size="10"></i> VA Offline</div>
+                    <div class="va-type-title">VA Offline</div>
+                    <div class="va-type-platform">Platform: Vlink (Legacy) · Kanal Fisik</div>
+                    <p class="va-type-desc">Solusi VA melalui kanal fisik dan internet banking korporat. Ideal untuk grup korporat besar, khususnya yang membutuhkan pembayaran via ATM dan teller Nobu.</p>
+                    <div class="va-type-features">
+                        <div class="va-type-feat"><i data-lucide="check" size="13"></i><span style="color:#3b82f6;">Kanal: ATM Nobu, RiB, Teller/Branch</span></div>
+                        <div class="va-type-feat"><i data-lucide="check" size="13"></i><span>Prefix 888XXX untuk sistem Vlink</span></div>
+                        <div class="va-type-feat"><i data-lucide="check" size="13"></i><span>Open & Close Amount via e-Channel</span></div>
+                        <div class="va-type-feat"><i data-lucide="check" size="13"></i><span>SKN / RTGS didukung</span></div>
+                        <div class="va-type-feat"><i data-lucide="check" size="13"></i><span>Reporting via NobuLink 2</span></div>
+                        <div class="va-type-feat"><i data-lucide="check" size="13"></i><span>SLA pendaftaran 1 hari kerja</span></div>
+                    </div>
+                </div>
+
+                <!-- VA RAKD -->
+                <div class="va-type-card">
+                    <div class="va-type-icon" style="background:rgba(168,85,247,0.1);color:#a855f7;"><i data-lucide="shield-check" size="22"></i></div>
+                    <div class="va-type-tag rakd"><i data-lucide="shield" size="10"></i> VA + RAKD</div>
+                    <div class="va-type-title">VA – PG – RAKD</div>
+                    <div class="va-type-platform">Payment Gateway + Anti-Fraud Layer</div>
+                    <p class="va-type-desc">Skema VA dalam ekosistem Payment Gateway yang dilengkapi validasi Anti-Kejahatan Keuangan Digital. Memenuhi arahan OJK dan Bank Indonesia untuk proteksi transaksi.</p>
+                    <div class="va-type-features">
+                        <div class="va-type-feat"><i data-lucide="check" size="13"></i><span style="color:#a855f7;">Fraud Detection System (FDS) near real-time</span></div>
+                        <div class="va-type-feat"><i data-lucide="check" size="13"></i><span>Name Verification saat payment (≥2 kata)</span></div>
+                        <div class="va-type-feat"><i data-lucide="check" size="13"></i><span>Sub-prefix per merchant dalam PG</span></div>
+                        <div class="va-type-feat"><i data-lucide="check" size="13"></i><span>Auto-reversal untuk RTOL</span></div>
+                        <div class="va-type-feat"><i data-lucide="check" size="13"></i><span>Rencana: validasi NIK via Dukcapil</span></div>
+                        <div class="va-type-feat"><i data-lucide="check" size="13"></i><span>Laporan hanya transaksi SUKSES (H+1)</span></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PERBANDINGAN -->
+    <section class="va-section" id="perbandingan">
+        <div class="container">
+            <div class="va-section-header">
+                <div class="va-section-eyebrow"><i data-lucide="git-compare" size="12"></i> Perbandingan</div>
+                <h2 class="va-section-title">VA Offline vs VA Online</h2>
+                <p class="va-section-desc">Pilih platform yang sesuai dengan kebutuhan kanal pembayaran dan model integrasi bisnis Anda.</p>
+            </div>
+            <div class="va-compare-wrap">
+                <table class="va-compare-table">
+                    <thead>
+                        <tr>
+                            <th>Aspek</th>
+                            <th><div class="va-col-header"><div class="va-col-name">VA Offline</div><div class="va-col-sub">Vlink · Legacy</div></div></th>
+                            <th><div class="va-col-header"><div class="va-col-name">VA Online</div><div class="va-col-sub">Matcha · New Platform</div></div></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><div class="va-feat-label">Kanal Utama</div></td>
+                            <td>ATM Nobu, RiB, Teller/Branch</td>
+                            <td>Open API (BaaS), BI-Fast</td>
+                        </tr>
+                        <tr>
+                            <td><div class="va-feat-label">BI-Fast</div><div class="va-feat-sub">Transfer antar bank modern</div></td>
+                            <td><span class="check-no">✗</span></td>
+                            <td><span class="check-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="va-feat-label">Open Loop (RTOL/ATM-MB)</div></td>
+                            <td><span class="check-no">✗</span></td>
+                            <td><span class="check-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="va-feat-label">SKN / RTGS</div></td>
+                            <td><span class="check-yes">✓</span></td>
+                            <td><span class="check-no">✗</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="va-feat-label">API Integration</div></td>
+                            <td><span class="check-no">✗</span></td>
+                            <td><span class="check-yes">✓ SNAP API</span></td>
+                        </tr>
+                        <tr>
+                            <td><div class="va-feat-label">Fee Transaksi</div></td>
+                            <td>TBD (by Business)</td>
+                            <td>Rp 2.000 / transaksi</td>
+                        </tr>
+                        <tr>
+                            <td><div class="va-feat-label">Limit Transaksi</div></td>
+                            <td>Rp 1,5 Miliar</td>
+                            <td>Rp 1,5 Miliar</td>
+                        </tr>
+                        <tr>
+                            <td><div class="va-feat-label">Generate VA</div></td>
+                            <td>Single via NobuLink 2 / Bulk oleh IT</td>
+                            <td>Dikelola penuh oleh Partner</td>
+                        </tr>
+                        <tr>
+                            <td><div class="va-feat-label">Notifikasi Payment</div></td>
+                            <td>Reporting NobuLink 2</td>
+                            <td>Webhook real-time ke Partner</td>
+                        </tr>
+                        <tr>
+                            <td><div class="va-feat-label">Cocok untuk</div></td>
+                            <td>Grup korporat (Lippo, dll)</td>
+                            <td>Fintech, PG, e-commerce, BaaS</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="font-size:0.78rem;color:var(--text-muted);margin-top:14px;text-align:center;">
+                <i data-lucide="info" size="12" style="vertical-align:middle;margin-right:4px;color:var(--green);"></i>
+                Platform Matcha (New Platform) unggul di BI-Fast yang lebih cepat untuk transaksi Open Loop. Untuk kebutuhan SKN/RTGS, masih menggunakan sistem Vlink (Legacy).
+            </p>
+        </div>
+    </section>
+
+    <!-- FITUR LENGKAP -->
+    <section class="va-section alt-bg" id="fitur">
+        <div class="container">
+            <div class="va-section-header">
+                <div class="va-section-eyebrow"><i data-lucide="star" size="12"></i> Fitur</div>
+                <h2 class="va-section-title">Semua yang Anda Butuhkan</h2>
+                <p class="va-section-desc">Infrastruktur VA Nobu dirancang untuk skala enterprise dengan fleksibilitas penuh untuk partner BaaS.</p>
+            </div>
+            <div class="va-feat-grid">
+                <div class="va-feat-card">
+                    <div class="va-feat-card-icon"><i data-lucide="fingerprint" size="20"></i></div>
+                    <div class="va-feat-card-title">VA Number Unik 16 Digit</div>
+                    <p class="va-feat-card-desc">Setiap VA terdiri dari 6 digit prefix Nobu + 10 digit unik yang dikelola Partner. Mendukung identifikasi pembayaran otomatis tanpa rekonsiliasi manual.</p>
+                </div>
+                <div class="va-feat-card">
+                    <div class="va-feat-card-icon"><i data-lucide="toggle-left" size="20"></i></div>
+                    <div class="va-feat-card-title">Open & Close Amount</div>
+                    <p class="va-feat-card-desc">Configurable sesuai kebutuhan. Close Amount: pembayaran harus exact match. Open Amount: terima nominal berapa saja. Keputusan reject/accept ada di sisi Partner.</p>
+                </div>
+                <div class="va-feat-card">
+                    <div class="va-feat-card-icon"><i data-lucide="bell" size="20"></i></div>
+                    <div class="va-feat-card-title">Webhook Notifikasi Real-time</div>
+                    <p class="va-feat-card-desc">Notifikasi status pembayaran dikirim langsung ke endpoint Partner secara real-time. Tidak perlu polling — sistem Anda bereaksi instan saat pembayaran masuk.</p>
+                </div>
+                <div class="va-feat-card">
+                    <div class="va-feat-card-icon"><i data-lucide="wifi" size="20"></i></div>
+                    <div class="va-feat-card-title">Multi-Channel Payment</div>
+                    <p class="va-feat-card-desc">Terima pembayaran dari BI-Fast, RTOL, SKN, RTGS, nobuGo, dan NobuLink. Jangkau pembayar dari bank manapun di Indonesia.</p>
+                </div>
+                <div class="va-feat-card">
+                    <div class="va-feat-card-icon"><i data-lucide="file-text" size="20"></i></div>
+                    <div class="va-feat-card-title">Transaction Reporting</div>
+                    <p class="va-feat-card-desc">Laporan transaksi dikirim via Email / SFTP setiap H+1. Download juga tersedia langsung dari NobuLink (Internet Banking Corp Dashboard).</p>
+                </div>
+                <div class="va-feat-card">
+                    <div class="va-feat-card-icon"><i data-lucide="settings" size="20"></i></div>
+                    <div class="va-feat-card-title">Full Partner Control</div>
+                    <p class="va-feat-card-desc">Partner mengelola penuh 10 digit unik, penamaan VA, dan business rules. Nobu menyediakan infrastruktur — Anda yang mengatur logika bisnis.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ALUR INTEGRASI -->
+    <section class="va-section" id="alur">
+        <div class="container">
+            <div class="va-section-header">
+                <div class="va-section-eyebrow"><i data-lucide="git-branch" size="12"></i> Alur Integrasi</div>
+                <h2 class="va-section-title">Dari Integrasi ke Pembayaran</h2>
+                <p class="va-section-desc">Proses VA Online berjalan dalam 4 langkah — dari API setup hingga notifikasi pembayaran masuk ke sistem Anda.</p>
+            </div>
+            <div class="va-flow-grid">
+                <div class="va-flow-step">
+                    <div class="va-flow-num">1</div>
+                    <div class="va-flow-step-title">API Integration</div>
+                    <p class="va-flow-step-desc">Partner integrasikan sistem ke Nobu via SNAP API. Nobu menyediakan prefix 6 digit.</p>
+                    <div class="va-flow-step-who"><i data-lucide="user" size="10"></i> Partner</div>
+                </div>
+                <div class="va-flow-step">
+                    <div class="va-flow-num">2</div>
+                    <div class="va-flow-step-title">Generate VA Number</div>
+                    <p class="va-flow-step-desc">Partner menerbitkan VA 16 digit menggunakan prefix Nobu + 10 digit unik yang dikelola Partner.</p>
+                    <div class="va-flow-step-who"><i data-lucide="user" size="10"></i> Partner</div>
+                </div>
+                <div class="va-flow-step">
+                    <div class="va-flow-num">3</div>
+                    <div class="va-flow-step-title">Customer Payment</div>
+                    <p class="va-flow-step-desc">Customer bayar via BI-Fast, RTOL, SKN, RTGS, atau nobuGo. Nobu memproses secara real-time.</p>
+                    <div class="va-flow-step-who"><i data-lucide="users" size="10"></i> Customer</div>
+                </div>
+                <div class="va-flow-step">
+                    <div class="va-flow-num">4</div>
+                    <div class="va-flow-step-title">Webhook & Settlement</div>
+                    <p class="va-flow-step-desc">Nobu kirim notifikasi payment ke Partner. Dana settled ke rekening Giro secara real-time.</p>
+                    <div class="va-flow-step-who"><i data-lucide="building" size="10"></i> Nobu Bank</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RAKD & KEAMANAN -->
+    <section class="va-section dark-bg" id="rakd">
+        <div class="container">
+            <div class="va-section-header">
+                <div class="va-section-eyebrow dark"><i data-lucide="shield" size="12"></i> Keamanan & Compliance</div>
+                <h2 class="va-section-title light">VA – PG – RAKD</h2>
+                <p class="va-section-desc light">Anti-Kejahatan Keuangan Digital terintegrasi dalam ekosistem Payment Gateway — sesuai arahan OJK dan Bank Indonesia.</p>
+            </div>
+            <div class="rakd-grid">
+                <div>
+                    <p class="rakd-desc">VA-PG-RAKD adalah skema VA dalam ekosistem Payment Gateway yang dilengkapi Fraud Detection System dan Name Verification. Sistem ini menjadi lapisan keamanan wajib sesuai regulasi OJK dan BI untuk transaksi payment gateway.</p>
+                    <div class="rakd-highlight-list">
+                        <div class="rakd-hl-item">
+                            <div class="rakd-hl-icon"><i data-lucide="radar" size="16"></i></div>
+                            <div class="rakd-hl-text">
+                                <strong>Fraud Detection System (FDS)</strong>
+                                <span>Deteksi transaksi mencurigakan secara near real-time berdasarkan parameter arahan OJK & BI. Penerapan FDS wajib sesuai regulasi.</span>
+                            </div>
+                        </div>
+                        <div class="rakd-hl-item">
+                            <div class="rakd-hl-icon"><i data-lucide="user-check" size="16"></i></div>
+                            <div class="rakd-hl-text">
+                                <strong>Name Verification (Existing)</strong>
+                                <span>Verifikasi pada proses Payment: minimal 2 kata identik antara nama pengirim dan nama VA dianggap match. Berjalan saat ini.</span>
+                            </div>
+                        </div>
+                        <div class="rakd-hl-item">
+                            <div class="rakd-hl-icon"><i data-lucide="id-card" size="16"></i></div>
+                            <div class="rakd-hl-text">
+                                <strong>Validasi NIK via Dukcapil (Next Phase)</strong>
+                                <span>Rencana: PG kirim NIK → Nobu validasi ke Dukcapil → exact name matching. Meningkatkan akurasi verifikasi identitas pembayar.</span>
+                            </div>
+                        </div>
+                        <div class="rakd-hl-item">
+                            <div class="rakd-hl-icon"><i data-lucide="refresh-cw" size="16"></i></div>
+                            <div class="rakd-hl-text">
+                                <strong>Auto-Reversal RTOL</strong>
+                                <span>Transaksi RTOL yang tidak match otomatis di-reverse. Untuk BI-Fast, BRD sudah dibuat dan sedang dalam assessment tim DDT.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rakd-visual">
+                    <div class="rakd-visual-title">
+                        <i data-lucide="shield-check" size="13"></i>
+                        Simulasi Name Matching
+                    </div>
+                    <div class="name-match-list">
+                        <div class="name-match-item match">
+                            <div>
+                                <div class="nm-label">VA Name</div>
+                                <div class="nm-val">Dwi Puji Lestari</div>
+                            </div>
+                            <div>
+                                <div class="nm-label">Sender Name</div>
+                                <div class="nm-val">Dwi Puji</div>
+                            </div>
+                            <span class="nm-badge match">✓ MATCH</span>
+                        </div>
+                        <div class="name-match-item review">
+                            <div>
+                                <div class="nm-label">VA Name</div>
+                                <div class="nm-val">Budi Santoso</div>
+                            </div>
+                            <div>
+                                <div class="nm-label">Sender Name</div>
+                                <div class="nm-val">Budi</div>
+                            </div>
+                            <span class="nm-badge review">⚠ REVIEW</span>
+                        </div>
+                        <div class="name-match-item no-match">
+                            <div>
+                                <div class="nm-label">VA Name</div>
+                                <div class="nm-val">Andi Pratama</div>
+                            </div>
+                            <div>
+                                <div class="nm-label">Sender Name</div>
+                                <div class="nm-val">Siti Rahayu</div>
+                            </div>
+                            <span class="nm-badge no-match">✗ TOLAK</span>
+                        </div>
+                    </div>
+                    <div class="rakd-note">
+                        <i data-lucide="info" size="13"></i>
+                        <span>Meski 2 kata identik sudah dianggap MATCH, OJK memiliki concern bahwa nama sama belum tentu orang yang sama. Validasi berbasis NIK sedang dikembangkan sebagai solusi Next Phase.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="va-cta-section">
+        <div class="va-cta-orb"></div>
+        <div class="container">
+            <h2 class="va-cta-title">Siap Integrasikan VA Nobu?</h2>
+            <p class="va-cta-desc">Bergabung dengan partner yang sudah menggunakan infrastruktur Virtual Account Nobu Bank untuk koleksi pembayaran mereka.</p>
+            <div class="va-cta-actions">
+                <button class="btn-primary lg">
+                    <i data-lucide="zap" size="16"></i>
+                    Mulai Integrasi Sekarang
+                </button>
+                <button class="btn-outline" style="border-color:rgba(255,255,255,0.2);color:#fff;">
+                    <i data-lucide="mail" size="16"></i>
+                    Hubungi Tim BaaS
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand-col">
+                    <a href="index.html" class="footer-logo-link">
+                        <img src="nobu-logo.png" alt="Nobu Bank" style="height:28px;width:auto;">
+                    </a>
+                    <p class="footer-tagline">Infrastruktur Banking untuk Ekosistem Digital Indonesia.</p>
+                    <div class="footer-socials">
+                        <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" size="16"></i></a>
+                        <a href="#" aria-label="Twitter"><i data-lucide="twitter" size="16"></i></a>
+                        <a href="#" aria-label="Instagram"><i data-lucide="instagram" size="16"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links-group">
+                    <h5>Produk BaaS</h5>
+                    <a href="index.html#qr-section">QRIS Solutions</a>
+                    <a href="index.html#payout-section">Payout Disbursement</a>
+                    <a href="index.html#madera-section">CoBrand Saving by Madera</a>
+                    <a href="va.html">Virtual Account</a>
+                </div>
+                <div class="footer-links-group">
+                    <h5>Developer</h5>
+                    <a href="#">API Documentation</a>
+                    <a href="#">Sandbox Environment</a>
+                    <a href="#">SDK & Libraries</a>
+                    <a href="#">Changelog</a>
+                    <a href="#">Status Page</a>
+                </div>
+                <div class="footer-links-group">
+                    <h5>Perusahaan</h5>
+                    <a href="#">Tentang Nobu Bank</a>
+                    <a href="#">Partner Program</a>
+                    <a href="#">Karir</a>
+                    <a href="#">Blog & Insights</a>
+                    <a href="#">Kebijakan Privasi</a>
+                </div>
+                <div class="footer-contact-col">
+                    <h5>Hubungi Kami</h5>
+                    <div class="contact-item">
+                        <i data-lucide="map-pin" size="14"></i>
+                        <span>Graha Nobu, Tangerang, Indonesia</span>
+                    </div>
+                    <div class="contact-item">
+                        <i data-lucide="mail" size="14"></i>
+                        <a href="mailto:openbanking@nobubank.com">openbanking@nobubank.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <i data-lucide="phone" size="14"></i>
+                        <a href="tel:+6221500123">+62 21 500 123</a>
+                    </div>
+                    <div class="footer-badges">
+                        <div class="ojk-badge"><i data-lucide="shield" size="12"></i> OJK</div>
+                        <div class="ojk-badge"><i data-lucide="award" size="12"></i> SNAP BI</div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 PT Bank Nationalnobu Tbk. Terdaftar & Diawasi oleh Otoritas Jasa Keuangan (OJK).</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Syarat & Ketentuan</a>
+                    <a href="#">Kebijakan Privasi</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Animated live transactions
+        const trxData = [
+            { name: 'PT Mitra Digital', va: '8991 2345', channel: 'BI-Fast', amount: 'Rp 5.000.000' },
+            { name: 'CV Sukses Mandiri', va: '8991 6789', channel: 'RTOL', amount: 'Rp 250.000' },
+            { name: 'Tokocrypto', va: '8991 1122', channel: 'nobuGo', amount: 'Rp 1.200.000' },
+            { name: 'DurianPay Merchant', va: '8890 4433', channel: 'BI-Fast', amount: 'Rp 750.000' },
+            { name: 'PT Signal Samsat', va: '8991 7700', channel: 'SKN', amount: 'Rp 12.500.000' },
+            { name: 'Mobee Indonesia', va: '8890 9988', channel: 'BI-Fast', amount: 'Rp 89.000' },
+        ];
+        let trxIdx = 0;
+        function addTrx() {
+            const list = document.getElementById('vaTrxList');
+            if (!list) return;
+            const d = trxData[trxIdx % trxData.length]; trxIdx++;
+            const secs = Math.floor(Math.random() * 55) + 2;
+            const el = document.createElement('div');
+            el.className = 'va-trx-item'; el.style.opacity = '0'; el.style.transform = 'translateY(-8px)'; el.style.transition = 'all 0.4s ease';
+            el.innerHTML = `<div class="va-trx-dot"></div><div class="va-trx-info"><div class="va-trx-name">${d.name} — VA #${d.va}</div><div class="va-trx-time">${d.channel} • ${secs} detik lalu</div></div><span class="va-trx-amount">${d.amount}</span>`;
+            list.prepend(el);
+            setTimeout(() => { el.style.opacity = '1'; el.style.transform = 'translateY(0)'; }, 50);
+            while (list.children.length > 4) list.removeChild(list.lastChild);
+        }
+        setInterval(addTrx, 3000);
+
+        // In-page nav active state
+        const navLinks = document.querySelectorAll('.va-nav-link');
+        const sections = document.querySelectorAll('[id]');
+        window.addEventListener('scroll', () => {
+            let cur = '';
+            sections.forEach(s => { if (window.scrollY >= s.offsetTop - 160) cur = s.id; });
+            navLinks.forEach(l => {
+                l.classList.remove('active-pn');
+                if (l.getAttribute('href') === '#' + cur) l.classList.add('active-pn');
+            });
+        });
+    </script>
+</body>
+</html>
