@@ -38,7 +38,7 @@
    BASE RESET & GLOBAL
    ============================================= */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; font-size: 16px; }
+html { scroll-behavior: smooth; font-size: 16px; scroll-padding-top: 80px; }
 
 body {
     font-family: var(--font-body);
@@ -3409,7 +3409,7 @@ tbody tr.featured-row:hover td { background: rgba(0,212,143,0.08); }
 #va-section,
 #integration-section,
 #pricing-section {
-    scroll-margin-top: 72px;
+    scroll-margin-top: 80px;
 }
 
 /* ── Language selector (index soundbox) ── */
