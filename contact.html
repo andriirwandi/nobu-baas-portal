@@ -107,9 +107,20 @@
             border: 1.5px solid var(--border); display: flex; align-items: center;
             justify-content: center; flex-shrink: 0; transition: all 0.2s; background: #fff;
         }
-        .product-check-item.selected .product-check-box {
-            background: var(--green); border-color: var(--green); color: #fff;
+        .product-check-box::after {
+            content: '';
+            display: block;
+            width: 5px; height: 9px;
+            border: 2px solid #fff;
+            border-top: none; border-left: none;
+            transform: rotate(45deg) translateY(-1px);
+            opacity: 0;
+            transition: opacity 0.15s;
         }
+        .product-check-item.selected .product-check-box {
+            background: var(--green); border-color: var(--green);
+        }
+        .product-check-item.selected .product-check-box::after { opacity: 1; }
         .product-check-icon { font-size: 1rem; }
         .product-check-label { font-size: 0.82rem; font-weight: 600; color: var(--text-dark); line-height: 1.3; }
         .product-check-sub { font-size: 0.7rem; color: var(--text-muted); font-weight: 400; }
@@ -401,42 +412,38 @@
                         </div>
                         <div class="form-group">
                             <div class="product-select-grid" id="productGrid">
-                                <label class="product-check-item" onclick="toggleProduct(this)">
-                                    <input type="checkbox" value="QRIS Solutions">
-                                    <div class="product-check-box"><i data-lucide="check" size="11"></i></div>
+                                <div class="product-check-item" data-value="QRIS Solutions">
+                                    <div class="product-check-box"></div>
                                     <span class="product-check-icon">🔲</span>
                                     <div>
                                         <div class="product-check-label">QRIS Solutions</div>
                                         <div class="product-check-sub">Payment Acceptance</div>
                                     </div>
-                                </label>
-                                <label class="product-check-item" onclick="toggleProduct(this)">
-                                    <input type="checkbox" value="Payout Disbursement">
-                                    <div class="product-check-box"><i data-lucide="check" size="11"></i></div>
+                                </div>
+                                <div class="product-check-item" data-value="Payout Disbursement">
+                                    <div class="product-check-box"></div>
                                     <span class="product-check-icon">💸</span>
                                     <div>
                                         <div class="product-check-label">Payout Disbursement</div>
                                         <div class="product-check-sub">Transfer & Pencairan Dana</div>
                                     </div>
-                                </label>
-                                <label class="product-check-item" onclick="toggleProduct(this)">
-                                    <input type="checkbox" value="Virtual Account">
-                                    <div class="product-check-box"><i data-lucide="check" size="11"></i></div>
+                                </div>
+                                <div class="product-check-item" data-value="Virtual Account">
+                                    <div class="product-check-box"></div>
                                     <span class="product-check-icon">🏦</span>
                                     <div>
                                         <div class="product-check-label">Virtual Account</div>
                                         <div class="product-check-sub">Koleksi Pembayaran</div>
                                     </div>
-                                </label>
-                                <label class="product-check-item" onclick="toggleProduct(this)">
-                                    <input type="checkbox" value="CoBrand Saving Madera">
-                                    <div class="product-check-box"><i data-lucide="check" size="11"></i></div>
+                                </div>
+                                <div class="product-check-item" data-value="CoBrand Saving Madera">
+                                    <div class="product-check-box"></div>
                                     <span class="product-check-icon">🌿</span>
                                     <div>
                                         <div class="product-check-label">CoBrand Saving</div>
                                         <div class="product-check-sub">Embedded Banking by Madera</div>
                                     </div>
-                                </label>
+                                </div>
                             </div>
                             <span class="form-error-msg" id="errProduct">Pilih minimal satu produk</span>
                         </div>
@@ -642,11 +649,12 @@
         // ── State ─────────────────────────────────────────────────────
         let selectedScale = '';
 
-        function toggleProduct(el) {
-            el.classList.toggle('selected');
-            const cb = el.querySelector('input[type="checkbox"]');
-            cb.checked = !cb.checked;
-        }
+        // Product checkboxes — use div + data-value, no real checkbox
+        document.querySelectorAll('.product-check-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('selected');
+            });
+        });
 
         function selectScale(btn) {
             document.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('selected'));
@@ -680,7 +688,7 @@
                 }
             });
 
-            const products = [...document.querySelectorAll('#productGrid input:checked')].map(c => c.value);
+            const products = [...document.querySelectorAll('#productGrid .product-check-item.selected')].map(c => c.dataset.value);
             const errProduct = document.getElementById('errProduct');
             if (products.length === 0) {
                 errProduct.classList.add('visible');
