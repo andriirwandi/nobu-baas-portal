@@ -241,7 +241,7 @@
                     <h1 class="va-hero-title">
                         Virtual Account<br><span class="hl">Infrastruktur Koleksi</span><br>Pembayaran Modern
                     </h1>
-                    <p class="va-hero-desc">Sediakan nomor VA unik per pelanggan atau per transaksi. Identifikasi pembayaran otomatis, settlement real-time, dan notifikasi webhook langsung ke sistem Anda — didukung SNAP API Bank Indonesia.</p>
+                    <p class="va-hero-desc">Sediakan nomor rekening virtual unik untuk setiap pelanggan atau transaksi. Identifikasi pembayaran otomatis, settlement real-time, dan notifikasi langsung ke sistem Anda — tanpa rekonsiliasi manual.</p>
                     <div class="va-hero-badges">
                         <span class="va-hero-badge"><i data-lucide="zap" size="12"></i> SNAP BI Certified</span>
                         <span class="va-hero-badge"><i data-lucide="shield-check" size="12"></i> OJK Licensed</span>
@@ -347,8 +347,8 @@
                     <div class="va-type-icon"><i data-lucide="globe" size="22"></i></div>
                     <div class="va-type-tag online"><i data-lucide="zap" size="10"></i> VA Online</div>
                     <div class="va-type-title">VA Online</div>
-                    <div class="va-type-platform">Platform: Matcha (New Platform) · SNAP API</div>
-                    <p class="va-type-desc">Solusi VA berbasis API modern. Partner mengelola VA Number sendiri, Nobu berperan sebagai pass-through untuk inquiry dan payment. Cocok untuk fintech, e-commerce, dan payment gateway.</p>
+                    <div class="va-type-platform">Integrasi API · SNAP BI Certified</div>
+                    <p class="va-type-desc">Solusi VA berbasis API untuk bisnis digital. Partner menerbitkan dan mengelola nomor VA sendiri, sementara Nobu memproses setiap pembayaran secara real-time. Ideal untuk fintech, e-commerce, dan payment gateway.</p>
                     <div class="va-type-features">
                         <div class="va-type-feat"><i data-lucide="check" size="13"></i><span>16 digit VA Number unik per transaksi</span></div>
                         <div class="va-type-feat"><i data-lucide="check" size="13"></i><span>Customizable prefix 6 digit dari Nobu</span></div>
@@ -364,11 +364,11 @@
                     <div class="va-type-icon" style="background:rgba(59,130,246,0.1);color:#3b82f6;"><i data-lucide="landmark" size="22"></i></div>
                     <div class="va-type-tag offline"><i data-lucide="cpu" size="10"></i> VA Offline</div>
                     <div class="va-type-title">VA Offline</div>
-                    <div class="va-type-platform">Platform: Vlink (Legacy) · Kanal Fisik</div>
-                    <p class="va-type-desc">Solusi VA melalui kanal fisik dan internet banking korporat. Ideal untuk grup korporat besar, khususnya yang membutuhkan pembayaran via ATM dan teller Nobu.</p>
+                    <div class="va-type-platform">Kanal Konvensional · Tanpa Integrasi API</div>
+                    <p class="va-type-desc">Solusi VA untuk bisnis yang menerima pembayaran lewat ATM dan teller bank. Tidak membutuhkan integrasi teknis — cocok untuk korporat yang sudah familiar dengan layanan perbankan konvensional.</p>
                     <div class="va-type-features">
                         <div class="va-type-feat"><i data-lucide="check" size="13"></i><span style="color:#3b82f6;">Kanal: ATM Nobu, RiB, Teller/Branch</span></div>
-                        <div class="va-type-feat"><i data-lucide="check" size="13"></i><span>Prefix 888XXX untuk sistem Vlink</span></div>
+                        <div class="va-type-feat"><i data-lucide="check" size="13"></i><span>Prefix unik per perusahaan dari Nobu</span></div>
                         <div class="va-type-feat"><i data-lucide="check" size="13"></i><span>Open & Close Amount via e-Channel</span></div>
                         <div class="va-type-feat"><i data-lucide="check" size="13"></i><span>SKN / RTGS didukung</span></div>
                         <div class="va-type-feat"><i data-lucide="check" size="13"></i><span>Reporting via NobuLink 2</span></div>
@@ -410,8 +410,8 @@
                     <thead>
                         <tr>
                             <th>Aspek</th>
-                            <th><div class="va-col-header"><div class="va-col-name">VA Offline</div><div class="va-col-sub">Vlink · Legacy</div></div></th>
-                            <th><div class="va-col-header"><div class="va-col-name">VA Online</div><div class="va-col-sub">Matcha · New Platform</div></div></th>
+                            <th><div class="va-col-header"><div class="va-col-name">VA Offline</div><div class="va-col-sub">Kanal Konvensional</div></div></th>
+                            <th><div class="va-col-header"><div class="va-col-name">VA Online</div><div class="va-col-sub">Integrasi API</div></div></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -452,7 +452,7 @@
                         </tr>
                         <tr>
                             <td><div class="va-feat-label">Generate VA</div></td>
-                            <td>Single via NobuLink 2 / Bulk oleh IT</td>
+                            <td>Disediakan oleh tim Nobu</td>
                             <td>Dikelola penuh oleh Partner</td>
                         </tr>
                         <tr>
@@ -470,7 +470,7 @@
             </div>
             <p style="font-size:0.78rem;color:var(--text-muted);margin-top:14px;text-align:center;">
                 <i data-lucide="info" size="12" style="vertical-align:middle;margin-right:4px;color:var(--green);"></i>
-                Platform Matcha (New Platform) unggul di BI-Fast yang lebih cepat untuk transaksi Open Loop. Untuk kebutuhan SKN/RTGS, masih menggunakan sistem Vlink (Legacy).
+                VA Online unggul di BI-Fast yang lebih cepat untuk transaksi antar bank. Untuk kebutuhan SKN/RTGS, gunakan VA Offline.
             </p>
         </div>
     </section>
@@ -512,7 +512,7 @@
                 <div class="va-feat-card">
                     <div class="va-feat-card-icon"><i data-lucide="settings" size="20"></i></div>
                     <div class="va-feat-card-title">Full Partner Control</div>
-                    <p class="va-feat-card-desc">Partner mengelola penuh 10 digit unik, penamaan VA, dan business rules. Nobu menyediakan infrastruktur — Anda yang mengatur logika bisnis.</p>
+                    <p class="va-feat-card-desc">Anda menentukan nomor VA, nama penerima, dan aturan bisnis sesuai kebutuhan. Nobu menyediakan infrastruktur pembayarannya.</p>
                 </div>
             </div>
         </div>
@@ -530,7 +530,7 @@
                 <div class="va-flow-step">
                     <div class="va-flow-num">1</div>
                     <div class="va-flow-step-title">API Integration</div>
-                    <p class="va-flow-step-desc">Partner integrasikan sistem ke Nobu via SNAP API. Nobu menyediakan prefix 6 digit.</p>
+                    <p class="va-flow-step-desc">Hubungkan sistem Anda ke Nobu melalui SNAP API. Tim Nobu menyediakan prefix VA khusus untuk bisnis Anda.</p>
                     <div class="va-flow-step-who"><i data-lucide="user" size="10"></i> Partner</div>
                 </div>
                 <div class="va-flow-step">
@@ -592,7 +592,7 @@
                             <div class="rakd-hl-icon"><i data-lucide="refresh-cw" size="16"></i></div>
                             <div class="rakd-hl-text">
                                 <strong>Auto-Reversal RTOL</strong>
-                                <span>Transaksi RTOL yang tidak match otomatis di-reverse. Untuk BI-Fast, BRD sudah dibuat dan sedang dalam assessment tim DDT.</span>
+                                <span>Transaksi yang tidak lolos verifikasi otomatis dibatalkan dan dikembalikan. Keamanan berjalan tanpa perlu intervensi manual dari Partner.</span>
                             </div>
                         </div>
                     </div>
@@ -639,7 +639,7 @@
                     </div>
                     <div class="rakd-note">
                         <i data-lucide="info" size="13"></i>
-                        <span>Meski 2 kata identik sudah dianggap MATCH, OJK memiliki concern bahwa nama sama belum tentu orang yang sama. Validasi berbasis NIK sedang dikembangkan sebagai solusi Next Phase.</span>
+                        <span>Sistem verifikasi nama terus ditingkatkan sesuai arahan OJK. Ke depan, validasi akan semakin ketat untuk memastikan keamanan setiap transaksi.</span>
                     </div>
                 </div>
             </div>
@@ -666,13 +666,13 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="site-footer">
+    <footer class="footer">
         <div class="container">
-            <div class="footer-grid">
+            <div class="footer-top">
                 <div class="footer-brand-col">
-                    <a href="index.html" class="footer-logo-link">
+                    <div class="footer-logo">
                         <img src="nobu-logo.png" alt="Nobu Bank" style="height:28px;width:auto;">
-                    </a>
+                    </div>
                     <p class="footer-tagline">Infrastruktur Banking untuk Ekosistem Digital Indonesia.</p>
                     <div class="footer-socials">
                         <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" size="16"></i></a>
