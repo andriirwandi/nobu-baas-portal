@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hubungi Kami | Nobu Bank BaaS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ── Contact Page ── */
+        .contact-hero {
+            padding: 80px 0 60px;
+            background: linear-gradient(160deg, #f0faf6 0%, #f7faf9 60%, #edf7f3 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-hero-grid {
+            position: absolute; inset: 0;
+            background-image: linear-gradient(rgba(0,212,143,0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0,212,143,0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .contact-hero-orb {
+            position: absolute; width: 500px; height: 500px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(0,212,143,0.1) 0%, transparent 70%);
+            top: -150px; right: -100px; pointer-events: none;
+        }
+        .contact-hero-inner {
+            position: relative; text-align: center; max-width: 640px; margin: 0 auto;
+        }
+        .contact-eyebrow {
+            display: inline-flex; align-items: center; gap: 7px;
+            background: var(--green-dim); color: var(--green);
+            font-size: 0.72rem; font-weight: 700; letter-spacing: 0.5px;
+            text-transform: uppercase; padding: 5px 14px; border-radius: 20px;
+            margin-bottom: 18px;
+        }
+        .contact-hero-title {
+            font-family: var(--font-display); font-size: 2.8rem; font-weight: 800;
+            color: var(--text-dark); line-height: 1.1; margin-bottom: 14px;
+        }
+        .contact-hero-title span { color: var(--green); }
+        .contact-hero-desc {
+            color: var(--text-muted); font-size: 0.95rem; line-height: 1.7;
+        }
+
+        /* ── Layout ── */
+        .contact-body { padding: 60px 0 80px; background: var(--surface); }
+        .contact-grid {
+            display: grid; grid-template-columns: 1fr 380px; gap: 48px; align-items: start;
+        }
+
+        /* ── Form Card ── */
+        .contact-form-card {
+            background: #fff; border: 1px solid var(--border);
+            border-radius: 20px; padding: 40px; box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+        }
+        .form-section-title {
+            font-family: var(--font-display); font-size: 1.1rem; font-weight: 700;
+            color: var(--text-dark); margin-bottom: 20px; padding-bottom: 12px;
+            border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px;
+        }
+        .form-section-title i { color: var(--green); }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; }
+        .form-group label {
+            font-size: 0.78rem; font-weight: 600; color: var(--text-dark);
+        }
+        .form-group label .required { color: var(--green); margin-left: 2px; }
+        .form-control {
+            padding: 11px 14px; border-radius: 10px;
+            border: 1.5px solid var(--border); font-size: 0.85rem;
+            font-family: var(--font-body); color: var(--text-dark);
+            background: #fff; transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none; width: 100%; box-sizing: border-box;
+        }
+        .form-control:focus {
+            border-color: var(--green);
+            box-shadow: 0 0 0 3px rgba(0,212,143,0.1);
+        }
+        .form-control::placeholder { color: var(--text-muted); opacity: 0.7; }
+        .form-control.error { border-color: #ef4444; box-shadow: 0 0 0 3px rgba(239,68,68,0.1); }
+        .form-error-msg { font-size: 0.72rem; color: #ef4444; display: none; }
+        .form-error-msg.visible { display: block; }
+        textarea.form-control { resize: vertical; min-height: 100px; line-height: 1.6; }
+
+        /* Product checkboxes */
+        .product-select-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+        }
+        .product-check-item {
+            display: flex; align-items: center; gap: 10px;
+            padding: 10px 14px; border-radius: 10px;
+            border: 1.5px solid var(--border); cursor: pointer;
+            transition: all 0.2s; user-select: none;
+        }
+        .product-check-item:hover { border-color: var(--green); background: rgba(0,212,143,0.03); }
+        .product-check-item.selected {
+            border-color: var(--green); background: var(--green-dim);
+        }
+        .product-check-item input[type="checkbox"] { display: none; }
+        .product-check-box {
+            width: 18px; height: 18px; border-radius: 5px;
+            border: 1.5px solid var(--border); display: flex; align-items: center;
+            justify-content: center; flex-shrink: 0; transition: all 0.2s; background: #fff;
+        }
+        .product-check-item.selected .product-check-box {
+            background: var(--green); border-color: var(--green); color: #fff;
+        }
+        .product-check-icon { font-size: 1rem; }
+        .product-check-label { font-size: 0.82rem; font-weight: 600; color: var(--text-dark); line-height: 1.3; }
+        .product-check-sub { font-size: 0.7rem; color: var(--text-muted); font-weight: 400; }
+
+        /* Scale selector */
+        .scale-options { display: flex; gap: 8px; flex-wrap: wrap; }
+        .scale-btn {
+            padding: 7px 14px; border-radius: 8px; font-size: 0.78rem; font-weight: 600;
+            border: 1.5px solid var(--border); background: #fff; color: var(--text-muted);
+            cursor: pointer; transition: all 0.2s; font-family: var(--font-body);
+        }
+        .scale-btn:hover { border-color: var(--green); color: var(--green); }
+        .scale-btn.selected { background: var(--green); border-color: var(--green); color: #fff; }
+
+        /* Submit button */
+        .form-submit-row {
+            display: flex; gap: 12px; align-items: center;
+            margin-top: 8px; padding-top: 24px; border-top: 1px solid var(--border);
+        }
+        .btn-submit {
+            flex: 1; padding: 14px 24px; border-radius: 12px;
+            background: var(--green); border: none; color: #fff;
+            font-family: var(--font-display); font-size: 0.95rem; font-weight: 700;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            gap: 8px; transition: all 0.2s; box-shadow: 0 4px 16px var(--green-glow);
+        }
+        .btn-submit:hover { transform: translateY(-1px); box-shadow: 0 8px 24px var(--green-glow); }
+        .btn-submit:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+        .btn-submit .spinner {
+            width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: #fff; border-radius: 50%; animation: spin 0.7s linear infinite; display: none;
+        }
+        .btn-submit.loading .spinner { display: block; }
+        .btn-submit.loading .btn-label { display: none; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .form-privacy {
+            font-size: 0.7rem; color: var(--text-muted); line-height: 1.5; max-width: 240px;
+        }
+        .form-privacy i { color: var(--green); vertical-align: middle; }
+
+        /* Success state */
+        .form-success {
+            display: none; text-align: center; padding: 40px 20px;
+        }
+        .form-success.visible { display: block; }
+        .success-icon {
+            width: 64px; height: 64px; border-radius: 50%; background: var(--green-dim);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--green); margin: 0 auto 16px; font-size: 2rem;
+        }
+        .success-title {
+            font-family: var(--font-display); font-size: 1.4rem; font-weight: 700;
+            color: var(--text-dark); margin-bottom: 8px;
+        }
+        .success-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px; }
+
+        /* ── Sidebar ── */
+        .contact-sidebar { display: flex; flex-direction: column; gap: 16px; }
+
+        .sidebar-card {
+            background: #fff; border: 1px solid var(--border);
+            border-radius: 16px; padding: 24px;
+        }
+        .sidebar-card-title {
+            font-size: 0.8rem; font-weight: 700; color: var(--text-dark);
+            text-transform: uppercase; letter-spacing: 0.4px;
+            display: flex; align-items: center; gap: 7px; margin-bottom: 16px;
+        }
+        .sidebar-card-title i { color: var(--green); }
+
+        /* WA Card */
+        .wa-card {
+            background: linear-gradient(135deg, #0a2a1f 0%, #0d3324 100%);
+            border: none; cursor: pointer; text-decoration: none; display: block;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .wa-card:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,212,143,0.2); }
+        .wa-icon {
+            width: 44px; height: 44px; border-radius: 12px;
+            background: rgba(0,212,143,0.15); display: flex; align-items: center;
+            justify-content: center; margin-bottom: 12px;
+        }
+        .wa-title { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
+        .wa-desc { font-size: 0.78rem; color: rgba(255,255,255,0.55); line-height: 1.5; margin-bottom: 16px; }
+        .wa-btn {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 10px 16px; border-radius: 10px; background: #25D366;
+            color: #fff; font-size: 0.82rem; font-weight: 700; width: 100%;
+            border: none; cursor: pointer; font-family: var(--font-body);
+            transition: background 0.2s;
+        }
+        .wa-btn:hover { background: #20bd5a; }
+
+        /* Process steps */
+        .process-steps { display: flex; flex-direction: column; gap: 14px; }
+        .process-step { display: flex; gap: 12px; align-items: flex-start; }
+        .process-step-num {
+            width: 26px; height: 26px; border-radius: 50%; background: var(--green-dim);
+            color: var(--green); font-size: 0.72rem; font-weight: 800;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .process-step-text strong { display: block; font-size: 0.8rem; font-weight: 700; color: var(--text-dark); }
+        .process-step-text span { font-size: 0.72rem; color: var(--text-muted); line-height: 1.5; }
+
+        /* Trust badges */
+        .trust-list { display: flex; flex-direction: column; gap: 10px; }
+        .trust-item { display: flex; align-items: center; gap: 10px; font-size: 0.8rem; color: var(--text-dark); }
+        .trust-item i { color: var(--green); flex-shrink: 0; }
+
+        /* ── Responsive ── */
+        @media (max-width: 900px) {
+            .contact-grid { grid-template-columns: 1fr; }
+            .contact-sidebar { order: -1; }
+            .wa-card, .sidebar-card:not(.wa-card) { padding: 20px; }
+        }
+        @media (max-width: 560px) {
+            .form-row { grid-template-columns: 1fr; }
+            .product-select-grid { grid-template-columns: 1fr; }
+            .contact-hero-title { font-size: 2rem; }
+            .contact-form-card { padding: 24px; }
+            .form-submit-row { flex-direction: column; }
+            .form-privacy { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-content">
+            <div class="brand-group">
+                <a href="index.html" class="brand-logo" aria-label="Nobu Bank">
+                    <img src="nobu-logo.png" alt="Nobu Bank" class="navbar-logo-img">
+                    <div class="brand-baas-label">
+                        <span class="baas-divider"></span>
+                        <div class="baas-text-group">
+                            <span class="baas-title">Bank as a Service</span>
+                            <span class="baas-sub">Partner Portal</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html#qr-section">QRIS</a>
+                <a href="index.html#payout-section">Payout</a>
+                <a href="index.html#madera-section">Madera</a>
+                <a href="index.html#va-section">Virtual Account</a>
+                <a href="index.html#integration-section">Integrasi</a>
+                <a href="index.html#pricing-section">Pricing</a>
+            </div>
+            <div class="nav-actions">
+                <a href="index.html" class="btn-kembali">
+                    <i data-lucide="arrow-left" size="14"></i>
+                    <span>Kembali</span>
+                </a>
+                <button class="btn-contact active-contact">
+                    <span>Hubungi Kami</span>
+                    <i data-lucide="arrow-right" size="14"></i>
+                </button>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html" class="mobile-link">← Kembali ke Beranda</a>
+            <a href="index.html#qr-section" class="mobile-link">QRIS</a>
+            <a href="index.html#payout-section" class="mobile-link">Payout</a>
+            <a href="index.html#madera-section" class="mobile-link">Madera</a>
+            <a href="index.html#va-section" class="mobile-link">Virtual Account</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="contact-hero">
+        <div class="contact-hero-grid"></div>
+        <div class="contact-hero-orb"></div>
+        <div class="container">
+            <div class="contact-hero-inner">
+                <div class="contact-eyebrow">
+                    <i data-lucide="handshake" size="13"></i>
+                    Jadilah Partner Nobu Bank
+                </div>
+                <h1 class="contact-hero-title">
+                    Mulai <span>Diskusi</span><br>dengan Tim Kami
+                </h1>
+                <p class="contact-hero-desc">
+                    Ceritakan kebutuhan bisnis Anda — tim teknis dan business development kami siap mendampingi dari diskusi awal hingga Go-Live produksi.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- FORM BODY -->
+    <section class="contact-body">
+        <div class="container">
+            <div class="contact-grid">
+
+                <!-- FORM -->
+                <div class="contact-form-card">
+
+                    <!-- Success State -->
+                    <div class="form-success" id="formSuccess">
+                        <div class="success-icon">
+                            <i data-lucide="check" size="28"></i>
+                        </div>
+                        <div class="success-title">Pesan Terkirim! 🎉</div>
+                        <p class="success-desc">
+                            Terima kasih telah menghubungi tim Nobu BaaS.<br>
+                            Kami akan menghubungi Anda dalam <strong>1–2 hari kerja</strong>.<br><br>
+                            Atau langsung chat via WhatsApp untuk respon lebih cepat.
+                        </p>
+                        <a href="https://wa.me/6289507609765" target="_blank" class="wa-btn" style="display:inline-flex;width:auto;padding:10px 24px;border-radius:10px;text-decoration:none;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                            Chat WhatsApp Sekarang
+                        </a>
+                    </div>
+
+                    <!-- Form Content -->
+                    <div id="formContent">
+                        <!-- Bagian 1: Info Perusahaan -->
+                        <div class="form-section-title">
+                            <i data-lucide="building-2" size="16"></i>
+                            Informasi Perusahaan
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Nama Perusahaan <span class="required">*</span></label>
+                                <input type="text" id="companyName" class="form-control" placeholder="PT Mitra Digital Indonesia">
+                                <span class="form-error-msg" id="errCompany">Nama perusahaan wajib diisi</span>
+                            </div>
+                            <div class="form-group">
+                                <label>Industri / Bidang Usaha <span class="required">*</span></label>
+                                <select id="industry" class="form-control">
+                                    <option value="" disabled selected>Pilih industri</option>
+                                    <option>Fintech / Payment</option>
+                                    <option>E-Commerce</option>
+                                    <option>Marketplace</option>
+                                    <option>Logistik & Supply Chain</option>
+                                    <option>Properti & Real Estate</option>
+                                    <option>Pendidikan</option>
+                                    <option>Kesehatan</option>
+                                    <option>Korporasi / Konglomerat</option>
+                                    <option>Startup Digital</option>
+                                    <option>Lainnya</option>
+                                </select>
+                                <span class="form-error-msg" id="errIndustry">Pilih industri bisnis Anda</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Website Perusahaan</label>
+                            <input type="url" id="website" class="form-control" placeholder="https://perusahaan.com">
+                        </div>
+
+                        <!-- Bagian 2: Info PIC -->
+                        <div class="form-section-title" style="margin-top:8px;">
+                            <i data-lucide="user" size="16"></i>
+                            Informasi Contact Person
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Nama Lengkap <span class="required">*</span></label>
+                                <input type="text" id="picName" class="form-control" placeholder="Budi Santoso">
+                                <span class="form-error-msg" id="errName">Nama wajib diisi</span>
+                            </div>
+                            <div class="form-group">
+                                <label>Jabatan</label>
+                                <input type="text" id="picRole" class="form-control" placeholder="CTO / Business Development">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Email <span class="required">*</span></label>
+                                <input type="email" id="picEmail" class="form-control" placeholder="budi@perusahaan.com">
+                                <span class="form-error-msg" id="errEmail">Email tidak valid</span>
+                            </div>
+                            <div class="form-group">
+                                <label>Nomor WhatsApp <span class="required">*</span></label>
+                                <input type="tel" id="picPhone" class="form-control" placeholder="08xx xxxx xxxx">
+                                <span class="form-error-msg" id="errPhone">Nomor WhatsApp wajib diisi</span>
+                            </div>
+                        </div>
+
+                        <!-- Bagian 3: Produk -->
+                        <div class="form-section-title" style="margin-top:8px;">
+                            <i data-lucide="layers" size="16"></i>
+                            Produk yang Diminati
+                            <span style="font-size:0.7rem;font-weight:500;color:var(--text-muted);margin-left:4px;">(pilih satu atau lebih)</span>
+                        </div>
+                        <div class="form-group">
+                            <div class="product-select-grid" id="productGrid">
+                                <label class="product-check-item" onclick="toggleProduct(this)">
+                                    <input type="checkbox" value="QRIS Solutions">
+                                    <div class="product-check-box"><i data-lucide="check" size="11"></i></div>
+                                    <span class="product-check-icon">🔲</span>
+                                    <div>
+                                        <div class="product-check-label">QRIS Solutions</div>
+                                        <div class="product-check-sub">Payment Acceptance</div>
+                                    </div>
+                                </label>
+                                <label class="product-check-item" onclick="toggleProduct(this)">
+                                    <input type="checkbox" value="Payout Disbursement">
+                                    <div class="product-check-box"><i data-lucide="check" size="11"></i></div>
+                                    <span class="product-check-icon">💸</span>
+                                    <div>
+                                        <div class="product-check-label">Payout Disbursement</div>
+                                        <div class="product-check-sub">Transfer & Pencairan Dana</div>
+                                    </div>
+                                </label>
+                                <label class="product-check-item" onclick="toggleProduct(this)">
+                                    <input type="checkbox" value="Virtual Account">
+                                    <div class="product-check-box"><i data-lucide="check" size="11"></i></div>
+                                    <span class="product-check-icon">🏦</span>
+                                    <div>
+                                        <div class="product-check-label">Virtual Account</div>
+                                        <div class="product-check-sub">Koleksi Pembayaran</div>
+                                    </div>
+                                </label>
+                                <label class="product-check-item" onclick="toggleProduct(this)">
+                                    <input type="checkbox" value="CoBrand Saving Madera">
+                                    <div class="product-check-box"><i data-lucide="check" size="11"></i></div>
+                                    <span class="product-check-icon">🌿</span>
+                                    <div>
+                                        <div class="product-check-label">CoBrand Saving</div>
+                                        <div class="product-check-sub">Embedded Banking by Madera</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <span class="form-error-msg" id="errProduct">Pilih minimal satu produk</span>
+                        </div>
+
+                        <!-- Bagian 4: Skala & Pesan -->
+                        <div class="form-section-title" style="margin-top:8px;">
+                            <i data-lucide="bar-chart-2" size="16"></i>
+                            Detail Kebutuhan
+                        </div>
+                        <div class="form-group">
+                            <label>Estimasi Volume Transaksi per Bulan</label>
+                            <div class="scale-options" id="scaleOptions">
+                                <button type="button" class="scale-btn" onclick="selectScale(this)">< 1.000 trx</button>
+                                <button type="button" class="scale-btn" onclick="selectScale(this)">1.000 – 10.000 trx</button>
+                                <button type="button" class="scale-btn" onclick="selectScale(this)">10.000 – 100.000 trx</button>
+                                <button type="button" class="scale-btn" onclick="selectScale(this)">> 100.000 trx</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Ceritakan Kebutuhan Anda <span class="required">*</span></label>
+                            <textarea id="message" class="form-control" placeholder="Contoh: Kami adalah startup fintech yang ingin menyediakan fitur pembayaran QRIS untuk merchant kami. Kami membutuhkan integrasi API dan sandbox untuk testing..."></textarea>
+                            <span class="form-error-msg" id="errMessage">Tolong ceritakan kebutuhan Anda</span>
+                        </div>
+
+                        <div class="form-submit-row">
+                            <button class="btn-submit" id="submitBtn" onclick="submitForm()">
+                                <div class="spinner"></div>
+                                <span class="btn-label" style="display:flex;align-items:center;gap:8px;">
+                                    <i data-lucide="send" size="16"></i>
+                                    Kirim & Hubungi Tim Kami
+                                </span>
+                            </button>
+                            <p class="form-privacy">
+                                <i data-lucide="lock" size="11"></i>
+                                Data Anda aman. Tidak akan disebarkan ke pihak ketiga.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SIDEBAR -->
+                <div class="contact-sidebar">
+
+                    <!-- WhatsApp Card -->
+                    <a href="https://wa.me/6289507609765?text=Halo%20Tim%20Nobu%20BaaS%2C%20saya%20ingin%20berdiskusi%20mengenai%20integrasi%20layanan%20Banking%20as%20a%20Service.%20Boleh%20saya%20tahu%20lebih%20lanjut%3F" target="_blank" class="sidebar-card wa-card">
+                        <div class="wa-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="#00d48f"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        </div>
+                        <div class="wa-title">Chat Langsung via WhatsApp</div>
+                        <p class="wa-desc">Respons lebih cepat — tim kami aktif di WhatsApp pada hari kerja pukul 09.00–17.00 WIB.</p>
+                        <div class="wa-btn">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                            Buka WhatsApp
+                        </div>
+                    </a>
+
+                    <!-- Process -->
+                    <div class="sidebar-card">
+                        <div class="sidebar-card-title">
+                            <i data-lucide="git-branch" size="14"></i>
+                            Setelah Submit
+                        </div>
+                        <div class="process-steps">
+                            <div class="process-step">
+                                <div class="process-step-num">1</div>
+                                <div class="process-step-text">
+                                    <strong>Konfirmasi Email</strong>
+                                    <span>Tim kami menghubungi dalam 1–2 hari kerja</span>
+                                </div>
+                            </div>
+                            <div class="process-step">
+                                <div class="process-step-num">2</div>
+                                <div class="process-step-text">
+                                    <strong>Discovery Call</strong>
+                                    <span>Diskusi kebutuhan teknis & bisnis bersama tim BaaS</span>
+                                </div>
+                            </div>
+                            <div class="process-step">
+                                <div class="process-step-num">3</div>
+                                <div class="process-step-text">
+                                    <strong>Akses Sandbox</strong>
+                                    <span>Anda mendapat akses testing environment</span>
+                                </div>
+                            </div>
+                            <div class="process-step">
+                                <div class="process-step-num">4</div>
+                                <div class="process-step-text">
+                                    <strong>Go-Live Produksi</strong>
+                                    <span>Integrasi final didampingi tim teknis Nobu</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Trust -->
+                    <div class="sidebar-card">
+                        <div class="sidebar-card-title">
+                            <i data-lucide="shield-check" size="14"></i>
+                            Keamanan & Kepatuhan
+                        </div>
+                        <div class="trust-list">
+                            <div class="trust-item"><i data-lucide="check-circle" size="14"></i> Terdaftar & diawasi OJK</div>
+                            <div class="trust-item"><i data-lucide="check-circle" size="14"></i> SNAP BI Certified</div>
+                            <div class="trust-item"><i data-lucide="check-circle" size="14"></i> ISO 27001 Information Security</div>
+                            <div class="trust-item"><i data-lucide="check-circle" size="14"></i> PCI DSS Compliant</div>
+                            <div class="trust-item"><i data-lucide="check-circle" size="14"></i> Data disimpan di data center Indonesia</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand-col">
+                    <div class="footer-logo">
+                        <img src="nobu-logo.png" alt="Nobu Bank" style="height:28px;width:auto;">
+                    </div>
+                    <p class="footer-tagline">Infrastruktur Banking untuk Ekosistem Digital Indonesia.</p>
+                    <div class="footer-socials">
+                        <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" size="16"></i></a>
+                        <a href="#" aria-label="Twitter"><i data-lucide="twitter" size="16"></i></a>
+                        <a href="#" aria-label="Instagram"><i data-lucide="instagram" size="16"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links-group">
+                    <h5>Produk BaaS</h5>
+                    <a href="index.html#qr-section">QRIS Solutions</a>
+                    <a href="index.html#payout-section">Payout Disbursement</a>
+                    <a href="index.html#madera-section">CoBrand Saving by Madera</a>
+                    <a href="va.html">Virtual Account</a>
+                </div>
+                <div class="footer-links-group">
+                    <h5>Developer</h5>
+                    <a href="#">API Documentation</a>
+                    <a href="#">Sandbox Environment</a>
+                    <a href="#">SDK & Libraries</a>
+                    <a href="#">Changelog</a>
+                    <a href="#">Status Page</a>
+                </div>
+                <div class="footer-links-group">
+                    <h5>Perusahaan</h5>
+                    <a href="#">Tentang Nobu Bank</a>
+                    <a href="#">Partner Program</a>
+                    <a href="#">Karir</a>
+                    <a href="#">Blog & Insights</a>
+                    <a href="#">Kebijakan Privasi</a>
+                </div>
+                <div class="footer-contact-col">
+                    <h5>Hubungi Kami</h5>
+                    <div class="contact-item">
+                        <i data-lucide="map-pin" size="14"></i>
+                        <span>Graha Nobu, Tangerang, Indonesia</span>
+                    </div>
+                    <div class="contact-item">
+                        <i data-lucide="mail" size="14"></i>
+                        <a href="mailto:openbanking@nobubank.com">openbanking@nobubank.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <i data-lucide="phone" size="14"></i>
+                        <a href="tel:+6289507609765">+62 895 0760 9765</a>
+                    </div>
+                    <div class="footer-badges">
+                        <div class="ojk-badge"><i data-lucide="shield" size="12"></i> OJK</div>
+                        <div class="ojk-badge"><i data-lucide="award" size="12"></i> SNAP BI</div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 PT Bank Nationalnobu Tbk. Terdaftar & Diawasi oleh Otoritas Jasa Keuangan (OJK).</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Syarat & Ketentuan</a>
+                    <a href="#">Kebijakan Privasi</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // ── EmailJS Setup ─────────────────────────────────────────────
+        // CARA SETUP:
+        // 1. Daftar gratis di https://www.emailjs.com
+        // 2. Buat Email Service (Gmail / Outlook) → dapat SERVICE_ID
+        // 3. Buat Email Template → dapat TEMPLATE_ID
+        //    Template variabel: {{company}}, {{pic_name}}, {{pic_role}},
+        //    {{pic_email}}, {{pic_phone}}, {{website}}, {{industry}},
+        //    {{products}}, {{volume}}, {{message}}
+        // 4. Lihat tab "Account" → dapat PUBLIC_KEY
+        // 5. Ganti 3 nilai di bawah ini:
+
+        const EMAILJS_PUBLIC_KEY  = 'GANTI_PUBLIC_KEY_ANDA';   // dari tab Account
+        const EMAILJS_SERVICE_ID  = 'GANTI_SERVICE_ID_ANDA';   // dari Email Services
+        const EMAILJS_TEMPLATE_ID = 'GANTI_TEMPLATE_ID_ANDA';  // dari Email Templates
+
+        emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+        // ── State ─────────────────────────────────────────────────────
+        let selectedScale = '';
+
+        function toggleProduct(el) {
+            el.classList.toggle('selected');
+            const cb = el.querySelector('input[type="checkbox"]');
+            cb.checked = !cb.checked;
+        }
+
+        function selectScale(btn) {
+            document.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            selectedScale = btn.textContent.trim();
+        }
+
+        // ── Validation ────────────────────────────────────────────────
+        function validate() {
+            let ok = true;
+
+            const fields = [
+                { id: 'companyName', errId: 'errCompany', check: v => v.trim().length > 0 },
+                { id: 'industry',    errId: 'errIndustry', check: v => v !== '' },
+                { id: 'picName',     errId: 'errName',    check: v => v.trim().length > 0 },
+                { id: 'picEmail',    errId: 'errEmail',   check: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
+                { id: 'picPhone',    errId: 'errPhone',   check: v => v.trim().length >= 9 },
+                { id: 'message',     errId: 'errMessage', check: v => v.trim().length > 10 },
+            ];
+
+            fields.forEach(({ id, errId, check }) => {
+                const el = document.getElementById(id);
+                const err = document.getElementById(errId);
+                if (!check(el.value)) {
+                    el.classList.add('error');
+                    err.classList.add('visible');
+                    ok = false;
+                } else {
+                    el.classList.remove('error');
+                    err.classList.remove('visible');
+                }
+            });
+
+            const products = [...document.querySelectorAll('#productGrid input:checked')].map(c => c.value);
+            const errProduct = document.getElementById('errProduct');
+            if (products.length === 0) {
+                errProduct.classList.add('visible');
+                ok = false;
+            } else {
+                errProduct.classList.remove('visible');
+            }
+
+            return ok;
+        }
+
+        // ── Submit ────────────────────────────────────────────────────
+        async function submitForm() {
+            if (!validate()) return;
+
+            const btn = document.getElementById('submitBtn');
+            btn.classList.add('loading');
+            btn.disabled = true;
+
+            const products = [...document.querySelectorAll('#productGrid input:checked')].map(c => c.value).join(', ');
+
+            const templateParams = {
+                company:   document.getElementById('companyName').value,
+                pic_name:  document.getElementById('picName').value,
+                pic_role:  document.getElementById('picRole').value || '-',
+                pic_email: document.getElementById('picEmail').value,
+                pic_phone: document.getElementById('picPhone').value,
+                website:   document.getElementById('website').value || '-',
+                industry:  document.getElementById('industry').value,
+                products:  products,
+                volume:    selectedScale || 'Tidak disebutkan',
+                message:   document.getElementById('message').value,
+            };
+
+            try {
+                await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+                // Success
+                document.getElementById('formContent').style.display = 'none';
+                document.getElementById('formSuccess').classList.add('visible');
+            } catch (err) {
+                console.error('EmailJS error:', err);
+                // Fallback: redirect WA dengan data
+                const waText = encodeURIComponent(
+                    `Halo Tim Nobu BaaS 👋\n\n` +
+                    `*Perusahaan:* ${templateParams.company}\n` +
+                    `*PIC:* ${templateParams.pic_name} (${templateParams.pic_role})\n` +
+                    `*Email:* ${templateParams.pic_email}\n` +
+                    `*Industri:* ${templateParams.industry}\n` +
+                    `*Produk:* ${templateParams.products}\n` +
+                    `*Volume:* ${templateParams.volume}\n\n` +
+                    `*Kebutuhan:*\n${templateParams.message}`
+                );
+                window.open(`https://wa.me/6289507609765?text=${waText}`, '_blank');
+                document.getElementById('formContent').style.display = 'none';
+                document.getElementById('formSuccess').classList.add('visible');
+            } finally {
+                btn.classList.remove('loading');
+                btn.disabled = false;
+            }
+        }
+
+        // Clear error on input
+        document.querySelectorAll('.form-control').forEach(el => {
+            el.addEventListener('input', () => {
+                el.classList.remove('error');
+                const errId = 'err' + el.id.charAt(0).toUpperCase() + el.id.slice(1);
+                const err = document.getElementById(errId);
+                if (err) err.classList.remove('visible');
+            });
+        });
+    </script>
+</body>
+</html>
